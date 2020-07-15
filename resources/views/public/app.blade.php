@@ -28,18 +28,43 @@
             margin: -0.125rem 0 0;
         }
 
-        #page-content-wrapper img {
+        #page-image img {
             height: 200px;
             object-fit: cover;
         }
+
+        .unstyled-link {
+            text-decoration: none;
+        }
+
+        .map-container {
+            overflow:hidden;
+            padding-bottom:56.25%;
+            position:relative;
+            height:0;
+        }
+        .map-container iframe {
+            left:0;
+            top:0;
+            height:100%;
+            width:100%;
+            position:absolute;
+        }
     </style>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&libraries=places"></script>
 </head>
 <body>
     <header>
         @include('public.header')
     </header>
+    <div id="page-image">
+        @yield('images')
+    </div>
     <div id="page-content-wrapper">
         @yield('page')
     </div>
+    <footer>
+        @include('public.footer')
+    </footer>
 </body>
 </html>

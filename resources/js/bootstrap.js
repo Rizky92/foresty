@@ -15,7 +15,7 @@ try {
 } catch (e) {}
 
 document.onscroll = function() {
-    if ($(window).scrollTop() > $('navbar').height()) {
+    if ($(window).scrollTop() > $('.navbar').height()) {
         $('.navbar').addClass('fixed-top');
     } else {
         $('.navbar').removeClass('fixed-top');

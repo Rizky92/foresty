@@ -64,3 +64,20 @@ Route::get('/sejarah', function () {
 Route::get('/topografi_dan_hidrologi', function () {
     return view('public.profil.topo_hidro');
 });
+
+
+Route::resource('tumbuhans', 'tumbuhanController');
+
+Route::resource('koleksiHerbaria', 'koleksi_herbariumController');
+
+Route::resource('families', 'familyController');
+
+Route::resource('gazetteers', 'gazetteerController');
+
+Route::resource('treetexas', 'treetexaController');
+
+Route::resource('minorAreas', 'minor_areaController');
+
+Route::resource('countries', 'countryController');
+
+Route::resource('majorAreas', 'major_areaController');
