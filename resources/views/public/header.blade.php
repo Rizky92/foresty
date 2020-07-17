@@ -1,18 +1,11 @@
-<nav class="navbar navbar-expand navbar-dark shadow-lg py-3" style="background-color: #222222">
+<nav class="navbar navbar-expand navbar-dark shadow-lg py-3" style="background-color: #222222" id="navbarbar">
     <div class="container collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="./">BERANDA</a>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="profilDropDown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">PROFIL</a>
-                <div class="dropdown-menu shadow" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="./sejarah">SEJARAH</a>
-                    <a class="dropdown-item" href="./aksesibilitas">AKSESIBILITAS</a>
-                    <a class="dropdown-item" href="./pengelola">PENGELOLA</a>
-                    <a class="dropdown-item" href="./lokasi">LOKASI</a>
-                    <a class="dropdown-item" href="./topografi_dan_hidrologi">TOPOGRAFI DAN HIDROLOGI</a>
-                </div>
+            <li class="nav-item">
+                <a class="nav-link" href="./profil">PROFIL</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="./flora">FLORA</a>

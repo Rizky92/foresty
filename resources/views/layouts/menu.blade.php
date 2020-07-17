@@ -7,9 +7,6 @@
     <a href="{{ route('tumbuhans.index') }}"><i class="fa fa-edit"></i><span>Tumbuhans</span></a>
 </li>
 
-<li class="{{ Request::is('koleksiHerbaria*') ? 'active' : '' }}">
-    <a href="{{ route('koleksiHerbaria.index') }}"><i class="fa fa-edit"></i><span>Koleksi Herbaria</span></a>
-</li>
 
 <li class="{{ Request::is('families*') ? 'active' : '' }}">
     <a href="{{ route('families.index') }}"><i class="fa fa-edit"></i><span>Families</span></a>
@@ -33,5 +30,9 @@
 
 <li class="{{ Request::is('majorAreas*') ? 'active' : '' }}">
     <a href="{{ route('majorAreas.index') }}"><i class="fa fa-edit"></i><span>Major Areas</span></a>
+</li>
+
+<li class="{{ Request::is('herbaria*') ? 'active' : '' }}">
+    <a href="{{ route('herbaria.index') }}"><i class="fa fa-edit"></i><span>Herbaria</span></a>
 </li>
 

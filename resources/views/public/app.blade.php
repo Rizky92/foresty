@@ -13,14 +13,14 @@
 
     <style>
         .carousel-item {
-            height: 300px;
+            height: 576px;
         }
 
         .carousel-item img {
             position: absolute;
             top: 0;
             left: 0;
-            min-height: 300px;
+            min-height: 576px;
         }
 
         .dropdown:hover>.dropdown-menu {
@@ -33,7 +33,7 @@
             object-fit: cover;
         }
 
-        .unstyled-link {
+        .unstyled {
             text-decoration: none;
         }
 
@@ -61,7 +61,14 @@
         @yield('images')
     </div>
     <div id="page-content-wrapper">
-        @yield('page')
+        <div class="container-fluid pt-2 pl-3">
+            <div class="col-8">
+                @yield('page')
+            </div>
+            <div class="col-4">
+                @yield('side')
+            </div>
+        </div>
     </div>
     <footer>
         @include('public.footer')
