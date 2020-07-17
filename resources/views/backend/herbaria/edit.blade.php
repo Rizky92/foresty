@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Koleksi Herbarium
+            Herbarium
         </h1>
    </section>
    <div class="content">
@@ -11,9 +11,9 @@
        <div class="box box-primary">
            <div class="box-body">
                <div class="row">
-                   {!! Form::model($koleksiHerbarium, ['route' => ['koleksiHerbaria.update', $koleksiHerbarium->id], 'method' => 'patch']) !!}
+                   {!! Form::model($herbarium, ['route' => ['herbaria.update', $herbarium->id], 'method' => 'patch']) !!}
 
-                        @include('backend.koleksi_herbaria.fields')
+                        @include('backend.herbaria.fields')
 
                    {!! Form::close() !!}
                </div>

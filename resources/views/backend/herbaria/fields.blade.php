@@ -1,7 +1,7 @@
-<!-- Nama Latin Field -->
+<!-- Latin Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('nama_latin', 'Nama Latin:') !!}
-    {!! Form::text('nama_latin', null, ['class' => 'form-control']) !!}
+    {!! Form::label('latin', 'Latin:') !!}
+    {!! Form::text('latin', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Collector Field -->
@@ -19,11 +19,11 @@
 <!-- Prefix Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('prefix', 'Prefix:') !!}
-    {!! Form::text('prefix', null, ['class' => 'form-control','maxlength' => 5]) !!}
+    {!! Form::text('prefix', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-    <a href="{{ route('koleksiHerbaria.index') }}" class="btn btn-default">Cancel</a>
+    <a href="{{ route('herbaria.index') }}" class="btn btn-default">Cancel</a>
 </div>

@@ -2,22 +2,23 @@
 
 namespace App\Repositories;
 
-use App\Models\koleksi_herbarium;
+use App\Models\Herbarium;
 use App\Repositories\BaseRepository;
 
 /**
- * Class koleksi_herbariumRepository
+ * Class HerbariumRepository
  * @package App\Repositories
- * @version July 15, 2020, 9:07 am UTC
+ * @version July 15, 2020, 12:33 pm UTC
 */
 
-class koleksi_herbariumRepository extends BaseRepository
+class HerbariumRepository extends BaseRepository
 {
     /**
      * @var array
      */
     protected $fieldSearchable = [
-        'nama_latin'
+        'latin',
+        'collector'
     ];
 
     /**
@@ -35,6 +36,6 @@ class koleksi_herbariumRepository extends BaseRepository
      **/
     public function model()
     {
-        return koleksi_herbarium::class;
+        return Herbarium::class;
     }
 }

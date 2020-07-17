@@ -2,15 +2,15 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\koleksi_herbarium;
+use App\Models\Herbarium;
 use Faker\Generator as Faker;
 
-$factory->define(koleksi_herbarium::class, function (Faker $faker) {
+$factory->define(Herbarium::class, function (Faker $faker) {
 
     return [
-        'nama_latin' => $faker->word,
+        'latin' => $faker->word,
         'collector' => $faker->word,
-        'number' => $faker->randomDigitNotNull,
+        'number' => $faker->word,
         'prefix' => $faker->word,
         'created_at' => $faker->date('Y-m-d H:i:s'),
         'updated_at' => $faker->date('Y-m-d H:i:s')

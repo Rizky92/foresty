@@ -6,20 +6,20 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class koleksi_herbarium
+ * Class Herbarium
  * @package App\Models
- * @version July 15, 2020, 9:07 am UTC
+ * @version July 15, 2020, 12:33 pm UTC
  *
- * @property string $nama_latin
+ * @property string $latin
  * @property string $collector
- * @property integer $number
+ * @property tinyInteger $number
  * @property string $prefix
  */
-class koleksi_herbarium extends Model
+class Herbarium extends Model
 {
     use SoftDeletes;
 
-    public $table = 'koleksi_herbaria';
+    public $table = 'herbaria';
     
 
     protected $dates = ['deleted_at'];
@@ -27,7 +27,7 @@ class koleksi_herbarium extends Model
 
 
     public $fillable = [
-        'nama_latin',
+        'latin',
         'collector',
         'number',
         'prefix'
@@ -40,9 +40,8 @@ class koleksi_herbarium extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'nama_latin' => 'string',
+        'latin' => 'string',
         'collector' => 'string',
-        'number' => 'integer',
         'prefix' => 'string'
     ];
 
@@ -52,10 +51,10 @@ class koleksi_herbarium extends Model
      * @var array
      */
     public static $rules = [
-        'nama_latin' => 'required',
+        'latin' => 'required',
         'collector' => 'required',
         'number' => 'required',
-        'prefix' => 'required|max:5'
+        'prefix' => 'required'
     ];
 
     

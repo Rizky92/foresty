@@ -26,8 +26,9 @@ Auth::routes(['verify' => false]);
 
 Route::get('/dashboard', 'HomeController@index')->middleware('verified');
 
-
-Route::resource('carousels', 'carouselsController');
+Route::get('/profil', function () {
+    return view('public.profil.profil');
+});
 
 Route::get('/flora', function () {
     return view('public.flora.flora');
@@ -45,30 +46,9 @@ Route::get('/tempat_wisata', function () {
     return view('public.tempat_wisata.wisata');
 });
 
-Route::get('/aksesibilitas', function () {
-    return view('public.profil.aksesibiltas');
-});
-
-Route::get('/lokasi', function () {
-    return view('public.profil.lokasi');
-});
-
-Route::get('/pengelola', function () {
-    return view('public.profil.pengelola');
-});
-
-Route::get('/sejarah', function () {
-    return view('public.profil.sejarah');
-});
-
-Route::get('/topografi_dan_hidrologi', function () {
-    return view('public.profil.topo_hidro');
-});
-
+Route::resource('carousels', 'carouselsController');
 
 Route::resource('tumbuhans', 'tumbuhanController');
-
-Route::resource('koleksiHerbaria', 'koleksi_herbariumController');
 
 Route::resource('families', 'familyController');
 
@@ -81,3 +61,5 @@ Route::resource('minorAreas', 'minor_areaController');
 Route::resource('countries', 'countryController');
 
 Route::resource('majorAreas', 'major_areaController');
+
+Route::resource('herbaria', 'HerbariumController');

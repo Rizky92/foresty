@@ -3,9 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\koleksi_herbarium;
+use App\Models\Herbarium;
 
-class Updatekoleksi_herbariumRequest extends FormRequest
+class CreateHerbariumRequest extends FormRequest
 {
 
     /**
@@ -25,8 +25,6 @@ class Updatekoleksi_herbariumRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = koleksi_herbarium::$rules;
-        
-        return $rules;
+        return Herbarium::$rules;
     }
 }

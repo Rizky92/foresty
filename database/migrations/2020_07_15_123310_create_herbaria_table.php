@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKoleksiHerbariaTable extends Migration
+class CreateHerbariaTable extends Migration
 {
 
     /**
@@ -14,11 +14,11 @@ class CreateKoleksiHerbariaTable extends Migration
      */
     public function up()
     {
-        Schema::create('koleksi_herbaria', function (Blueprint $table) {
+        Schema::create('herbaria', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nama_latin');
+            $table->string('latin');
             $table->string('collector');
-            $table->integer('number');
+            $table->tinyInteger('number');
             $table->string('prefix');
             $table->timestamps();
             $table->softDeletes();
@@ -32,6 +32,6 @@ class CreateKoleksiHerbariaTable extends Migration
      */
     public function down()
     {
-        Schema::drop('koleksi_herbaria');
+        Schema::drop('herbaria');
     }
 }
