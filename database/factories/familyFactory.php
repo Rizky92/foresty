@@ -2,10 +2,10 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\family;
+use App\Models\Family;
 use Faker\Generator as Faker;
 
-$factory->define(family::class, function (Faker $faker) {
+$factory->define(Family::class, function (Faker $faker) {
 
     return [
         'name' => $faker->word,

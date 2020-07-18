@@ -8,12 +8,19 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Herbarium
  * @package App\Models
- * @version July 15, 2020, 12:33 pm UTC
+ * @version July 18, 2020, 5:49 am UTC
  *
  * @property string $latin
  * @property string $collector
- * @property tinyInteger $number
+ * @property integer $number
  * @property string $prefix
+ * @property string $img_path
+ * @property integer $country_id
+ * @property integer $family_id
+ * @property integer $gazetteer_id
+ * @property integer $major_area_id
+ * @property integer $minor_area_id
+ * @property integer $treetexa_id
  */
 class Herbarium extends Model
 {
@@ -30,7 +37,14 @@ class Herbarium extends Model
         'latin',
         'collector',
         'number',
-        'prefix'
+        'prefix',
+        'img_path',
+        'country_id',
+        'family_id',
+        'gazetteer_id',
+        'major_area_id',
+        'minor_area_id',
+        'treetexa_id'
     ];
 
     /**
@@ -42,7 +56,15 @@ class Herbarium extends Model
         'id' => 'integer',
         'latin' => 'string',
         'collector' => 'string',
-        'prefix' => 'string'
+        'number' => 'integer',
+        'prefix' => 'string',
+        'img_path' => 'string',
+        'country_id' => 'integer',
+        'family_id' => 'integer',
+        'gazetteer_id' => 'integer',
+        'major_area_id' => 'integer',
+        'minor_area_id' => 'integer',
+        'treetexa_id' => 'integer'
     ];
 
     /**
@@ -54,7 +76,14 @@ class Herbarium extends Model
         'latin' => 'required',
         'collector' => 'required',
         'number' => 'required',
-        'prefix' => 'required'
+        'prefix' => 'required',
+        'img_path' => 'required',
+        'country_id' => 'required',
+        'family_id' => 'required',
+        'gazetteer_id' => 'required',
+        'major_area_id' => 'required',
+        'minor_area_id' => 'required',
+        'treetexa_id' => 'required'
     ];
 
     

@@ -2,10 +2,10 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\tumbuhan;
+use App\Models\Tumbuhan;
 use Faker\Generator as Faker;
 
-$factory->define(tumbuhan::class, function (Faker $faker) {
+$factory->define(Tumbuhan::class, function (Faker $faker) {
 
     return [
         'nama' => $faker->word,

@@ -37313,15 +37313,14 @@ try {
   window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 
   __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
-} catch (e) {}
+} catch (e) {} // document.onscroll = function() {
+//     if ($(window).scrollTop() > $('.navbar').height()) {
+//         $('.navbar').addClass('fixed-top');
+//     } else {
+//         $('.navbar').removeClass('fixed-top');
+//     }
+// };
 
-document.onscroll = function () {
-  if ($(window).scrollTop() > $('.navbar').height()) {
-    $('.navbar').addClass('fixed-top');
-  } else {
-    $('.navbar').removeClass('fixed-top');
-  }
-};
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the

@@ -2,22 +2,22 @@
 
 namespace App\Repositories;
 
-use App\Models\family;
+use App\Models\Family;
 use App\Repositories\BaseRepository;
 
 /**
- * Class familyRepository
+ * Class FamilyRepository
  * @package App\Repositories
- * @version July 15, 2020, 9:09 am UTC
+ * @version July 18, 2020, 4:43 am UTC
 */
 
-class familyRepository extends BaseRepository
+class FamilyRepository extends BaseRepository
 {
     /**
      * @var array
      */
     protected $fieldSearchable = [
-        
+        'name'
     ];
 
     /**
@@ -35,6 +35,6 @@ class familyRepository extends BaseRepository
      **/
     public function model()
     {
-        return family::class;
+        return Family::class;
     }
 }

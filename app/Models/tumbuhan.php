@@ -6,18 +6,18 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class tumbuhan
+ * Class Tumbuhan
  * @package App\Models
- * @version July 15, 2020, 9:01 am UTC
+ * @version July 18, 2020, 4:47 am UTC
  *
  * @property string $nama
  * @property string $deskripsi
  * @property string $khasiat
- * @property tinyInteger $musim
+ * @property string $musim
  * @property string $habitat
  * @property string $lokasi
  */
-class tumbuhan extends Model
+class Tumbuhan extends Model
 {
     use SoftDeletes;
 
@@ -45,6 +45,7 @@ class tumbuhan extends Model
     protected $casts = [
         'id' => 'integer',
         'nama' => 'string',
+        'musim' => 'string',
         'habitat' => 'string',
         'lokasi' => 'string'
     ];

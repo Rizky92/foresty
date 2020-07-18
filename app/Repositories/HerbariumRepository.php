@@ -8,7 +8,7 @@ use App\Repositories\BaseRepository;
 /**
  * Class HerbariumRepository
  * @package App\Repositories
- * @version July 15, 2020, 12:33 pm UTC
+ * @version July 18, 2020, 5:49 am UTC
 */
 
 class HerbariumRepository extends BaseRepository
@@ -18,7 +18,13 @@ class HerbariumRepository extends BaseRepository
      */
     protected $fieldSearchable = [
         'latin',
-        'collector'
+        'collector',
+        'country_id',
+        'family_id',
+        'gazetteer_id',
+        'major_area_id',
+        'minor_area_id',
+        'treetexa_id'
     ];
 
     /**

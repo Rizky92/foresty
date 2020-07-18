@@ -2,26 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreategazetteerRequest;
-use App\Http\Requests\UpdategazetteerRequest;
-use App\Repositories\gazetteerRepository;
+use App\Http\Requests\CreateGazetteerRequest;
+use App\Http\Requests\UpdateGazetteerRequest;
+use App\Repositories\GazetteerRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
 
-class gazetteerController extends AppBaseController
+class GazetteerController extends AppBaseController
 {
-    /** @var  gazetteerRepository */
+    /** @var  GazetteerRepository */
     private $gazetteerRepository;
 
-    public function __construct(gazetteerRepository $gazetteerRepo)
+    public function __construct(GazetteerRepository $gazetteerRepo)
     {
         $this->gazetteerRepository = $gazetteerRepo;
     }
 
     /**
-     * Display a listing of the gazetteer.
+     * Display a listing of the Gazetteer.
      *
      * @param Request $request
      *
@@ -36,7 +36,7 @@ class gazetteerController extends AppBaseController
     }
 
     /**
-     * Show the form for creating a new gazetteer.
+     * Show the form for creating a new Gazetteer.
      *
      * @return Response
      */
@@ -46,13 +46,13 @@ class gazetteerController extends AppBaseController
     }
 
     /**
-     * Store a newly created gazetteer in storage.
+     * Store a newly created Gazetteer in storage.
      *
-     * @param CreategazetteerRequest $request
+     * @param CreateGazetteerRequest $request
      *
      * @return Response
      */
-    public function store(CreategazetteerRequest $request)
+    public function store(CreateGazetteerRequest $request)
     {
         $input = $request->all();
 
@@ -64,7 +64,7 @@ class gazetteerController extends AppBaseController
     }
 
     /**
-     * Display the specified gazetteer.
+     * Display the specified Gazetteer.
      *
      * @param int $id
      *
@@ -84,7 +84,7 @@ class gazetteerController extends AppBaseController
     }
 
     /**
-     * Show the form for editing the specified gazetteer.
+     * Show the form for editing the specified Gazetteer.
      *
      * @param int $id
      *
@@ -104,14 +104,14 @@ class gazetteerController extends AppBaseController
     }
 
     /**
-     * Update the specified gazetteer in storage.
+     * Update the specified Gazetteer in storage.
      *
      * @param int $id
-     * @param UpdategazetteerRequest $request
+     * @param UpdateGazetteerRequest $request
      *
      * @return Response
      */
-    public function update($id, UpdategazetteerRequest $request)
+    public function update($id, UpdateGazetteerRequest $request)
     {
         $gazetteer = $this->gazetteerRepository->find($id);
 
@@ -129,7 +129,7 @@ class gazetteerController extends AppBaseController
     }
 
     /**
-     * Remove the specified gazetteer from storage.
+     * Remove the specified Gazetteer from storage.
      *
      * @param int $id
      *

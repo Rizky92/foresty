@@ -2,16 +2,16 @@
 
 namespace App\Repositories;
 
-use App\Models\tumbuhan;
+use App\Models\Tumbuhan;
 use App\Repositories\BaseRepository;
 
 /**
- * Class tumbuhanRepository
+ * Class TumbuhanRepository
  * @package App\Repositories
- * @version July 15, 2020, 9:01 am UTC
+ * @version July 18, 2020, 4:47 am UTC
 */
 
-class tumbuhanRepository extends BaseRepository
+class TumbuhanRepository extends BaseRepository
 {
     /**
      * @var array
@@ -20,6 +20,7 @@ class tumbuhanRepository extends BaseRepository
         'nama',
         'deskripsi',
         'khasiat',
+        'musim',
         'habitat',
         'lokasi'
     ];
@@ -39,6 +40,6 @@ class tumbuhanRepository extends BaseRepository
      **/
     public function model()
     {
-        return tumbuhan::class;
+        return Tumbuhan::class;
     }
 }

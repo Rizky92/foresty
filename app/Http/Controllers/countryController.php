@@ -2,26 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreatecountryRequest;
-use App\Http\Requests\UpdatecountryRequest;
-use App\Repositories\countryRepository;
+use App\Http\Requests\CreateCountryRequest;
+use App\Http\Requests\UpdateCountryRequest;
+use App\Repositories\CountryRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
 
-class countryController extends AppBaseController
+class CountryController extends AppBaseController
 {
-    /** @var  countryRepository */
+    /** @var  CountryRepository */
     private $countryRepository;
 
-    public function __construct(countryRepository $countryRepo)
+    public function __construct(CountryRepository $countryRepo)
     {
         $this->countryRepository = $countryRepo;
     }
 
     /**
-     * Display a listing of the country.
+     * Display a listing of the Country.
      *
      * @param Request $request
      *
@@ -36,7 +36,7 @@ class countryController extends AppBaseController
     }
 
     /**
-     * Show the form for creating a new country.
+     * Show the form for creating a new Country.
      *
      * @return Response
      */
@@ -46,13 +46,13 @@ class countryController extends AppBaseController
     }
 
     /**
-     * Store a newly created country in storage.
+     * Store a newly created Country in storage.
      *
-     * @param CreatecountryRequest $request
+     * @param CreateCountryRequest $request
      *
      * @return Response
      */
-    public function store(CreatecountryRequest $request)
+    public function store(CreateCountryRequest $request)
     {
         $input = $request->all();
 
@@ -64,7 +64,7 @@ class countryController extends AppBaseController
     }
 
     /**
-     * Display the specified country.
+     * Display the specified Country.
      *
      * @param int $id
      *
@@ -84,7 +84,7 @@ class countryController extends AppBaseController
     }
 
     /**
-     * Show the form for editing the specified country.
+     * Show the form for editing the specified Country.
      *
      * @param int $id
      *
@@ -104,14 +104,14 @@ class countryController extends AppBaseController
     }
 
     /**
-     * Update the specified country in storage.
+     * Update the specified Country in storage.
      *
      * @param int $id
-     * @param UpdatecountryRequest $request
+     * @param UpdateCountryRequest $request
      *
      * @return Response
      */
-    public function update($id, UpdatecountryRequest $request)
+    public function update($id, UpdateCountryRequest $request)
     {
         $country = $this->countryRepository->find($id);
 
@@ -129,7 +129,7 @@ class countryController extends AppBaseController
     }
 
     /**
-     * Remove the specified country from storage.
+     * Remove the specified Country from storage.
      *
      * @param int $id
      *

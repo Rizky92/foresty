@@ -2,10 +2,10 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\gazetteer;
+use App\Models\Gazetteer;
 use Faker\Generator as Faker;
 
-$factory->define(gazetteer::class, function (Faker $faker) {
+$factory->define(Gazetteer::class, function (Faker $faker) {
 
     return [
         'name' => $faker->word,

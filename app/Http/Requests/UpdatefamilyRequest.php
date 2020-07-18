@@ -3,9 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\family;
+use App\Models\Family;
 
-class UpdatefamilyRequest extends FormRequest
+class UpdateFamilyRequest extends FormRequest
 {
 
     /**
@@ -25,7 +25,7 @@ class UpdatefamilyRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = family::$rules;
+        $rules = Family::$rules;
         
         return $rules;
     }

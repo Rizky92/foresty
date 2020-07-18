@@ -2,26 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreatetreetexaRequest;
-use App\Http\Requests\UpdatetreetexaRequest;
-use App\Repositories\treetexaRepository;
+use App\Http\Requests\CreateTreetexaRequest;
+use App\Http\Requests\UpdateTreetexaRequest;
+use App\Repositories\TreetexaRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
 
-class treetexaController extends AppBaseController
+class TreetexaController extends AppBaseController
 {
-    /** @var  treetexaRepository */
+    /** @var  TreetexaRepository */
     private $treetexaRepository;
 
-    public function __construct(treetexaRepository $treetexaRepo)
+    public function __construct(TreetexaRepository $treetexaRepo)
     {
         $this->treetexaRepository = $treetexaRepo;
     }
 
     /**
-     * Display a listing of the treetexa.
+     * Display a listing of the Treetexa.
      *
      * @param Request $request
      *
@@ -36,7 +36,7 @@ class treetexaController extends AppBaseController
     }
 
     /**
-     * Show the form for creating a new treetexa.
+     * Show the form for creating a new Treetexa.
      *
      * @return Response
      */
@@ -46,13 +46,13 @@ class treetexaController extends AppBaseController
     }
 
     /**
-     * Store a newly created treetexa in storage.
+     * Store a newly created Treetexa in storage.
      *
-     * @param CreatetreetexaRequest $request
+     * @param CreateTreetexaRequest $request
      *
      * @return Response
      */
-    public function store(CreatetreetexaRequest $request)
+    public function store(CreateTreetexaRequest $request)
     {
         $input = $request->all();
 
@@ -64,7 +64,7 @@ class treetexaController extends AppBaseController
     }
 
     /**
-     * Display the specified treetexa.
+     * Display the specified Treetexa.
      *
      * @param int $id
      *
@@ -84,7 +84,7 @@ class treetexaController extends AppBaseController
     }
 
     /**
-     * Show the form for editing the specified treetexa.
+     * Show the form for editing the specified Treetexa.
      *
      * @param int $id
      *
@@ -104,14 +104,14 @@ class treetexaController extends AppBaseController
     }
 
     /**
-     * Update the specified treetexa in storage.
+     * Update the specified Treetexa in storage.
      *
      * @param int $id
-     * @param UpdatetreetexaRequest $request
+     * @param UpdateTreetexaRequest $request
      *
      * @return Response
      */
-    public function update($id, UpdatetreetexaRequest $request)
+    public function update($id, UpdateTreetexaRequest $request)
     {
         $treetexa = $this->treetexaRepository->find($id);
 
@@ -129,7 +129,7 @@ class treetexaController extends AppBaseController
     }
 
     /**
-     * Remove the specified treetexa from storage.
+     * Remove the specified Treetexa from storage.
      *
      * @param int $id
      *

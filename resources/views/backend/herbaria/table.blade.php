@@ -6,6 +6,13 @@
         <th>Collector</th>
         <th>Number</th>
         <th>Prefix</th>
+        <th>Img Path</th>
+        <th>Country Id</th>
+        <th>Family Id</th>
+        <th>Gazetteer Id</th>
+        <th>Major Area Id</th>
+        <th>Minor Area Id</th>
+        <th>Treetexa Id</th>
                 <th colspan="3">Action</th>
             </tr>
         </thead>
@@ -16,6 +23,13 @@
             <td>{{ $herbarium->collector }}</td>
             <td>{{ $herbarium->number }}</td>
             <td>{{ $herbarium->prefix }}</td>
+            <td>{{ $herbarium->img_path }}</td>
+            <td>{{ $herbarium->country_id }}</td>
+            <td>{{ $herbarium->family_id }}</td>
+            <td>{{ $herbarium->gazetteer_id }}</td>
+            <td>{{ $herbarium->major_area_id }}</td>
+            <td>{{ $herbarium->minor_area_id }}</td>
+            <td>{{ $herbarium->treetexa_id }}</td>
                 <td>
                     {!! Form::open(['route' => ['herbaria.destroy', $herbarium->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

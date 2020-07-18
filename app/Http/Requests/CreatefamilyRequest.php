@@ -3,9 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\family;
+use App\Models\Family;
 
-class CreatefamilyRequest extends FormRequest
+class CreateFamilyRequest extends FormRequest
 {
 
     /**
@@ -25,6 +25,6 @@ class CreatefamilyRequest extends FormRequest
      */
     public function rules()
     {
-        return family::$rules;
+        return Family::$rules;
     }
 }

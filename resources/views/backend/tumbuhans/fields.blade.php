@@ -19,7 +19,7 @@
 <!-- Musim Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('musim', 'Musim:') !!}
-    {!! Form::select('musim', ['kemarau' => 'kemarau', 'hujan' => 'hujan'], null, ['class' => 'form-control']) !!}
+    {!! Form::text('musim', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Habitat Field -->

@@ -2,26 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreatetumbuhanRequest;
-use App\Http\Requests\UpdatetumbuhanRequest;
-use App\Repositories\tumbuhanRepository;
+use App\Http\Requests\CreateTumbuhanRequest;
+use App\Http\Requests\UpdateTumbuhanRequest;
+use App\Repositories\TumbuhanRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
 
-class tumbuhanController extends AppBaseController
+class TumbuhanController extends AppBaseController
 {
-    /** @var  tumbuhanRepository */
+    /** @var  TumbuhanRepository */
     private $tumbuhanRepository;
 
-    public function __construct(tumbuhanRepository $tumbuhanRepo)
+    public function __construct(TumbuhanRepository $tumbuhanRepo)
     {
         $this->tumbuhanRepository = $tumbuhanRepo;
     }
 
     /**
-     * Display a listing of the tumbuhan.
+     * Display a listing of the Tumbuhan.
      *
      * @param Request $request
      *
@@ -36,7 +36,7 @@ class tumbuhanController extends AppBaseController
     }
 
     /**
-     * Show the form for creating a new tumbuhan.
+     * Show the form for creating a new Tumbuhan.
      *
      * @return Response
      */
@@ -46,13 +46,13 @@ class tumbuhanController extends AppBaseController
     }
 
     /**
-     * Store a newly created tumbuhan in storage.
+     * Store a newly created Tumbuhan in storage.
      *
-     * @param CreatetumbuhanRequest $request
+     * @param CreateTumbuhanRequest $request
      *
      * @return Response
      */
-    public function store(CreatetumbuhanRequest $request)
+    public function store(CreateTumbuhanRequest $request)
     {
         $input = $request->all();
 
@@ -64,7 +64,7 @@ class tumbuhanController extends AppBaseController
     }
 
     /**
-     * Display the specified tumbuhan.
+     * Display the specified Tumbuhan.
      *
      * @param int $id
      *
@@ -84,7 +84,7 @@ class tumbuhanController extends AppBaseController
     }
 
     /**
-     * Show the form for editing the specified tumbuhan.
+     * Show the form for editing the specified Tumbuhan.
      *
      * @param int $id
      *
@@ -104,14 +104,14 @@ class tumbuhanController extends AppBaseController
     }
 
     /**
-     * Update the specified tumbuhan in storage.
+     * Update the specified Tumbuhan in storage.
      *
      * @param int $id
-     * @param UpdatetumbuhanRequest $request
+     * @param UpdateTumbuhanRequest $request
      *
      * @return Response
      */
-    public function update($id, UpdatetumbuhanRequest $request)
+    public function update($id, UpdateTumbuhanRequest $request)
     {
         $tumbuhan = $this->tumbuhanRepository->find($id);
 
@@ -129,7 +129,7 @@ class tumbuhanController extends AppBaseController
     }
 
     /**
-     * Remove the specified tumbuhan from storage.
+     * Remove the specified Tumbuhan from storage.
      *
      * @param int $id
      *

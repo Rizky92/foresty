@@ -3,9 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\gazetteer;
+use App\Models\Gazetteer;
 
-class CreategazetteerRequest extends FormRequest
+class CreateGazetteerRequest extends FormRequest
 {
 
     /**
@@ -25,6 +25,6 @@ class CreategazetteerRequest extends FormRequest
      */
     public function rules()
     {
-        return gazetteer::$rules;
+        return Gazetteer::$rules;
     }
 }

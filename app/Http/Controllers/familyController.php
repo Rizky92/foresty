@@ -2,26 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreatefamilyRequest;
-use App\Http\Requests\UpdatefamilyRequest;
-use App\Repositories\familyRepository;
+use App\Http\Requests\CreateFamilyRequest;
+use App\Http\Requests\UpdateFamilyRequest;
+use App\Repositories\FamilyRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
 
-class familyController extends AppBaseController
+class FamilyController extends AppBaseController
 {
-    /** @var  familyRepository */
+    /** @var  FamilyRepository */
     private $familyRepository;
 
-    public function __construct(familyRepository $familyRepo)
+    public function __construct(FamilyRepository $familyRepo)
     {
         $this->familyRepository = $familyRepo;
     }
 
     /**
-     * Display a listing of the family.
+     * Display a listing of the Family.
      *
      * @param Request $request
      *
@@ -36,7 +36,7 @@ class familyController extends AppBaseController
     }
 
     /**
-     * Show the form for creating a new family.
+     * Show the form for creating a new Family.
      *
      * @return Response
      */
@@ -46,13 +46,13 @@ class familyController extends AppBaseController
     }
 
     /**
-     * Store a newly created family in storage.
+     * Store a newly created Family in storage.
      *
-     * @param CreatefamilyRequest $request
+     * @param CreateFamilyRequest $request
      *
      * @return Response
      */
-    public function store(CreatefamilyRequest $request)
+    public function store(CreateFamilyRequest $request)
     {
         $input = $request->all();
 
@@ -64,7 +64,7 @@ class familyController extends AppBaseController
     }
 
     /**
-     * Display the specified family.
+     * Display the specified Family.
      *
      * @param int $id
      *
@@ -84,7 +84,7 @@ class familyController extends AppBaseController
     }
 
     /**
-     * Show the form for editing the specified family.
+     * Show the form for editing the specified Family.
      *
      * @param int $id
      *
@@ -104,14 +104,14 @@ class familyController extends AppBaseController
     }
 
     /**
-     * Update the specified family in storage.
+     * Update the specified Family in storage.
      *
      * @param int $id
-     * @param UpdatefamilyRequest $request
+     * @param UpdateFamilyRequest $request
      *
      * @return Response
      */
-    public function update($id, UpdatefamilyRequest $request)
+    public function update($id, UpdateFamilyRequest $request)
     {
         $family = $this->familyRepository->find($id);
 
@@ -129,7 +129,7 @@ class familyController extends AppBaseController
     }
 
     /**
-     * Remove the specified family from storage.
+     * Remove the specified Family from storage.
      *
      * @param int $id
      *

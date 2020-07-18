@@ -6,13 +6,13 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class family
+ * Class Family
  * @package App\Models
- * @version July 15, 2020, 9:09 am UTC
+ * @version July 18, 2020, 4:43 am UTC
  *
  * @property string $name
  */
-class family extends Model
+class Family extends Model
 {
     use SoftDeletes;
 

@@ -3,9 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\tumbuhan;
+use App\Models\Tumbuhan;
 
-class CreatetumbuhanRequest extends FormRequest
+class CreateTumbuhanRequest extends FormRequest
 {
 
     /**
@@ -25,6 +25,6 @@ class CreatetumbuhanRequest extends FormRequest
      */
     public function rules()
     {
-        return tumbuhan::$rules;
+        return Tumbuhan::$rules;
     }
 }

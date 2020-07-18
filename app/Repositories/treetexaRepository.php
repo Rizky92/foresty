@@ -2,16 +2,16 @@
 
 namespace App\Repositories;
 
-use App\Models\treetexa;
+use App\Models\Treetexa;
 use App\Repositories\BaseRepository;
 
 /**
- * Class treetexaRepository
+ * Class TreetexaRepository
  * @package App\Repositories
- * @version July 15, 2020, 9:11 am UTC
+ * @version July 18, 2020, 4:44 am UTC
 */
 
-class treetexaRepository extends BaseRepository
+class TreetexaRepository extends BaseRepository
 {
     /**
      * @var array
@@ -35,6 +35,6 @@ class treetexaRepository extends BaseRepository
      **/
     public function model()
     {
-        return treetexa::class;
+        return Treetexa::class;
     }
 }

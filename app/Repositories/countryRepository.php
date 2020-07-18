@@ -2,16 +2,16 @@
 
 namespace App\Repositories;
 
-use App\Models\country;
+use App\Models\Country;
 use App\Repositories\BaseRepository;
 
 /**
- * Class countryRepository
+ * Class CountryRepository
  * @package App\Repositories
- * @version July 15, 2020, 9:12 am UTC
+ * @version July 18, 2020, 4:45 am UTC
 */
 
-class countryRepository extends BaseRepository
+class CountryRepository extends BaseRepository
 {
     /**
      * @var array
@@ -35,6 +35,6 @@ class countryRepository extends BaseRepository
      **/
     public function model()
     {
-        return country::class;
+        return Country::class;
     }
 }

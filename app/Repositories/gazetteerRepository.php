@@ -2,22 +2,22 @@
 
 namespace App\Repositories;
 
-use App\Models\gazetteer;
+use App\Models\Gazetteer;
 use App\Repositories\BaseRepository;
 
 /**
- * Class gazetteerRepository
+ * Class GazetteerRepository
  * @package App\Repositories
- * @version July 15, 2020, 9:09 am UTC
+ * @version July 18, 2020, 4:44 am UTC
 */
 
-class gazetteerRepository extends BaseRepository
+class GazetteerRepository extends BaseRepository
 {
     /**
      * @var array
      */
     protected $fieldSearchable = [
-        
+        'name'
     ];
 
     /**
@@ -35,6 +35,6 @@ class gazetteerRepository extends BaseRepository
      **/
     public function model()
     {
-        return gazetteer::class;
+        return Gazetteer::class;
     }
 }

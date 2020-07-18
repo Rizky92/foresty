@@ -46,20 +46,44 @@ Route::get('/tempat_wisata', function () {
     return view('public.tempat_wisata.wisata');
 });
 
-Route::resource('carousels', 'carouselsController');
+Route::get('/herbarium/detail', function () {
+    return view('public.herbarium.detail');
+});
 
-Route::resource('tumbuhans', 'tumbuhanController');
 
-Route::resource('families', 'familyController');
 
-Route::resource('gazetteers', 'gazetteerController');
 
-Route::resource('treetexas', 'treetexaController');
 
-Route::resource('minorAreas', 'minor_areaController');
 
-Route::resource('countries', 'countryController');
 
-Route::resource('majorAreas', 'major_areaController');
+
+
+
+
+
+
+
+
+
+
+
+
+
+Route::resource('families', 'FamilyController');
+
+Route::resource('gazetteers', 'GazetteerController');
+
+Route::resource('treetexas', 'TreetexaController');
+
+Route::resource('countries', 'CountryController');
+
+Route::resource('majorAreas', 'MajorAreaController');
+
+Route::resource('minorAreas', 'MinorAreaController');
+
+Route::resource('tumbuhans', 'TumbuhanController');
+
+
 
 Route::resource('herbaria', 'HerbariumController');
+
