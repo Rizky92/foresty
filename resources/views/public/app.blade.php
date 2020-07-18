@@ -12,25 +12,22 @@
     <script src="{{ asset('js/app.js')}}"></script>
 
     <style>
+
         .carousel-item {
-            height: 576px;
+            height: 100vh;
+            min-height: 350px;
         }
 
         .carousel-item img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            min-height: 576px;
+            background: no-repeat center center scroll;
+            background-size: cover;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
         }
-
         .dropdown:hover>.dropdown-menu {
             display: block;
             margin: -0.125rem 0 0;
-        }
-
-        #page-image img {
-            height: 200px;
-            object-fit: cover;
         }
 
         .unstyled {
@@ -61,17 +58,19 @@
         @yield('images')
     </div>
     <div id="page-content-wrapper">
-        <div class="container-fluid pt-2 pl-3">
-            <div class="col-8">
-                @yield('page')
-            </div>
-            <div class="col-4">
-                @yield('side')
+        <div class="container-fluid pt-3">
+            <div class="row px-4">
+                <div class="col-8">
+                    @yield('page')
+                </div>
+                <div class="col-4">
+                    @yield('side')
+                </div>
             </div>
         </div>
     </div>
-    <footer>
+    <div id="footer" class="mt-5">
         @include('public.footer')
-    </footer>
+    </div>
 </body>
 </html>

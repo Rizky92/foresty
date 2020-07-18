@@ -14,13 +14,13 @@ try {
     require('bootstrap');
 } catch (e) {}
 
-document.onscroll = function() {
-    if ($(window).scrollTop() > $('.navbar').height()) {
-        $('.navbar').addClass('fixed-top');
-    } else {
-        $('.navbar').removeClass('fixed-top');
-    }
-};
+// document.onscroll = function() {
+//     if ($(window).scrollTop() > $('.navbar').height()) {
+//         $('.navbar').addClass('fixed-top');
+//     } else {
+//         $('.navbar').removeClass('fixed-top');
+//     }
+// };
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests

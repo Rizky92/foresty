@@ -11,7 +11,7 @@
     <hr class="bg-dark">
 </button>
 <div class="collapse" id="aksesibilitas">
-    <div class="pl-md-3 text-justify">
+    <div class="pl-2 text-justify">
         <p>Aksebilitas untuk mencapai areal Hutan Rintis Wartono Kadri di KHDTK Samboja asalah sebagai berikut:</p>
         <ul>
             <li>
@@ -26,13 +26,12 @@
         </ul>
     </div>
 </div>
-
 <button class="btn col text-left pt-4" type="button" data-toggle="collapse" data-target="#lokasi" aria-expanded="false" aria-controls="lokasi">
     <h1><b>LOKASI</b></h1>
     <hr class="bg-dark">
 </button>
 <div class="collapse" id="lokasi">
-    <div class="pl-md-3 text-justify">
+    <div class="pl-2 text-justify">
         <div id="map-container-google" class="z-depth-1-half map-container shadow-lg">
             <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJo5uVdciv9i0R3Y_g7DdItV0&key=AIzaSyAe2ib_zArK3xoXDGcj4HDteGruJ_hUEzs" allowfullscreen></iframe>
         </div>
@@ -47,7 +46,7 @@
     <hr class="bg-dark">
 </button>
 <div class="collapse" id="pengelola">
-    <div class="pl-md-3 text-justify">
+    <div class="pl-2 text-justify">
         <p>Instansi yang ditunjuk sebagai pengelolanya KHDTK Samboja adalah Badan Penelitian Teknologi Konservasi Sumber Daya Alam, beralamat kantor di jalan Soekarno Hatta KM 38, Kelurahan Sei Merdeka, Kec Samboja, Kab. Kutai Kartanegara, Kaltim.</p>
     </div>
 </div>
@@ -57,7 +56,7 @@
     <hr class="bg-dark">
 </button>
 <div class="collapse" id="sejarah">
-    <div class="pl-md-3 text-justify">
+    <div class="pl-2 text-justify">
         <p>Kawasan hutan dengan tujuan khusus (KHDTK) hutan penelitian samboja pada awalnya dikenal dengan hutan Wanariset Samboja. Hutan Wanariset Samboja ditetapkan oleh Menteri Pertanian pada tahun 1979 seluas 504 ha (Anonim, 1979), selanjutnya pada tahun 1991 arealnya diperluas menjadi 3.504 ha (Anonim, 1991). Hutan wanariset samboja tersebut selanjutnya ditunjuk menajdi KHDTK untuk Hutan Penelitian Samboja pada Kawasan Taman Wisata Alam Bukit Soeharto melalui Keptusan Menteri Kehutanan (Anonim, 2004). KHDTK Samboja merupakan bagian dari kawasan Taman Wisata Alam Bukit Soeharto yang memiliki luas kurang lebih 61.850 ha yang selanjutnya statusnya berubah menjadi Taman Hutan Raya (Tahura) Bukit Soeharto. Sampai sekarang masyrakat umum asih mengenai KHDTK Samboja dengan Wanariset Samboja.</p>
         <p>Kawasan KHDTK Samboja memiliki sebuah jalur observasi yang dikenal dengan Rintis Wartono Kadri. Pintu gerbang jalur observasi ini ditandai dengan monumen patung fungsi jenis Amanita sp. (gambar 1) Nama rintis ini diambil dari nama Kepala Balai Litbang Kehutanan era 90-an yaitu Bapak Ir.Wartono Kadri. Kalur sepanjang 0,9 km ini berada di dalam kawasa hutan hujan dataran rendah seluas 80 ha dengan kondisi medan datar sampai bergelombang. Jalur observasi ini juga digunakan sebagai sarana Unit Pendidikan Konservasi dan Interprestasi Lingkungan (UPK-ILS) Samboja.</p>
     </div>
@@ -68,7 +67,7 @@
     <hr class="bg-dark">
 </button>
 <div class="collapse" id="topo-hidro">
-    <div class="pl-md-3 text-justify">
+    <div class="pl-2 text-justify">
         <p>Kondisi topografi di KHDTK Samboja rata-rata bergelombang ringan sampai sedang. Areal yang berada di wilayah kecamatan samboja berada pada ketinggian antara 50-150 m dpl, beberapa areal berupa daerah rawa air tawar yang selalu tergenang air.</p>
     </div>
 </div>

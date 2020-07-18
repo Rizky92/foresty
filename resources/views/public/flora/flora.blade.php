@@ -5,10 +5,8 @@
 @endsection
 
 @section('page')
-<div class="container-fluid">
-    <div class="pt-4 pl-5 col-8">
-        <h1><b>FLORA</b></h1>
-        <hr class="bg-dark">
-    </div>
+<div class="pt-4 pl-5">
+    <h1><b>FLORA</b></h1>
+    <hr class="bg-dark">
 </div>
 @endsection

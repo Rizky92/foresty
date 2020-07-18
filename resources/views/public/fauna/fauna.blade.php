@@ -6,7 +6,7 @@
 
 @section('page')
 <div class="pt-4 pl-5">
-    <h1><b>FLORA</b></h1>
+    <h1><b>FAUNA</b></h1>
     <hr class="bg-dark">
 </div>
 @endsection
