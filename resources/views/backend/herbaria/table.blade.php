@@ -4,15 +4,17 @@
             <tr>
                 <th>Latin</th>
         <th>Collector</th>
+        <th>Collected Date</th>
         <th>Number</th>
         <th>Prefix</th>
-        <th>Img Path</th>
         <th>Country Id</th>
         <th>Family Id</th>
         <th>Gazetteer Id</th>
-        <th>Major Area Id</th>
-        <th>Minor Area Id</th>
+        <th>Majore Area Id</th>
+        <th>Minore Area Id</th>
         <th>Treetexa Id</th>
+        <th>Flora Id</th>
+        <th>Img Path</th>
                 <th colspan="3">Action</th>
             </tr>
         </thead>
@@ -21,15 +23,17 @@
             <tr>
                 <td>{{ $herbarium->latin }}</td>
             <td>{{ $herbarium->collector }}</td>
+            <td>{{ $herbarium->collected_date }}</td>
             <td>{{ $herbarium->number }}</td>
             <td>{{ $herbarium->prefix }}</td>
-            <td>{{ $herbarium->img_path }}</td>
             <td>{{ $herbarium->country_id }}</td>
             <td>{{ $herbarium->family_id }}</td>
             <td>{{ $herbarium->gazetteer_id }}</td>
-            <td>{{ $herbarium->major_area_id }}</td>
-            <td>{{ $herbarium->minor_area_id }}</td>
+            <td>{{ $herbarium->majore_area_id }}</td>
+            <td>{{ $herbarium->minore_area_id }}</td>
             <td>{{ $herbarium->treetexa_id }}</td>
+            <td>{{ $herbarium->flora_id }}</td>
+            <td>{{ $herbarium->img_path }}</td>
                 <td>
                     {!! Form::open(['route' => ['herbaria.destroy', $herbarium->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

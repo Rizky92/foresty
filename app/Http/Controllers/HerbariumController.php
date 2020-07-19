@@ -54,7 +54,23 @@ class HerbariumController extends AppBaseController
      */
     public function store(CreateHerbariumRequest $request)
     {
-        $input = $request->all();
+        $input = $request->except('img_path');
+
+        if ($request->hasFile('img_path')) {
+
+            $validate = $request->validate([
+                'img_path' => 'required|file|mimes:jpg,jpeg,png|max:5012'
+            ]);
+
+            $file = $validate['img_path'];
+
+            $fn = date("dmy_hm").'_herbarium_'.$input['latin'].'.'. $file->getClientOriginalExtension();
+
+            $img = $file->storeAs('herbarium', $fn, 'public');
+            $path = asset('storage/'.$img);
+        }
+
+        $input['img_path'] = $path;
 
         $herbarium = $this->herbariumRepository->create($input);
 
@@ -121,7 +137,25 @@ class HerbariumController extends AppBaseController
             return redirect(route('herbaria.index'));
         }
 
-        $herbarium = $this->herbariumRepository->update($request->all(), $id);
+        $update = $request->except('img_path');
+
+        if ($request->hasFile('img_path')) {
+
+            $validate = $request->validate([
+                'img_path' => 'required|file|mimes:jpg,jpeg,png|max:5012'
+            ]);
+
+            $file = $validate['img_path'];
+
+            $fn = date("dmy_hm").'_herbarium_'.$update['latin'].'.'. $file->getClientOriginalExtension();
+
+            $img = $file->storeAs('herbarium', $fn, 'public');
+            $path = asset('storage/'.$img);
+        }
+
+        $update['img_path'] = $path;
+
+        $herbarium = $this->herbariumRepository->update($update, $id);
 
         Flash::success('Herbarium updated successfully.');
 
@@ -152,5 +186,34 @@ class HerbariumController extends AppBaseController
         Flash::success('Herbarium deleted successfully.');
 
         return redirect(route('herbaria.index'));
+    }
+
+    public function publicIndex()
+    {
+        $herbaria = $this->herbariumRepository->all();
+
+        return view('public.herbarium.herbarium')
+            ->with('herbaria', $herbaria);
+    }
+
+    public function publicSearch($search)
+    {
+        $herbaria = $this->herbariumRepository->where('latin', $search);
+
+        return view('public.herbarium.herbarium')
+            ->with('herbaria', $herbaria);
+    }
+
+    public function publicDetail($id)
+    {
+        $herbarium = $this->herbariumRepository->find($id);
+
+        if (empty($herbarium)) {
+            Flash::error('Herbarium not found');
+
+            return redirect(route('herbaria.index'));
+        }
+
+        return view('public.herbarium.detail')->with('herbarium', $herbarium);
     }
 }

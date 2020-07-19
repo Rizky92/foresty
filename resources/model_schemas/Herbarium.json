@@ -36,11 +36,23 @@
         "inView": true
     },
     {
+        "name": "collected_date",
+        "dbType": "date",
+        "htmlType": "date",
+        "validations": "",
+        "searchable": false,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
         "name": "number",
         "dbType": "integer",
         "htmlType": "number",
         "validations": "required",
-        "searchable": false,
+        "searchable": true,
         "fillable": true,
         "primary": false,
         "inForm": true,
@@ -60,22 +72,10 @@
         "inView": true
     },
     {
-        "name": "img_path",
-        "dbType": "string",
-        "htmlType": "text",
-        "validations": "required",
-        "searchable": false,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
         "name": "country_id",
         "dbType": "integer:unsigned:foreign,countries,id",
         "htmlType": "selectTable:countries:name,id",
-        "validations": "required",
+        "validations": "",
         "searchable": true,
         "fillable": true,
         "primary": false,
@@ -87,7 +87,7 @@
         "name": "family_id",
         "dbType": "integer:unsigned:foreign,families,id",
         "htmlType": "selectTable:families:name,id",
-        "validations": "required",
+        "validations": "",
         "searchable": true,
         "fillable": true,
         "primary": false,
@@ -99,7 +99,7 @@
         "name": "gazetteer_id",
         "dbType": "integer:unsigned:foreign,gazetteers,id",
         "htmlType": "selectTable:gazetteers:name,id",
-        "validations": "required",
+        "validations": "",
         "searchable": true,
         "fillable": true,
         "primary": false,
@@ -108,10 +108,10 @@
         "inView": true
     },
     {
-        "name": "major_area_id",
-        "dbType": "integer:unsigned:foreign,major_areas,id",
-        "htmlType": "selectTable:major_areas:name,id",
-        "validations": "required",
+        "name": "majore_area_id",
+        "dbType": "integer:unsigned:foreign,majore_areas,id",
+        "htmlType": "selectTable:majore_areas:name,id",
+        "validations": "",
         "searchable": true,
         "fillable": true,
         "primary": false,
@@ -120,10 +120,10 @@
         "inView": true
     },
     {
-        "name": "minor_area_id",
-        "dbType": "integer:unsigned:foreign,minor_areas,id",
-        "htmlType": "selectTable:minor_areas:name,id",
-        "validations": "required",
+        "name": "minore_area_id",
+        "dbType": "integer:unsigned:foreign,minore_areas,id",
+        "htmlType": "selectTable:minore_areas:name,id",
+        "validations": "",
         "searchable": true,
         "fillable": true,
         "primary": false,
@@ -135,8 +135,32 @@
         "name": "treetexa_id",
         "dbType": "integer:unsigned:foreign,treetexas,id",
         "htmlType": "selectTable:treetexas:name,id",
-        "validations": "required",
+        "validations": "",
         "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "flora_id",
+        "dbType": "integer:unsigned:foreign,floras,id",
+        "htmlType": "selectTable:floras:nama,id",
+        "validations": "",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "img_path",
+        "dbType": "string",
+        "htmlType": "file",
+        "validations": "required|mimes:jpg,jpeg,png|max:5012",
+        "searchable": false,
         "fillable": true,
         "primary": false,
         "inForm": true,
@@ -166,5 +190,33 @@
         "inForm": false,
         "inIndex": false,
         "inView": true
+    },
+    {
+        "type": "relation",
+        "relation": "mt1,Country"
+    },
+    {
+        "type": "relation",
+        "relation": "mt1,Family"
+    },
+    {
+        "type": "relation",
+        "relation": "mt1,Gazetteer"
+    },
+    {
+        "type": "relation",
+        "relation": "mt1,MajoreArea"
+    },
+    {
+        "type": "relation",
+        "relation": "mt1,MinoreArea"
+    },
+    {
+        "type": "relation",
+        "relation": "mt1,Treetexa"
+    },
+    {
+        "type": "relation",
+        "relation": "mt1,Flora"
     }
 ]

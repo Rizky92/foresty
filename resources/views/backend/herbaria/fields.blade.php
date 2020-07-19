@@ -10,6 +10,22 @@
     {!! Form::text('collector', null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- Collected Date Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('collected_date', 'Collected Date:') !!}
+    {!! Form::text('collected_date', null, ['class' => 'form-control','id'=>'collected_date']) !!}
+</div>
+
+@push('scripts')
+    <script type="text/javascript">
+        $('#collected_date').datetimepicker({
+            format: 'YYYY-MM-DD HH:mm:ss',
+            useCurrent: true,
+            sideBySide: true
+        })
+    </script>
+@endpush
+
 <!-- Number Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('number', 'Number:') !!}
@@ -20,12 +36,6 @@
 <div class="form-group col-sm-6">
     {!! Form::label('prefix', 'Prefix:') !!}
     {!! Form::text('prefix', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Img Path Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('img_path', 'Img Path:') !!}
-    {!! Form::text('img_path', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Country Id Field -->
@@ -46,16 +56,16 @@
     {!! Form::select('gazetteer_id', $gazetteerItems, null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Major Area Id Field -->
+<!-- Majore Area Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('major_area_id', 'Major Area Id:') !!}
-    {!! Form::select('major_area_id', $major_areaItems, null, ['class' => 'form-control']) !!}
+    {!! Form::label('majore_area_id', 'Majore Area Id:') !!}
+    {!! Form::select('majore_area_id', $majore_areaItems, null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Minor Area Id Field -->
+<!-- Minore Area Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('minor_area_id', 'Minor Area Id:') !!}
-    {!! Form::select('minor_area_id', $minor_areaItems, null, ['class' => 'form-control']) !!}
+    {!! Form::label('minore_area_id', 'Minore Area Id:') !!}
+    {!! Form::select('minore_area_id', $minore_areaItems, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Treetexa Id Field -->
@@ -63,6 +73,19 @@
     {!! Form::label('treetexa_id', 'Treetexa Id:') !!}
     {!! Form::select('treetexa_id', $treetexaItems, null, ['class' => 'form-control']) !!}
 </div>
+
+<!-- Flora Id Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('flora_id', 'Flora Id:') !!}
+    {!! Form::select('flora_id', $floraItems, null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Img Path Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('img_path', 'Img Path:') !!}
+    {!! Form::file('img_path') !!}
+</div>
+<div class="clearfix"></div>
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">

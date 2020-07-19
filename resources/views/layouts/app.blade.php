@@ -34,7 +34,7 @@
         <header class="main-header">
 
             <!-- Logo -->
-            <a href="#" class="logo">
+            <a href="http://localhost:8000/dashboard" class="logo">
                 <b>InfyOm</b>
             </a>
 

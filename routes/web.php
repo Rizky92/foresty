@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HerbariumController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,12 +35,12 @@ Route::get('/flora', function () {
     return view('public.flora.flora');
 });
 
+Route::get('/herbarium', 'HerbariumController@publicIndex')->name('public.herbarium');
+Route::get('/herbarium/detail/{id}', 'HerbariumController@publicDetail')->name('public.herbarium.detail');
+Route::get('herbarium/cari/{cari}', 'HerbariumController@publicSearch')->name('public.herbarium.search');
+
 Route::get('/fauna', function () {
     return view('public.fauna.fauna');
-});
-
-Route::get('/herbarium', function () {
-    return view('public.herbarium.herbarium');
 });
 
 Route::get('/tempat_wisata', function () {
@@ -69,21 +70,50 @@ Route::get('/herbarium/detail', function () {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Route::resource('families', 'FamilyController');
 
 Route::resource('gazetteers', 'GazetteerController');
 
 Route::resource('treetexas', 'TreetexaController');
 
+
+
+
+
 Route::resource('countries', 'CountryController');
 
-Route::resource('majorAreas', 'MajorAreaController');
+Route::resource('majoreAreas', 'MajoreAreaController');
 
-Route::resource('minorAreas', 'MinorAreaController');
+Route::resource('minoreAreas', 'MinoreAreaController');
 
-Route::resource('tumbuhans', 'TumbuhanController');
+
+
+
+
+
 
 
 
 Route::resource('herbaria', 'HerbariumController');
 
+Route::resource('floras', 'FloraController');

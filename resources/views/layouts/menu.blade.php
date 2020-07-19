@@ -9,6 +9,16 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
 <li class="{{ Request::is('families*') ? 'active' : '' }}">
     <a href="{{ route('families.index') }}"><i class="fa fa-edit"></i><span>Families</span></a>
 </li>
@@ -21,25 +31,29 @@
     <a href="{{ route('treetexas.index') }}"><i class="fa fa-edit"></i><span>Treetexas</span></a>
 </li>
 
+
+
 <li class="{{ Request::is('countries*') ? 'active' : '' }}">
     <a href="{{ route('countries.index') }}"><i class="fa fa-edit"></i><span>Countries</span></a>
 </li>
 
-<li class="{{ Request::is('majorAreas*') ? 'active' : '' }}">
-    <a href="{{ route('majorAreas.index') }}"><i class="fa fa-edit"></i><span>Major Areas</span></a>
+<li class="{{ Request::is('majoreAreas*') ? 'active' : '' }}">
+    <a href="{{ route('majoreAreas.index') }}"><i class="fa fa-edit"></i><span>Majore Areas</span></a>
 </li>
 
-<li class="{{ Request::is('minorAreas*') ? 'active' : '' }}">
-    <a href="{{ route('minorAreas.index') }}"><i class="fa fa-edit"></i><span>Minor Areas</span></a>
+<li class="{{ Request::is('minoreAreas*') ? 'active' : '' }}">
+    <a href="{{ route('minoreAreas.index') }}"><i class="fa fa-edit"></i><span>Minore Areas</span></a>
 </li>
 
-<li class="{{ Request::is('tumbuhans*') ? 'active' : '' }}">
-    <a href="{{ route('tumbuhans.index') }}"><i class="fa fa-edit"></i><span>Tumbuhans</span></a>
-</li>
+
+
 
 
 <li class="{{ Request::is('herbaria*') ? 'active' : '' }}">
     <a href="{{ route('herbaria.index') }}"><i class="fa fa-edit"></i><span>Herbaria</span></a>
 </li>
 
+<li class="{{ Request::is('floras*') ? 'active' : '' }}">
+    <a href="{{ route('floras.index') }}"><i class="fa fa-edit"></i><span>Floras</span></a>
+</li>
 

@@ -8,7 +8,7 @@ use App\Repositories\BaseRepository;
 /**
  * Class GazetteerRepository
  * @package App\Repositories
- * @version July 18, 2020, 4:44 am UTC
+ * @version July 18, 2020, 12:30 pm UTC
 */
 
 class GazetteerRepository extends BaseRepository
@@ -17,7 +17,7 @@ class GazetteerRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'name'
+        
     ];
 
     /**

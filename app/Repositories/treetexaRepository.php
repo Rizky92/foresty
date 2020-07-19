@@ -8,7 +8,7 @@ use App\Repositories\BaseRepository;
 /**
  * Class TreetexaRepository
  * @package App\Repositories
- * @version July 18, 2020, 4:44 am UTC
+ * @version July 18, 2020, 12:30 pm UTC
 */
 
 class TreetexaRepository extends BaseRepository
@@ -17,7 +17,7 @@ class TreetexaRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'name'
+        
     ];
 
     /**
