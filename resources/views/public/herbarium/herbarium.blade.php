@@ -1,51 +1,38 @@
 @extends('public.app')
 
 @section('images')
-<img src="img/slider3.png" class="d-block w-100" alt="...">
+<img src="{{ asset('assets/frontend/img/header4.png') }}" class="img-header d-block w-100 img-fluid" alt="...">
 @endsection
 
 @section('page')
-<h1><b>HERBARIUM</b></h1>
-<hr class="bg-dark">
-<div id="herbarium_posts">
-    <div class="card-group">
-        <div class="card mx-2 shadow">
-            <img src="https://picsum.photos/200" class="card-img-top h-50 text-center img-thumbnail" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Judul</h5>
-                <p class="card-text">Deskripsi</p>
-                <a href="" class="btn btn-primary btn-sm stretched-link">detail</a>
+<div class="pt-4">
+    <h1><b>HERBARIUM</b></h1>
+    <hr class="bg-dark">
+    <div id="herbarium_posts">
+        @foreach ($herbaria as $item)
+        <div class="card shadow">
+            <div class="row no-gutters">
+                <div class="col-3">
+                    <img src="{{ $item->img_path }}" class="card-img" alt="..." class="d-block img-fluid img-thumbnail" height="180px" style="object-fit: cover">
+                </div>
+                <div class="col-8">
+                    <div class="card-body">
+                        <h3 class="card-title">{{ $item->latin }}</h3>
+                        <p class="card-text">Lokasi: {{  $item->gazetteer->name }}, {{ $item->minoreArea->name}}, {{$item->majoreArea->name}}</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{{ route('public.herbarium.detail', $item->id) }}" class="stretched-link text-decoration-none text-muted">detail</a>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="card mx-2 shadow">
-            <img src="https://picsum.photos/200" class="card-img-top h-50 text-center img-thumbnail" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Judul</h5>
-                <p class="card-text">Deskripsi</p>
-                <a href="" class="btn btn-primary btn-sm stretched-link">detail</a>
-            </div>
-        </div>
-        <div class="card mx-2 shadow">
-            <img src="https://picsum.photos/200" class="card-img-top h-50 text-center img-thumbnail" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Judul</h5>
-                <p class="card-text">Deskripsi</p>
-                <a href="" class="btn btn-primary btn-sm stretched-link">detail</a>
-            </div>
-        </div>
-        <div class="card mx-2 shadow">
-            <img src="https://picsum.photos/200" class="card-img-top h-50 text-center img-thumbnail" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Judul</h5>
-                <p class="card-text">Deskripsi</p>
-                <a href="" class="btn btn-primary btn-sm stretched-link">detail</a>
-            </div>
-        </div>
+        @endforeach
     </div>
 </div>
 @endsection
 
 @section('side')
+
 <form class="form-inline col-5 d-inline w-50">
     <div class="input-group shadow">
         <input class="form-control" type="search" placeholder="Cari..." aria-label="Cari">

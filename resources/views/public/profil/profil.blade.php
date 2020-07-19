@@ -1,7 +1,7 @@
 @extends('public.app')
 
 @section('images')
-<img src="img/slider1.png" class="d-block w-100" alt="...">
+<img src="{{ asset('assets/frontend/img/header1.png') }}" class="img-header d-block w-100 img-fluid" alt="...">
 @endsection
 
 @section('page')
@@ -33,7 +33,7 @@
 <div class="collapse" id="lokasi">
     <div class="pl-2 text-justify">
         <div id="map-container-google" class="z-depth-1-half map-container shadow-lg">
-            <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJo5uVdciv9i0R3Y_g7DdItV0&key=AIzaSyAe2ib_zArK3xoXDGcj4HDteGruJ_hUEzs" allowfullscreen></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.2108364785645!2d116.99333371432391!3d-0.9998479356617427!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2df6afc875959ba3%3A0x5db54837ece08fdd!2sPuncak%20KHDTK%20Samboja!5e0!3m2!1sen!2sid!4v1595125437846!5m2!1sen!2sid" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen></iframe>
         </div>
         <p class="text-justify pt-xl-2">
             Letak KHDTK Samboja berada di dua kabupaten, yaitu Kabupaten Kutai Kartanegara dan Kabupaten Penajam Paser Utara, provinsi Kalimantan Timur. Areal yang termasuk di kabupaten Kutai Kartanegara meliputi Kelurahan Sungai Merdeka, Kecamatan Samboja. Sedangkan areal yang termasuk dalam wilayah Kabupaten Penajam Paser Utara adalah Desa Semoi Dua, Kecamatan Sepaku.
@@ -63,7 +63,7 @@
 </div>
 
 <button class="btn col text-left pt-4" type="button" data-toggle="collapse" data-target="#topo-hidro" aria-expanded="false" aria-controls="topo-hidro">
-    <h1><b>PENGELOLA</b></h1>
+    <h1><b>TOPOGRAFI & HIDROLOGI</b></h1>
     <hr class="bg-dark">
 </button>
 <div class="collapse" id="topo-hidro">

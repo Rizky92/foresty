@@ -7,15 +7,27 @@
 
     <title>Beranda</title>
 
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="css/material-icons.css">
-    <script src="{{ asset('js/app.js')}}"></script>
+    {{-- Bootstrap FontAwesome --}}
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
+    {{-- Custom CSS Laravel bootstrap 4.5.0 --}}
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    {{-- Material Design Icons --}}
+    <link rel="stylesheet" href="css/material-icons.css">
+
+    {{-- Bootstrap JS bundle --}}
+    <script src="{{ asset('js/app.js')}}"></script>
     <style>
 
         .carousel-item {
             height: 100vh;
             min-height: 350px;
+        }
+
+        .img-header {
+            height: 250px;
+            object-fit: cover;
         }
 
         .carousel-item img {
@@ -48,7 +60,6 @@
             position:absolute;
         }
     </style>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&libraries=places"></script>
 </head>
 <body>
     <header>

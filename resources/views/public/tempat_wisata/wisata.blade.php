@@ -1,11 +1,11 @@
 @extends('public.app')
 
 @section('images')
-<img src="img/slider3.png" class="d-block w-100" alt="...">
+<img src="{{ asset('assets/frontend/img/header3.png') }}" class="img-header d-block w-100 img-fluid" alt="...">
 @endsection
 
 @section('page')
-<div class="pt-4 pl-5">
+<div class="pt-4">
     <h1><b>EKOWISATA</b></h1>
     <hr class="bg-dark">
     <div class="text-justify">
