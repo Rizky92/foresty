@@ -11,7 +11,7 @@
         <div class="box box-primary">
             <div class="box-body">
                 <div class="row">
-                    {!! Form::open(['route' => 'families.store']) !!}
+                    {!! Form::open(['route' => 'dashboard.families.store']) !!}
 
                         @include('backend.families.fields')
 

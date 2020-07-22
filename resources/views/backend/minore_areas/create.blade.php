@@ -11,7 +11,7 @@
         <div class="box box-primary">
             <div class="box-body">
                 <div class="row">
-                    {!! Form::open(['route' => 'minoreAreas.store']) !!}
+                    {!! Form::open(['route' => 'dashboard.minoreAreas.store']) !!}
 
                         @include('backend.minore_areas.fields')
 

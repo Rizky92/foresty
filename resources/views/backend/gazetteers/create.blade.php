@@ -11,7 +11,7 @@
         <div class="box box-primary">
             <div class="box-body">
                 <div class="row">
-                    {!! Form::open(['route' => 'gazetteers.store']) !!}
+                    {!! Form::open(['route' => 'dashboard.gazetteers.store']) !!}
 
                         @include('backend.gazetteers.fields')
 

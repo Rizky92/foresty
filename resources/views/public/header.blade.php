@@ -1,4 +1,4 @@
-<nav class="navbar fixed-top navbar-expand navbar-dark shadow-lg py-2" style="background-color: #222222" id="navbarbar">
+<nav class="navbar fixed-top navbar-expand navbar-dark shadow-lg py-2" style="background-color: #222222">
     <div class="container collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">

@@ -11,7 +11,7 @@
         <div class="box box-primary">
             <div class="box-body">
                 <div class="row">
-                    {!! Form::open(['route' => 'floras.store', 'files' => true]) !!}
+                    {!! Form::open(['route' => 'dashboard.floras.store', 'files' => true]) !!}
 
                         @include('backend.floras.fields')
 

@@ -11,7 +11,7 @@
        <div class="box box-primary">
            <div class="box-body">
                <div class="row">
-                   {!! Form::model($majoreArea, ['route' => ['majoreAreas.update', $majoreArea->id], 'method' => 'patch']) !!}
+                   {!! Form::model($majoreArea, ['route' => ['dashboard.majoreAreas.update', $majoreArea->id], 'method' => 'patch']) !!}
 
                         @include('backend.majore_areas.fields')
 

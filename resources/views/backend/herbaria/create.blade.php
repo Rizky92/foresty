@@ -11,7 +11,7 @@
         <div class="box box-primary">
             <div class="box-body">
                 <div class="row">
-                    {!! Form::open(['route' => 'herbaria.store', 'files' => true]) !!}
+                    {!! Form::open(['route' => 'dashboard.herbaria.store', 'files' => true]) !!}
 
                         @include('backend.herbaria.fields')
 

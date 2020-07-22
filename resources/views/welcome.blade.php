@@ -9,16 +9,14 @@
 <div class="shadow-lg text-light" style="background-color: #3a8c41">
     <h2 class="p-4"><b>SELAMAT DATANG...</b></h2>
 </div>
-<div class="row">
-    <div class="col">
-
+<div class="row pb-4">
+    <div class="col-5">
+        <img src="{{ asset('assets/frontend/img/khdtk.png') }}" alt="" class="img-fluid">
     </div>
-    <div class="col">
-        <p>KHDTK Litbang Kehutanan adalah kawasan hutan yang ditetapkan oleh Menteri untuk penelitian dan pengembangan kehutanan guna peningkatan pengurusan hutan dan peningkatan nilai tambah hutan serta hasil hutan.</p>
-
-        <p>Kawasan Hutan Dengan Tujuan Khusus yang selanjutnya disingkat KHDTK adalah kawasan hutan yang secara khusus diperuntukkan untuk kepentingan penelitian dan pengembangan kehutanan, pendidikan dan pelatihan kehutanan serta religi dan budaya.</p>
-
-        <p>Pengelolaan KHDTK adalah sistem pengelolaan hutan lestari, komprehensif, mandiri dan terpadu yang melibatkan berbagi disiplin keilmuan untuk tujuan penelitian dan pengembangan kehutanan, pendidikan dan pelatihan kehutanan, serta religi dan budaya.</p>
+    <div class="col text-justify">
+        <p>Kawasan Hutan Dengan Tujuan Khusus (KHDTK) Samboja merupakan kawasan hutan konservasi yang ditunjuk menjadi lokasi kegiatan penelitian dan pengembangan oleh Menteri Lingkungan Hidup dan Kehutanan.</p>
+        <p>Hutan ini dikelola oleh Balai Penelitian dan Pengembangan Teknologi Konservasi Sumber Daya Alam (Balitek KSDA) Samboja, Badan Litbang dan Inovasi Kementerian Lingkungan Hidup dan Kehutanan.</p>
+        <p>Selain untuk penelitian dan pengembangan, pengelolaan KHDTK dilakukan untuk menjaga kelestarian flora dan fauna di dalamnya, menjamin keberlangsungan fungsi kawasan hutan sebagai pengatur tata air DAS Merdeka dan DAS Semoi, serta fungsi wisata alam dan pendidikan</p>
     </div>
 </div>
 <img src="{{ asset('assets/frontend/img/samboja3.png') }}" alt="" class="img-fluid">

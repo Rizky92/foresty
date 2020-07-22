@@ -11,7 +11,7 @@
        <div class="box box-primary">
            <div class="box-body">
                <div class="row">
-                   {!! Form::model($family, ['route' => ['families.update', $family->id], 'method' => 'patch']) !!}
+                   {!! Form::model($family, ['route' => ['dashboard.families.update', $family->id], 'method' => 'patch']) !!}
 
                         @include('backend.families.fields')
 

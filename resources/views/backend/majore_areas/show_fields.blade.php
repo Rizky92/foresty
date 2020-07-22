@@ -1,7 +1,7 @@
-<!-- Name Field -->
+<!-- Nama Field -->
 <div class="form-group">
-    {!! Form::label('name', 'Name:') !!}
-    <p>{{ $majoreArea->name }}</p>
+    {!! Form::label('nama', 'Nama:') !!}
+    <p>{{ $majoreArea->nama }}</p>
 </div>
 
 <!-- Created At Field -->

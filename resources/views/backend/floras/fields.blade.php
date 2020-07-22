@@ -11,9 +11,9 @@
 </div>
 
 <!-- Khasiat Field -->
-<div class="form-group col-sm-12 col-lg-12">
+<div class="form-group col-sm-6">
     {!! Form::label('khasiat', 'Khasiat:') !!}
-    {!! Form::textarea('khasiat', null, ['class' => 'form-control']) !!}
+    {!! Form::text('khasiat', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Musim Field -->
@@ -44,5 +44,5 @@
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-    <a href="{{ route('floras.index') }}" class="btn btn-default">Cancel</a>
+    <a href="{{ route('dashboard.floras.index') }}" class="btn btn-default">Cancel</a>
 </div>

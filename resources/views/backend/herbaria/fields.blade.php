@@ -10,6 +10,12 @@
     {!! Form::text('collector', null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- Add Coll Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('add_coll', 'Add Coll:') !!}
+    {!! Form::text('add_coll', null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Collected Date Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('collected_date', 'Collected Date:') !!}
@@ -37,6 +43,19 @@
     {!! Form::label('prefix', 'Prefix:') !!}
     {!! Form::text('prefix', null, ['class' => 'form-control']) !!}
 </div>
+
+<!-- Locality Note Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('locality_note', 'Locality Note:') !!}
+    {!! Form::text('locality_note', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Img Path Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('img_path', 'Img Path:') !!}
+    {!! Form::file('img_path') !!}
+</div>
+<div class="clearfix"></div>
 
 <!-- Country Id Field -->
 <div class="form-group col-sm-6">
@@ -68,10 +87,10 @@
     {!! Form::select('minore_area_id', $minore_areaItems, null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Treetexa Id Field -->
+<!-- Treetaxa Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('treetexa_id', 'Treetexa Id:') !!}
-    {!! Form::select('treetexa_id', $treetexaItems, null, ['class' => 'form-control']) !!}
+    {!! Form::label('treetaxa_id', 'Treetaxa Id:') !!}
+    {!! Form::select('treetaxa_id', $treetaxaItems, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Flora Id Field -->
@@ -80,15 +99,8 @@
     {!! Form::select('flora_id', $floraItems, null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Img Path Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('img_path', 'Img Path:') !!}
-    {!! Form::file('img_path') !!}
-</div>
-<div class="clearfix"></div>
-
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-    <a href="{{ route('herbaria.index') }}" class="btn btn-default">Cancel</a>
+    <a href="{{ route('dashboard.herbaria.index') }}" class="btn btn-default">Cancel</a>
 </div>

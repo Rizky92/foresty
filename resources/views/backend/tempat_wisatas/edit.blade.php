@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Treetexa
+            Tempat Wisata
         </h1>
    </section>
    <div class="content">
@@ -11,9 +11,9 @@
        <div class="box box-primary">
            <div class="box-body">
                <div class="row">
-                   {!! Form::model($treetexa, ['route' => ['treetexas.update', $treetexa->id], 'method' => 'patch']) !!}
+                   {!! Form::model($tempatWisata, ['route' => ['dashboard.tempatWisatas.update', $tempatWisata->id], 'method' => 'patch', 'files' => true]) !!}
 
-                        @include('backend.treetexas.fields')
+                        @include('backend.tempat_wisatas.fields')
 
                    {!! Form::close() !!}
                </div>

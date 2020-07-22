@@ -11,7 +11,7 @@
        <div class="box box-primary">
            <div class="box-body">
                <div class="row">
-                   {!! Form::model($herbarium, ['route' => ['herbaria.update', $herbarium->id], 'method' => 'patch', 'files' => true]) !!}
+                   {!! Form::model($herbarium, ['route' => ['dashboard.herbaria.update', $herbarium->id], 'method' => 'patch', 'files' => true]) !!}
 
                         @include('backend.herbaria.fields')
 

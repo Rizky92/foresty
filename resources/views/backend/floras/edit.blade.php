@@ -11,7 +11,7 @@
        <div class="box box-primary">
            <div class="box-body">
                <div class="row">
-                   {!! Form::model($flora, ['route' => ['floras.update', $flora->id], 'method' => 'patch', 'files' => true]) !!}
+                   {!! Form::model($flora, ['route' => ['dashboard.floras.update', $flora->id], 'method' => 'patch', 'files' => true]) !!}
 
                         @include('backend.floras.fields')
 

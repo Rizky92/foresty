@@ -11,7 +11,7 @@
             <div class="box-body">
                 <div class="row" style="padding-left: 20px">
                     @include('backend.minore_areas.show_fields')
-                    <a href="{{ route('minoreAreas.index') }}" class="btn btn-default">Back</a>
+                    <a href="{{ route('dashboard.minoreAreas.index') }}" class="btn btn-default">Back</a>
                 </div>
             </div>
         </div>

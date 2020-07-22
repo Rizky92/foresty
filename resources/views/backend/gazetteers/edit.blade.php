@@ -11,7 +11,7 @@
        <div class="box box-primary">
            <div class="box-body">
                <div class="row">
-                   {!! Form::model($gazetteer, ['route' => ['gazetteers.update', $gazetteer->id], 'method' => 'patch']) !!}
+                   {!! Form::model($gazetteer, ['route' => ['dashboard.gazetteers.update', $gazetteer->id], 'method' => 'patch']) !!}
 
                         @include('backend.gazetteers.fields')
 

@@ -38,7 +38,12 @@
 <div class="form-group">
     {!! Form::label('img_path', 'Img Path:') !!}
     <p>{{ $flora->img_path }}</p>
-    <img src="{{ asset($flora->img_path) }}" alt="">
+</div>
+
+<!-- Slug Field -->
+<div class="form-group">
+    {!! Form::label('slug', 'Slug:') !!}
+    <p>{{ $flora->slug }}</p>
 </div>
 
 <!-- Created At Field -->

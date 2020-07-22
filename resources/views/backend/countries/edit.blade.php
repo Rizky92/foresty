@@ -11,7 +11,7 @@
        <div class="box box-primary">
            <div class="box-body">
                <div class="row">
-                   {!! Form::model($country, ['route' => ['countries.update', $country->id], 'method' => 'patch']) !!}
+                   {!! Form::model($country, ['route' => ['dashboard.countries.update', $country->id], 'method' => 'patch']) !!}
 
                         @include('backend.countries.fields')
 
