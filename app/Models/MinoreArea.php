@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class MinoreArea
  * @package App\Models
- * @version July 18, 2020, 12:35 pm UTC
+ * @version July 21, 2020, 11:20 am UTC
  *
  * @property string $name
  */
@@ -17,14 +17,14 @@ class MinoreArea extends Model
     use SoftDeletes;
 
     public $table = 'minore_areas';
-    
+
 
     protected $dates = ['deleted_at'];
 
 
 
     public $fillable = [
-        'name'
+        'nama'
     ];
 
     /**
@@ -34,7 +34,7 @@ class MinoreArea extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'name' => 'string'
+        'nama' => 'string'
     ];
 
     /**
@@ -46,5 +46,5 @@ class MinoreArea extends Model
         'name' => 'required'
     ];
 
-    
+
 }

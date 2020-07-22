@@ -2,16 +2,15 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\Flora;
+use App\Models\Fauna;
 use Faker\Generator as Faker;
 
-$factory->define(Flora::class, function (Faker $faker) {
+$factory->define(Fauna::class, function (Faker $faker) {
 
     return [
         'nama' => $faker->word,
+        'latin' => $faker->word,
         'deskripsi' => $faker->word,
-        'khasiat' => $faker->word,
-        'musim' => $faker->word,
         'habitat' => $faker->word,
         'lokasi' => $faker->word,
         'img_path' => $faker->word,

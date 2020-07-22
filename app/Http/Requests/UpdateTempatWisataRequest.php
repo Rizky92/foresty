@@ -3,9 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\Treetexa;
+use App\Models\TempatWisata;
 
-class UpdateTreetexaRequest extends FormRequest
+class UpdateTempatWisataRequest extends FormRequest
 {
 
     /**
@@ -25,7 +25,7 @@ class UpdateTreetexaRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = Treetexa::$rules;
+        $rules = TempatWisata::$rules;
         
         return $rules;
     }

@@ -2,22 +2,24 @@
 
 namespace App\Repositories;
 
-use App\Models\Treetexa;
+use App\Models\Gallery;
 use App\Repositories\BaseRepository;
 
 /**
- * Class TreetexaRepository
+ * Class GalleryRepository
  * @package App\Repositories
- * @version July 18, 2020, 12:30 pm UTC
+ * @version July 21, 2020, 11:22 am UTC
 */
 
-class TreetexaRepository extends BaseRepository
+class GalleryRepository extends BaseRepository
 {
     /**
      * @var array
      */
     protected $fieldSearchable = [
-        
+        'judul',
+        'deskripsi',
+        'slug'
     ];
 
     /**
@@ -35,6 +37,6 @@ class TreetexaRepository extends BaseRepository
      **/
     public function model()
     {
-        return Treetexa::class;
+        return Gallery::class;
     }
 }

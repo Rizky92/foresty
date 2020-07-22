@@ -2,10 +2,10 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\Treetexa;
+use App\Models\Treetaxa;
 use Faker\Generator as Faker;
 
-$factory->define(Treetexa::class, function (Faker $faker) {
+$factory->define(Treetaxa::class, function (Faker $faker) {
 
     return [
         'name' => $faker->word,

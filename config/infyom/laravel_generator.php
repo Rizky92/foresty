@@ -144,7 +144,7 @@ return [
 
     'prefixes' => [
 
-        'route' => '',  // using admin will create route('admin.?.index') type routes
+        'route' => 'dashboard',  // using admin will create route('admin.?.index') type routes
 
         'path' => '',
 

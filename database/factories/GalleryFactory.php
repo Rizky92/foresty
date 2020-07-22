@@ -2,20 +2,17 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\Flora;
+use App\Models\Gallery;
 use Faker\Generator as Faker;
 
-$factory->define(Flora::class, function (Faker $faker) {
+$factory->define(Gallery::class, function (Faker $faker) {
 
     return [
-        'nama' => $faker->word,
+        'judul' => $faker->word,
         'deskripsi' => $faker->word,
-        'khasiat' => $faker->word,
-        'musim' => $faker->word,
-        'habitat' => $faker->word,
-        'lokasi' => $faker->word,
-        'img_path' => $faker->word,
         'slug' => $faker->word,
+        'img_path' => $faker->word,
+        'post_id' => $faker->randomDigitNotNull,
         'created_at' => $faker->date('Y-m-d H:i:s'),
         'updated_at' => $faker->date('Y-m-d H:i:s')
     ];

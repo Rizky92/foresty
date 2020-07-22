@@ -6,25 +6,25 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class Treetexa
+ * Class Treetaxa
  * @package App\Models
- * @version July 18, 2020, 12:30 pm UTC
+ * @version July 21, 2020, 11:21 am UTC
  *
  * @property string $name
  */
-class Treetexa extends Model
+class Treetaxa extends Model
 {
     use SoftDeletes;
 
-    public $table = 'treetexas';
-    
+    public $table = 'treetaxas';
+
 
     protected $dates = ['deleted_at'];
 
 
 
     public $fillable = [
-        'name'
+        'nama'
     ];
 
     /**
@@ -34,7 +34,7 @@ class Treetexa extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'name' => 'string'
+        'nama' => 'string'
     ];
 
     /**
@@ -43,8 +43,8 @@ class Treetexa extends Model
      * @var array
      */
     public static $rules = [
-        'name' => 'required'
+        'nama' => 'required'
     ];
 
-    
+
 }

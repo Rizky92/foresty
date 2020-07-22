@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTreetexasTable extends Migration
+class CreateGazetteersTable extends Migration
 {
 
     /**
@@ -14,9 +14,9 @@ class CreateTreetexasTable extends Migration
      */
     public function up()
     {
-        Schema::create('treetexas', function (Blueprint $table) {
+        Schema::create('gazetteers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('nama');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -29,6 +29,6 @@ class CreateTreetexasTable extends Migration
      */
     public function down()
     {
-        Schema::drop('treetexas');
+        Schema::drop('gazetteers');
     }
 }

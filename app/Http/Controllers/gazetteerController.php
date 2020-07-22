@@ -60,7 +60,7 @@ class GazetteerController extends AppBaseController
 
         Flash::success('Gazetteer saved successfully.');
 
-        return redirect(route('gazetteers.index'));
+        return redirect(route('dashboard.gazetteers.index'));
     }
 
     /**
@@ -77,7 +77,7 @@ class GazetteerController extends AppBaseController
         if (empty($gazetteer)) {
             Flash::error('Gazetteer not found');
 
-            return redirect(route('gazetteers.index'));
+            return redirect(route('dashboard.gazetteers.index'));
         }
 
         return view('backend.gazetteers.show')->with('gazetteer', $gazetteer);
@@ -97,7 +97,7 @@ class GazetteerController extends AppBaseController
         if (empty($gazetteer)) {
             Flash::error('Gazetteer not found');
 
-            return redirect(route('gazetteers.index'));
+            return redirect(route('dashboard.gazetteers.index'));
         }
 
         return view('backend.gazetteers.edit')->with('gazetteer', $gazetteer);
@@ -118,14 +118,14 @@ class GazetteerController extends AppBaseController
         if (empty($gazetteer)) {
             Flash::error('Gazetteer not found');
 
-            return redirect(route('gazetteers.index'));
+            return redirect(route('dashboard.gazetteers.index'));
         }
 
         $gazetteer = $this->gazetteerRepository->update($request->all(), $id);
 
         Flash::success('Gazetteer updated successfully.');
 
-        return redirect(route('gazetteers.index'));
+        return redirect(route('dashboard.gazetteers.index'));
     }
 
     /**
@@ -144,13 +144,13 @@ class GazetteerController extends AppBaseController
         if (empty($gazetteer)) {
             Flash::error('Gazetteer not found');
 
-            return redirect(route('gazetteers.index'));
+            return redirect(route('dashboard.gazetteers.index'));
         }
 
         $this->gazetteerRepository->delete($id);
 
         Flash::success('Gazetteer deleted successfully.');
 
-        return redirect(route('gazetteers.index'));
+        return redirect(route('dashboard.gazetteers.index'));
     }
 }

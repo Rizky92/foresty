@@ -60,7 +60,7 @@ class MinoreAreaController extends AppBaseController
 
         Flash::success('Minore Area saved successfully.');
 
-        return redirect(route('minoreAreas.index'));
+        return redirect(route('dashboard.minoreAreas.index'));
     }
 
     /**
@@ -77,7 +77,7 @@ class MinoreAreaController extends AppBaseController
         if (empty($minoreArea)) {
             Flash::error('Minore Area not found');
 
-            return redirect(route('minoreAreas.index'));
+            return redirect(route('dashboard.minoreAreas.index'));
         }
 
         return view('backend.minore_areas.show')->with('minoreArea', $minoreArea);
@@ -97,7 +97,7 @@ class MinoreAreaController extends AppBaseController
         if (empty($minoreArea)) {
             Flash::error('Minore Area not found');
 
-            return redirect(route('minoreAreas.index'));
+            return redirect(route('dashboard.minoreAreas.index'));
         }
 
         return view('backend.minore_areas.edit')->with('minoreArea', $minoreArea);
@@ -118,14 +118,14 @@ class MinoreAreaController extends AppBaseController
         if (empty($minoreArea)) {
             Flash::error('Minore Area not found');
 
-            return redirect(route('minoreAreas.index'));
+            return redirect(route('dashboard.minoreAreas.index'));
         }
 
         $minoreArea = $this->minoreAreaRepository->update($request->all(), $id);
 
         Flash::success('Minore Area updated successfully.');
 
-        return redirect(route('minoreAreas.index'));
+        return redirect(route('dashboard.minoreAreas.index'));
     }
 
     /**
@@ -144,13 +144,13 @@ class MinoreAreaController extends AppBaseController
         if (empty($minoreArea)) {
             Flash::error('Minore Area not found');
 
-            return redirect(route('minoreAreas.index'));
+            return redirect(route('dashboard.minoreAreas.index'));
         }
 
         $this->minoreAreaRepository->delete($id);
 
         Flash::success('Minore Area deleted successfully.');
 
-        return redirect(route('minoreAreas.index'));
+        return redirect(route('dashboard.minoreAreas.index'));
     }
 }

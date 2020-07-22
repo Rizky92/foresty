@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMajoreAreasTable extends Migration
+class CreateTempatWisatasTable extends Migration
 {
 
     /**
@@ -14,9 +14,12 @@ class CreateMajoreAreasTable extends Migration
      */
     public function up()
     {
-        Schema::create('majore_areas', function (Blueprint $table) {
+        Schema::create('tempat_wisatas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('nama');
+            $table->longtext('deskripsi')->nullable();
+            $table->string('img_path')->nullable();
+            $table->string('slug');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -29,6 +32,6 @@ class CreateMajoreAreasTable extends Migration
      */
     public function down()
     {
-        Schema::drop('majore_areas');
+        Schema::drop('tempat_wisatas');
     }
 }

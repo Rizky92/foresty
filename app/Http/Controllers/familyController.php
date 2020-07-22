@@ -60,7 +60,7 @@ class FamilyController extends AppBaseController
 
         Flash::success('Family saved successfully.');
 
-        return redirect(route('families.index'));
+        return redirect(route('dashboard.families.index'));
     }
 
     /**
@@ -77,7 +77,7 @@ class FamilyController extends AppBaseController
         if (empty($family)) {
             Flash::error('Family not found');
 
-            return redirect(route('families.index'));
+            return redirect(route('dashboard.families.index'));
         }
 
         return view('backend.families.show')->with('family', $family);
@@ -97,7 +97,7 @@ class FamilyController extends AppBaseController
         if (empty($family)) {
             Flash::error('Family not found');
 
-            return redirect(route('families.index'));
+            return redirect(route('dashboard.families.index'));
         }
 
         return view('backend.families.edit')->with('family', $family);
@@ -118,14 +118,14 @@ class FamilyController extends AppBaseController
         if (empty($family)) {
             Flash::error('Family not found');
 
-            return redirect(route('families.index'));
+            return redirect(route('dashboard.families.index'));
         }
 
         $family = $this->familyRepository->update($request->all(), $id);
 
         Flash::success('Family updated successfully.');
 
-        return redirect(route('families.index'));
+        return redirect(route('dashboard.families.index'));
     }
 
     /**
@@ -144,13 +144,13 @@ class FamilyController extends AppBaseController
         if (empty($family)) {
             Flash::error('Family not found');
 
-            return redirect(route('families.index'));
+            return redirect(route('dashboard.families.index'));
         }
 
         $this->familyRepository->delete($id);
 
         Flash::success('Family deleted successfully.');
 
-        return redirect(route('families.index'));
+        return redirect(route('dashboard.families.index'));
     }
 }

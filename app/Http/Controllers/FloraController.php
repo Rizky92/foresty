@@ -54,29 +54,13 @@ class FloraController extends AppBaseController
      */
     public function store(CreateFloraRequest $request)
     {
-        $input = $request->except('img_path');
-
-        if ($request->hasFile('img_path')) {
-
-            $validate = $request->validate([
-                'img_path' => 'required|file|mimes:jpg,jpeg,png|max:5012'
-            ]);
-
-            $file = $validate['img_path'];
-
-            $fn = date("dmy_hm").'_flora_'.$input['nama'].'.'. $file->getClientOriginalExtension();
-
-            $img = $file->storeAs('flora', $fn, 'public');
-            $path = asset('storage/'.$img);
-        }
-
-        $input['img_path'] = $path;
+        $input = $request->all();
 
         $flora = $this->floraRepository->create($input);
 
         Flash::success('Flora saved successfully.');
 
-        return redirect(route('floras.index'));
+        return redirect(route('dashboard.floras.index'));
     }
 
     /**
@@ -93,7 +77,7 @@ class FloraController extends AppBaseController
         if (empty($flora)) {
             Flash::error('Flora not found');
 
-            return redirect(route('floras.index'));
+            return redirect(route('dashboard.floras.index'));
         }
 
         return view('backend.floras.show')->with('flora', $flora);
@@ -113,7 +97,7 @@ class FloraController extends AppBaseController
         if (empty($flora)) {
             Flash::error('Flora not found');
 
-            return redirect(route('floras.index'));
+            return redirect(route('dashboard.floras.index'));
         }
 
         return view('backend.floras.edit')->with('flora', $flora);
@@ -134,32 +118,14 @@ class FloraController extends AppBaseController
         if (empty($flora)) {
             Flash::error('Flora not found');
 
-            return redirect(route('floras.index'));
+            return redirect(route('dashboard.floras.index'));
         }
 
-        $update = $request->except('img_path');
-
-        if ($request->hasFile('img_path')) {
-
-            $validate = $request->validate([
-                'img_path' => 'required|file|mimes:jpg,jpeg,png|max:5012'
-            ]);
-
-            $file = $validate['img_path'];
-
-            $fn = date("dmy_hm").'_flora_'.$update['nama'].'.'. $file->getClientOriginalExtension();
-
-            $img = $file->storeAs('flora', $fn, 'public');
-            $path = asset('storage/'.$img);
-        }
-
-        $update['img_path'] = $path;
-
-        $flora = $this->floraRepository->update($update, $id);
+        $flora = $this->floraRepository->update($request->all(), $id);
 
         Flash::success('Flora updated successfully.');
 
-        return redirect(route('floras.index'));
+        return redirect(route('dashboard.floras.index'));
     }
 
     /**
@@ -178,13 +144,13 @@ class FloraController extends AppBaseController
         if (empty($flora)) {
             Flash::error('Flora not found');
 
-            return redirect(route('floras.index'));
+            return redirect(route('dashboard.floras.index'));
         }
 
         $this->floraRepository->delete($id);
 
         Flash::success('Flora deleted successfully.');
 
-        return redirect(route('floras.index'));
+        return redirect(route('dashboard.floras.index'));
     }
 }

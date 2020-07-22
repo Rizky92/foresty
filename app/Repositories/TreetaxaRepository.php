@@ -2,30 +2,22 @@
 
 namespace App\Repositories;
 
-use App\Models\Herbarium;
+use App\Models\Treetaxa;
 use App\Repositories\BaseRepository;
 
 /**
- * Class HerbariumRepository
+ * Class TreetaxaRepository
  * @package App\Repositories
- * @version July 22, 2020, 4:57 am UTC
+ * @version July 21, 2020, 11:21 am UTC
 */
 
-class HerbariumRepository extends BaseRepository
+class TreetaxaRepository extends BaseRepository
 {
     /**
      * @var array
      */
     protected $fieldSearchable = [
-        'latin',
-        'collector',
-        'add_coll',
-        'collected_date',
-        'number',
-        'prefix',
-        'locality_note',
-        'treetaxa_id',
-        'slug'
+        
     ];
 
     /**
@@ -43,6 +35,6 @@ class HerbariumRepository extends BaseRepository
      **/
     public function model()
     {
-        return Herbarium::class;
+        return Treetaxa::class;
     }
 }

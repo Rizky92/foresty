@@ -8,7 +8,7 @@ use App\Repositories\BaseRepository;
 /**
  * Class GazetteerRepository
  * @package App\Repositories
- * @version July 18, 2020, 12:30 pm UTC
+ * @version July 21, 2020, 11:20 am UTC
 */
 
 class GazetteerRepository extends BaseRepository

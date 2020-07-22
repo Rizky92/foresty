@@ -54,29 +54,13 @@ class HerbariumController extends AppBaseController
      */
     public function store(CreateHerbariumRequest $request)
     {
-        $input = $request->except('img_path');
-
-        if ($request->hasFile('img_path')) {
-
-            $validate = $request->validate([
-                'img_path' => 'required|file|mimes:jpg,jpeg,png|max:5012'
-            ]);
-
-            $file = $validate['img_path'];
-
-            $fn = date("dmy_hm").'_herbarium_'.$input['latin'].'.'. $file->getClientOriginalExtension();
-
-            $img = $file->storeAs('herbarium', $fn, 'public');
-            $path = asset('storage/'.$img);
-        }
-
-        $input['img_path'] = $path;
+        $input = $request->all();
 
         $herbarium = $this->herbariumRepository->create($input);
 
         Flash::success('Herbarium saved successfully.');
 
-        return redirect(route('herbaria.index'));
+        return redirect(route('dashboard.herbaria.index'));
     }
 
     /**
@@ -93,7 +77,7 @@ class HerbariumController extends AppBaseController
         if (empty($herbarium)) {
             Flash::error('Herbarium not found');
 
-            return redirect(route('herbaria.index'));
+            return redirect(route('dashboard.herbaria.index'));
         }
 
         return view('backend.herbaria.show')->with('herbarium', $herbarium);
@@ -113,7 +97,7 @@ class HerbariumController extends AppBaseController
         if (empty($herbarium)) {
             Flash::error('Herbarium not found');
 
-            return redirect(route('herbaria.index'));
+            return redirect(route('dashboard.herbaria.index'));
         }
 
         return view('backend.herbaria.edit')->with('herbarium', $herbarium);
@@ -134,32 +118,14 @@ class HerbariumController extends AppBaseController
         if (empty($herbarium)) {
             Flash::error('Herbarium not found');
 
-            return redirect(route('herbaria.index'));
+            return redirect(route('dashboard.herbaria.index'));
         }
 
-        $update = $request->except('img_path');
-
-        if ($request->hasFile('img_path')) {
-
-            $validate = $request->validate([
-                'img_path' => 'required|file|mimes:jpg,jpeg,png|max:5012'
-            ]);
-
-            $file = $validate['img_path'];
-
-            $fn = date("dmy_hm").'_herbarium_'.$update['latin'].'.'. $file->getClientOriginalExtension();
-
-            $img = $file->storeAs('herbarium', $fn, 'public');
-            $path = asset('storage/'.$img);
-        }
-
-        $update['img_path'] = $path;
-
-        $herbarium = $this->herbariumRepository->update($update, $id);
+        $herbarium = $this->herbariumRepository->update($request->all(), $id);
 
         Flash::success('Herbarium updated successfully.');
 
-        return redirect(route('herbaria.index'));
+        return redirect(route('dashboard.herbaria.index'));
     }
 
     /**
@@ -178,42 +144,13 @@ class HerbariumController extends AppBaseController
         if (empty($herbarium)) {
             Flash::error('Herbarium not found');
 
-            return redirect(route('herbaria.index'));
+            return redirect(route('dashboard.herbaria.index'));
         }
 
         $this->herbariumRepository->delete($id);
 
         Flash::success('Herbarium deleted successfully.');
 
-        return redirect(route('herbaria.index'));
-    }
-
-    public function publicIndex()
-    {
-        $herbaria = $this->herbariumRepository->all();
-
-        return view('public.herbarium.herbarium')
-            ->with('herbaria', $herbaria);
-    }
-
-    public function publicSearch($search)
-    {
-        $herbaria = $this->herbariumRepository->where('latin', $search);
-
-        return view('public.herbarium.herbarium')
-            ->with('herbaria', $herbaria);
-    }
-
-    public function publicDetail($id)
-    {
-        $herbarium = $this->herbariumRepository->find($id);
-
-        if (empty($herbarium)) {
-            Flash::error('Herbarium not found');
-
-            return redirect(route('herbaria.index'));
-        }
-
-        return view('public.herbarium.detail')->with('herbarium', $herbarium);
+        return redirect(route('dashboard.herbaria.index'));
     }
 }

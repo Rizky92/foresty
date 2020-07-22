@@ -60,7 +60,7 @@ class CountryController extends AppBaseController
 
         Flash::success('Country saved successfully.');
 
-        return redirect(route('countries.index'));
+        return redirect(route('dashboard.countries.index'));
     }
 
     /**
@@ -77,7 +77,7 @@ class CountryController extends AppBaseController
         if (empty($country)) {
             Flash::error('Country not found');
 
-            return redirect(route('countries.index'));
+            return redirect(route('dashboard.countries.index'));
         }
 
         return view('backend.countries.show')->with('country', $country);
@@ -97,7 +97,7 @@ class CountryController extends AppBaseController
         if (empty($country)) {
             Flash::error('Country not found');
 
-            return redirect(route('countries.index'));
+            return redirect(route('dashboard.countries.index'));
         }
 
         return view('backend.countries.edit')->with('country', $country);
@@ -118,14 +118,14 @@ class CountryController extends AppBaseController
         if (empty($country)) {
             Flash::error('Country not found');
 
-            return redirect(route('countries.index'));
+            return redirect(route('dashboard.countries.index'));
         }
 
         $country = $this->countryRepository->update($request->all(), $id);
 
         Flash::success('Country updated successfully.');
 
-        return redirect(route('countries.index'));
+        return redirect(route('dashboard.countries.index'));
     }
 
     /**
@@ -144,13 +144,13 @@ class CountryController extends AppBaseController
         if (empty($country)) {
             Flash::error('Country not found');
 
-            return redirect(route('countries.index'));
+            return redirect(route('dashboard.countries.index'));
         }
 
         $this->countryRepository->delete($id);
 
         Flash::success('Country deleted successfully.');
 
-        return redirect(route('countries.index'));
+        return redirect(route('dashboard.countries.index'));
     }
 }

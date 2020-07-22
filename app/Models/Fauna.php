@@ -6,25 +6,24 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class Flora
+ * Class Fauna
  * @package App\Models
- * @version July 22, 2020, 4:57 am UTC
+ * @version July 21, 2020, 11:19 am UTC
  *
  * @property string $nama
+ * @property string $latin
  * @property string $deskripsi
- * @property string $khasiat
- * @property string $musim
  * @property string $habitat
  * @property string $lokasi
  * @property string $img_path
  * @property string $slug
  */
-class Flora extends Model
+class Fauna extends Model
 {
     use SoftDeletes;
 
-    public $table = 'floras';
-    
+    public $table = 'faunas';
+
 
     protected $dates = ['deleted_at'];
 
@@ -32,9 +31,8 @@ class Flora extends Model
 
     public $fillable = [
         'nama',
+        'latin',
         'deskripsi',
-        'khasiat',
-        'musim',
         'habitat',
         'lokasi',
         'img_path',
@@ -49,8 +47,7 @@ class Flora extends Model
     protected $casts = [
         'id' => 'integer',
         'nama' => 'string',
-        'khasiat' => 'string',
-        'musim' => 'string',
+        'latin' => 'string',
         'habitat' => 'string',
         'lokasi' => 'string',
         'img_path' => 'string',
@@ -64,14 +61,12 @@ class Flora extends Model
      */
     public static $rules = [
         'nama' => 'required',
+        'latin' => 'nullable',
         'deskripsi' => 'nullable',
-        'khasiat' => 'nullable',
-        'musim' => 'nullable',
         'habitat' => 'nullable',
         'lokasi' => 'nullable',
-        'img_path' => 'mimes:jpg,jpeg,png|max:5012|nullable',
-        'slug' => 'required'
+        'img_path' => 'mimes:jpg,jpeg,png|max:5012|nullable'
     ];
 
-    
+
 }

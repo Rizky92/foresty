@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGazetteersTable extends Migration
+class CreateFaunasTable extends Migration
 {
 
     /**
@@ -14,9 +14,15 @@ class CreateGazetteersTable extends Migration
      */
     public function up()
     {
-        Schema::create('gazetteers', function (Blueprint $table) {
+        Schema::create('faunas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('nama');
+            $table->string('latin')->nullable();
+            $table->longtext('deskripsi')->nullable();
+            $table->string('habitat')->nullable();
+            $table->string('lokasi')->nullable();
+            $table->string('img_path')->nullable();
+            $table->string('slug');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -29,6 +35,6 @@ class CreateGazetteersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('gazetteers');
+        Schema::drop('faunas');
     }
 }

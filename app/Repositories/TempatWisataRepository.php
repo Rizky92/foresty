@@ -2,29 +2,23 @@
 
 namespace App\Repositories;
 
-use App\Models\Herbarium;
+use App\Models\TempatWisata;
 use App\Repositories\BaseRepository;
 
 /**
- * Class HerbariumRepository
+ * Class TempatWisataRepository
  * @package App\Repositories
- * @version July 22, 2020, 4:57 am UTC
+ * @version July 21, 2020, 11:22 am UTC
 */
 
-class HerbariumRepository extends BaseRepository
+class TempatWisataRepository extends BaseRepository
 {
     /**
      * @var array
      */
     protected $fieldSearchable = [
-        'latin',
-        'collector',
-        'add_coll',
-        'collected_date',
-        'number',
-        'prefix',
-        'locality_note',
-        'treetaxa_id',
+        'nama',
+        'deskripsi',
         'slug'
     ];
 
@@ -43,6 +37,6 @@ class HerbariumRepository extends BaseRepository
      **/
     public function model()
     {
-        return Herbarium::class;
+        return TempatWisata::class;
     }
 }

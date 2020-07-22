@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFlorasTable extends Migration
+class CreateFamiliesTable extends Migration
 {
 
     /**
@@ -14,15 +14,9 @@ class CreateFlorasTable extends Migration
      */
     public function up()
     {
-        Schema::create('floras', function (Blueprint $table) {
+        Schema::create('families', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama');
-            $table->longtext('deskripsi');
-            $table->longtext('khasiat');
-            $table->string('musim');
-            $table->string('habitat');
-            $table->string('lokasi');
-            $table->string('img_path');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -35,6 +29,6 @@ class CreateFlorasTable extends Migration
      */
     public function down()
     {
-        Schema::drop('floras');
+        Schema::drop('families');
     }
 }

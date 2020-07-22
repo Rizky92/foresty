@@ -60,7 +60,7 @@ class MajoreAreaController extends AppBaseController
 
         Flash::success('Majore Area saved successfully.');
 
-        return redirect(route('majoreAreas.index'));
+        return redirect(route('dashboard.majoreAreas.index'));
     }
 
     /**
@@ -77,7 +77,7 @@ class MajoreAreaController extends AppBaseController
         if (empty($majoreArea)) {
             Flash::error('Majore Area not found');
 
-            return redirect(route('majoreAreas.index'));
+            return redirect(route('dashboard.majoreAreas.index'));
         }
 
         return view('backend.majore_areas.show')->with('majoreArea', $majoreArea);
@@ -97,7 +97,7 @@ class MajoreAreaController extends AppBaseController
         if (empty($majoreArea)) {
             Flash::error('Majore Area not found');
 
-            return redirect(route('majoreAreas.index'));
+            return redirect(route('dashboard.majoreAreas.index'));
         }
 
         return view('backend.majore_areas.edit')->with('majoreArea', $majoreArea);
@@ -118,14 +118,14 @@ class MajoreAreaController extends AppBaseController
         if (empty($majoreArea)) {
             Flash::error('Majore Area not found');
 
-            return redirect(route('majoreAreas.index'));
+            return redirect(route('dashboard.majoreAreas.index'));
         }
 
         $majoreArea = $this->majoreAreaRepository->update($request->all(), $id);
 
         Flash::success('Majore Area updated successfully.');
 
-        return redirect(route('majoreAreas.index'));
+        return redirect(route('dashboard.majoreAreas.index'));
     }
 
     /**
@@ -144,13 +144,13 @@ class MajoreAreaController extends AppBaseController
         if (empty($majoreArea)) {
             Flash::error('Majore Area not found');
 
-            return redirect(route('majoreAreas.index'));
+            return redirect(route('dashboard.majoreAreas.index'));
         }
 
         $this->majoreAreaRepository->delete($id);
 
         Flash::success('Majore Area deleted successfully.');
 
-        return redirect(route('majoreAreas.index'));
+        return redirect(route('dashboard.majoreAreas.index'));
     }
 }

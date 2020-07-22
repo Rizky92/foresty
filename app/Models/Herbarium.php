@@ -8,53 +8,60 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Herbarium
  * @package App\Models
- * @version July 18, 2020, 3:35 pm UTC
+ * @version July 22, 2020, 4:57 am UTC
  *
  * @property \App\Models\Country $country
  * @property \App\Models\Family $family
  * @property \App\Models\Gazetteer $gazetteer
  * @property \App\Models\MajoreArea $majoreArea
  * @property \App\Models\MinoreArea $minoreArea
- * @property \App\Models\Treetexa $treetexa
+ * @property \App\Models\Treetaxa $treetaxa
  * @property \App\Models\Flora $flora
  * @property string $latin
  * @property string $collector
+ * @property string $add_coll
  * @property string $collected_date
  * @property integer $number
  * @property string $prefix
+ * @property string $locality_note
+ * @property string $img_path
  * @property integer $country_id
  * @property integer $family_id
  * @property integer $gazetteer_id
  * @property integer $majore_area_id
  * @property integer $minore_area_id
- * @property integer $treetexa_id
+ * @property integer $treetaxa_id
  * @property integer $flora_id
- * @property string $img_path
+ * @property string $slug
  */
 class Herbarium extends Model
 {
     use SoftDeletes;
 
     public $table = 'herbaria';
-
+    
 
     protected $dates = ['deleted_at'];
+
 
 
     public $fillable = [
         'latin',
         'collector',
+        'add_coll',
         'collected_date',
         'number',
         'prefix',
+        'locality_note',
+        'img_path',
         'country_id',
         'family_id',
         'gazetteer_id',
         'majore_area_id',
         'minore_area_id',
-        'treetexa_id',
+        'treetaxa_id',
         'flora_id',
-        'img_path'
+        'slug'
     ];
 
     /**
@@ -66,17 +73,20 @@ class Herbarium extends Model
         'id' => 'integer',
         'latin' => 'string',
         'collector' => 'string',
+        'add_coll' => 'string',
         'collected_date' => 'date',
         'number' => 'integer',
         'prefix' => 'string',
+        'locality_note' => 'string',
+        'img_path' => 'string',
         'country_id' => 'integer',
         'family_id' => 'integer',
         'gazetteer_id' => 'integer',
         'majore_area_id' => 'integer',
         'minore_area_id' => 'integer',
-        'treetexa_id' => 'integer',
+        'treetaxa_id' => 'integer',
         'flora_id' => 'integer',
-        'img_path' => 'string'
+        'slug' => 'string'
     ];
 
     /**
@@ -86,10 +96,21 @@ class Herbarium extends Model
      */
     public static $rules = [
         'latin' => 'required',
-        'collector' => 'required',
-        'number' => 'required',
-        'prefix' => 'required',
-        'img_path' => 'required|mimes:jpg,jpeg,png|max:5012'
+        'collector' => 'nullable',
+        'add_coll' => 'nullable',
+        'collected_date' => 'nullable',
+        'number' => 'nullable',
+        'prefix' => 'nullable',
+        'locality_note' => 'nullable',
+        'img_path' => 'mimes:jpg,jpeg,png|max:5012|nullable',
+        'country_id' => 'required',
+        'family_id' => 'required',
+        'gazetteer_id' => 'required',
+        'majore_area_id' => 'required',
+        'minore_area_id' => 'required',
+        'treetaxa_id' => 'required',
+        'flora_id' => 'required',
+        'slug' => 'required'
     ];
 
     /**
@@ -135,9 +156,9 @@ class Herbarium extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function treetexa()
+    public function treetaxa()
     {
-        return $this->belongsTo(\App\Models\Treetexa::class);
+        return $this->belongsTo(\App\Models\Treetaxa::class);
     }
 
     /**

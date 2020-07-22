@@ -8,7 +8,7 @@ use App\Repositories\BaseRepository;
 /**
  * Class FloraRepository
  * @package App\Repositories
- * @version July 18, 2020, 3:37 pm UTC
+ * @version July 22, 2020, 4:57 am UTC
 */
 
 class FloraRepository extends BaseRepository
@@ -20,8 +20,10 @@ class FloraRepository extends BaseRepository
         'nama',
         'deskripsi',
         'khasiat',
+        'musim',
         'habitat',
-        'lokasi'
+        'lokasi',
+        'slug'
     ];
 
     /**

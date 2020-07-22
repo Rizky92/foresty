@@ -6,25 +6,31 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class Country
+ * Class TempatWisata
  * @package App\Models
- * @version July 21, 2020, 11:19 am UTC
+ * @version July 21, 2020, 11:22 am UTC
  *
  * @property string $nama
+ * @property string $deskripsi
+ * @property string $img_path
+ * @property string $slug
  */
-class Country extends Model
+class TempatWisata extends Model
 {
     use SoftDeletes;
 
-    public $table = 'countries';
-    
+    public $table = 'tempat_wisatas';
+
 
     protected $dates = ['deleted_at'];
 
 
 
     public $fillable = [
-        'nama'
+        'nama',
+        'deskripsi',
+        'img_path',
+        'slug'
     ];
 
     /**
@@ -34,7 +40,9 @@ class Country extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'nama' => 'string'
+        'nama' => 'string',
+        'img_path' => 'string',
+        'slug' => 'string'
     ];
 
     /**
@@ -43,8 +51,10 @@ class Country extends Model
      * @var array
      */
     public static $rules = [
-        'nama' => 'required'
+        'nama' => 'required',
+        'deskripsi' => 'nullable',
+        'img_path' => 'mimes:jpg,jpeg,png|max:5012|nullable'
     ];
 
-    
+
 }

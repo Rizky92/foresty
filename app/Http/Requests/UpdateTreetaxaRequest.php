@@ -3,9 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\Treetexa;
+use App\Models\Treetaxa;
 
-class CreateTreetexaRequest extends FormRequest
+class UpdateTreetaxaRequest extends FormRequest
 {
 
     /**
@@ -25,6 +25,8 @@ class CreateTreetexaRequest extends FormRequest
      */
     public function rules()
     {
-        return Treetexa::$rules;
+        $rules = Treetaxa::$rules;
+        
+        return $rules;
     }
 }

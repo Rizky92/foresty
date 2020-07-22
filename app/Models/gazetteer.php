@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Gazetteer
  * @package App\Models
- * @version July 18, 2020, 12:30 pm UTC
+ * @version July 21, 2020, 11:20 am UTC
  *
- * @property string $name
+ * @property string $nama
  */
 class Gazetteer extends Model
 {
@@ -24,7 +24,7 @@ class Gazetteer extends Model
 
 
     public $fillable = [
-        'name'
+        'nama'
     ];
 
     /**
@@ -34,7 +34,7 @@ class Gazetteer extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'name' => 'string'
+        'nama' => 'string'
     ];
 
     /**
@@ -43,7 +43,7 @@ class Gazetteer extends Model
      * @var array
      */
     public static $rules = [
-        'name' => 'required'
+        'nama' => 'required'
     ];
 
     
