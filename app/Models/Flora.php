@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -22,9 +24,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Flora extends Model
 {
     use SoftDeletes;
+    use HasSlug;
 
     public $table = 'floras';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -70,8 +73,16 @@ class Flora extends Model
         'habitat' => 'nullable',
         'lokasi' => 'nullable',
         'img_path' => 'mimes:jpg,jpeg,png|max:5012|nullable',
-        'slug' => 'required'
     ];
 
-    
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('nama')
+            ->saveSlugsTo('slug');
+    }
+
+    public function getRouteKeyName() {
+        return 'slug';
+    }
 }

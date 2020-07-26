@@ -54,7 +54,24 @@ class HerbariumController extends AppBaseController
      */
     public function store(CreateHerbariumRequest $request)
     {
-        $input = $request->all();
+        $input = $request->except('img_path');
+
+        if ($request->hasFile('img_path')) {
+
+            $validate = $request->validate([
+                'img_path' => 'mimes:jpg,jpeg,png|max:5012'
+            ]);
+
+            $file = $validate['img_path'];
+
+            $rand = substr(str_shuffle("0123456789abcdef"), 0, 8);
+
+            $fn = date("Y-m-d") . '-' . $rand . '.' . $file->getClientOriginalExtension();
+
+            $img = $file->storeAs('herbarium', $fn, 'public');
+            $path = asset('assets/frontend/images/'.$img);
+            $input['img_path'] = $path;
+        }
 
         $herbarium = $this->herbariumRepository->create($input);
 
@@ -121,7 +138,26 @@ class HerbariumController extends AppBaseController
             return redirect(route('dashboard.herbaria.index'));
         }
 
-        $herbarium = $this->herbariumRepository->update($request->all(), $id);
+        $update = $request->except('img_path');
+
+        if ($request->hasFile('img_path')) {
+
+            $validate = $request->validate([
+                'img_path' => 'mimes:jpg,jpeg,png|max:5012'
+            ]);
+
+            $file = $validate['img_path'];
+
+            $rand = substr(str_shuffle("0123456789abcdef"), 0, 8);
+
+            $fn = date("Y-m-d") . '-' . $rand . '.' . $file->getClientOriginalExtension();
+
+            $img = $file->storeAs('herbarium', $fn, 'public');
+            $path = asset('assets/frontend/images/'.$img);
+            $update['img_path'] = $path;
+        }
+
+        $herbarium = $this->herbariumRepository->update($update, $id);
 
         Flash::success('Herbarium updated successfully.');
 
@@ -152,5 +188,35 @@ class HerbariumController extends AppBaseController
         Flash::success('Herbarium deleted successfully.');
 
         return redirect(route('dashboard.herbaria.index'));
+    }
+
+    public function publicIndex()
+    {
+        $herbaria = $this->herbariumRepository->all();
+        $post = \App\Models\Post::where('id', 5)->firstOrFail();
+        views($post)->record();
+
+        return view('public.herbarium.herbarium', compact('herbaria', 'post'));
+    }
+
+    public function publicSearch($search)
+    {
+        $herbaria = $this->herbariumRepository->all($search);
+
+        return view('public.herbarium.herbarium')
+            ->with('herbaria', $herbaria);
+    }
+
+    public function publicDetail($slug)
+    {
+        $herbarium = $this->herbariumRepository->findBySlug($slug);
+        $post = \App\Models\Post::where('id', 5)->firstOrFail();
+
+        if (empty($herbarium)) {
+            Flash::error('Herbarium not found');
+
+            return redirect(route('public.herbarium'));
+        }
+        return view('public.herbarium.detail', compact('herbarium', 'post'));
     }
 }

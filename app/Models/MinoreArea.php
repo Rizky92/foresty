@@ -43,7 +43,7 @@ class MinoreArea extends Model
      * @var array
      */
     public static $rules = [
-        'name' => 'required'
+        'nama' => 'required'
     ];
 
 

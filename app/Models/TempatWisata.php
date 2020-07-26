@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -18,13 +20,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class TempatWisata extends Model
 {
     use SoftDeletes;
+    use HasSlug;
 
     public $table = 'tempat_wisatas';
 
-
     protected $dates = ['deleted_at'];
-
-
 
     public $fillable = [
         'nama',
@@ -56,5 +56,14 @@ class TempatWisata extends Model
         'img_path' => 'mimes:jpg,jpeg,png|max:5012|nullable'
     ];
 
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('nama')
+            ->saveSlugsTo('slug');
+    }
 
+    public function getRouteKeyName() {
+        return 'slug';
+    }
 }

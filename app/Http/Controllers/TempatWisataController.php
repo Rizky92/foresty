@@ -55,8 +55,7 @@ class TempatWisataController extends AppBaseController
      */
     public function store(CreateTempatWisataRequest $request)
     {
-        $input = $request->except('img_path', 'slug');
-        $slug = Str::slug(date("Y-m-d") . '-' . $input['nama']);
+        $input = $request->except('img_path');
 
         if ($request->hasFile('img_path')) {
 
@@ -66,14 +65,14 @@ class TempatWisataController extends AppBaseController
 
             $file = $validate['img_path'];
 
-            $fn = $slug.'.'. $file->getClientOriginalExtension();
+            $rand = substr(str_shuffle("0123456789abcdef"), 0, 8);
+
+            $fn = date("Y-m-d") . '-' . $rand . '.' . $file->getClientOriginalExtension();
 
             $img = $file->storeAs('tempat_wisata', $fn, 'public');
             $path = asset('assets/frontend/images/'.$img);
             $input['img_path'] = $path;
         }
-
-        $input['slug'] = $slug;
 
         $tempatWisata = $this->tempatWisataRepository->create($input);
 
@@ -140,8 +139,7 @@ class TempatWisataController extends AppBaseController
             return redirect(route('dashboard.tempatWisatas.index'));
         }
 
-        $update = $request->except('img_path', 'slug');
-        $slug = Str::slug(date("Y-m-d") . '-' . $update['nama']);
+        $update = $request->except('img_path');
 
         if ($request->hasFile('img_path')) {
 
@@ -151,14 +149,14 @@ class TempatWisataController extends AppBaseController
 
             $file = $validate['img_path'];
 
-            $fn = date("Y-m-d") . '-' . $slug.'.'. $file->getClientOriginalExtension();
+            $rand = substr(str_shuffle("0123456789abcdef"), 0, 8);
+
+            $fn = date("Y-m-d") . '-' . $rand . '.' . $file->getClientOriginalExtension();
 
             $img = $file->storeAs('tempat_wisata', $fn, 'public');
             $path = asset('assets/frontend/images/'.$img);
             $update['img_path'] = $path;
         }
-
-        $update['slug'] = $slug;
 
         $tempatWisata = $this->tempatWisataRepository->update($update, $id);
 
@@ -191,5 +189,16 @@ class TempatWisataController extends AppBaseController
         Flash::success('Tempat Wisata deleted successfully.');
 
         return redirect(route('dashboard.tempatWisatas.index'));
+    }
+
+    public function publicIndex()
+    {
+        $tempatWisatas = $this->tempatWisataRepository->all();
+        $post = \App\Models\Post::where('id', 6)->firstOrFail();
+        $galleries = \App\Models\Gallery::where('post_id', 6)->get();
+
+        views($post)->record();
+
+        return view('public.tempat_wisata.wisata', compact('tempatWisatas', 'post', 'galleries'));
     }
 }

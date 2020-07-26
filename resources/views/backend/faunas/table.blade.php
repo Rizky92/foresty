@@ -16,7 +16,7 @@
             <tr>
                 <td>{{ $fauna->nama }}</td>
             <td>{{ $fauna->latin }}</td>
-            <td>{{ $fauna->deskripsi }}</td>
+            <td>{{ Str::limit($fauna->deskripsi, 150) }}</td>
             <td>{{ $fauna->habitat }}</td>
             <td>{{ $fauna->lokasi }}</td>
             <td>{{ $fauna->img_path }}</td>

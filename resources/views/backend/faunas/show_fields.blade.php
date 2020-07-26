@@ -13,7 +13,9 @@
 <!-- Deskripsi Field -->
 <div class="form-group">
     {!! Form::label('deskripsi', 'Deskripsi:') !!}
-    <p>{{ $fauna->deskripsi }}</p>
+    <div class="container">
+        {{ $fauna->deskripsi }}
+    </div>
 </div>
 
 <!-- Habitat Field -->

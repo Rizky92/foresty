@@ -13,15 +13,13 @@
         @foreach($posts as $post)
             <tr>
                 <td>{{ $post->judul }}</td>
-            <td>{{ $post->deskripsi }}</td>
+            <td>{{ Str::limit($post->deskripsi, 150) }}</td>
             <td>{{ $post->header_path }}</td>
-            <td>{{ $post->visitors }}</td>
+            <td>{{ views($post)->count() }}</td>
                 <td>
-                    {!! Form::open(['route' => ['dashboard.posts.destroy', $post->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
                         <a href="{{ route('dashboard.posts.show', [$post->id]) }}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
                         <a href="{{ route('dashboard.posts.edit', [$post->id]) }}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
-                        {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
                     </div>
                     {!! Form::close() !!}
                 </td>

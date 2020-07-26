@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>Beranda</title>
+    <title>
+        @yield('tab')
+    </title>
 
     {{-- Bootstrap FontAwesome --}}
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -19,14 +21,13 @@
     {{-- Bootstrap JS bundle --}}
     <script src="{{ asset('js/app.js')}}"></script>
     <style>
-
         .carousel-item {
             height: 100vh;
             min-height: 350px;
         }
 
         .img-header {
-            height: 250px;
+            height: 350px;
             object-fit: cover;
         }
 
@@ -37,6 +38,11 @@
             -moz-background-size: cover;
             -o-background-size: cover;
         }
+
+        .carousel-gallery img {
+            background-size: contain;
+        }
+
         .dropdown:hover>.dropdown-menu {
             display: block;
             margin: -0.125rem 0 0;
@@ -59,6 +65,10 @@
             width:100%;
             position:absolute;
         }
+
+        .w-35 {
+            width: 35% !important;
+        }
     </style>
 </head>
 <body>
@@ -70,7 +80,10 @@
     </div>
     <div id="page-content-wrapper">
         <div class="container-fluid pt-3">
-            <div class="row px-4">
+            <div class="mx-4">
+                @yield('title')
+            </div>
+            <div class="row px-4 pt-3">
                 <div class="col-8">
                     @yield('page')
                 </div>

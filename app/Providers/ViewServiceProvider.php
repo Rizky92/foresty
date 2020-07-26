@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Providers;
+use App\Models\Gallorable;
 use App\Models\Treetaxa;
 use App\Models\Post;
 use App\Models\Flora;
@@ -35,6 +36,10 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        View::composer(['testis.fields'], function ($view) {
+            $gallorableItems = Gallorable::pluck('gallorable_type','gallorable_id')->toArray();
+            $view->with('gallorableItems', $gallorableItems);
+        });
         View::composer(['herbaria.fields'], function ($view) {
             $floraItems = Flora::pluck('nama','id')->toArray();
             $view->with('floraItems', $floraItems);

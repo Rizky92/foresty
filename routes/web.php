@@ -13,31 +13,37 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// public
+// public routes
+// butuh clean routing
+// https://stackoverflow.com/questions/36203020/laravel-single-route-point-to-different-controller-depending-on-slugs
+// https://laracasts.com/discuss/channels/laravel/slug-with-multiple-endpoints
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('public.home');
+// Universal search?
+// Route::get('/cari/{cari}', 'PostController@cari')->name('public.cari');
 
-Route::get('/profil', function () {
-    return view('public.profil.profil');
-});
+Route::get('/', 'PostController@beranda')->name('public.home');
 
-Route::get('/flora', function () {
-    return view('public.flora.flora');
-});
+Route::get('/profil', 'PostController@profil')->name('public.profil');
+
+Route::get('/flora', 'FloraController@publicIndex')->name('public.flora');
+Route::get('/flora/{slug}', 'FloraController@publicDetail')->name('public.flora.detail');
+Route::get('/flora/cari/{cari}', 'FloraController@publicSearch')->name('public.flora.search');
 
 Route::get('/herbarium', 'HerbariumController@publicIndex')->name('public.herbarium');
-Route::get('/herbarium/detail/{slug}', 'HerbariumController@publicDetail')->name('public.herbarium.detail');
-Route::get('herbarium/cari/{cari}', 'HerbariumController@publicSearch')->name('public.herbarium.search');
+Route::get('/herbarium/{slug}', 'HerbariumController@publicDetail')->name('public.herbarium.detail');
+Route::get('/herbarium/cari/{cari}', 'HerbariumController@publicSearch')->name('public.herbarium.search');
 
-Route::get('/fauna', function () {
-    return view('public.fauna.fauna');
-});
+Route::get('/berita', 'BeritaController@publicIndex')->name('public.berita');
+Route::get('/berita/{slug}', 'BeritaController@publicDetail')->name('public.berita.detail');
 
-Route::get('/tempat_wisata', function () {
-    return view('public.tempat_wisata.wisata');
-});
+Route::get('/galeri/{post?}', 'GalleryController@publicIndex')->name('public.gallery');
+
+Route::get('/fauna', 'FaunaController@publicIndex')->name('public.fauna');
+
+Route::get('/tempat_wisata', 'TempatWisataController@publicIndex')->name('public.wisata');
+
+// DETAIL?
+// Route::get('/tempat_wisata/{slug}', 'TempatWisataController@publicDetail')->name('public.wisata.detail');
 
 // backend
 
@@ -58,4 +64,7 @@ Route::group(['prefix' => 'dashboard'], function () {
     Route::resource('tempatWisatas', 'TempatWisataController', ["as" => 'dashboard']);
     Route::resource('posts', 'PostController', ["as" => 'dashboard']);
     Route::resource('galleries', 'GalleryController', ["as" => 'dashboard']);
+    Route::resource('beritas', 'BeritaController', ["as" => 'dashboard']);
 });
+
+

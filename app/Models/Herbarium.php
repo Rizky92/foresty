@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -37,9 +39,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Herbarium extends Model
 {
     use SoftDeletes;
+    use HasSlug;
 
     public $table = 'herbaria';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -110,7 +113,6 @@ class Herbarium extends Model
         'minore_area_id' => 'required',
         'treetaxa_id' => 'required',
         'flora_id' => 'required',
-        'slug' => 'required'
     ];
 
     /**
@@ -167,5 +169,16 @@ class Herbarium extends Model
     public function flora()
     {
         return $this->belongsTo(\App\Models\Flora::class);
+    }
+
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('latin')
+            ->saveSlugsTo('slug');
+    }
+
+    public function getRouteKeyName() {
+        return 'slug';
     }
 }

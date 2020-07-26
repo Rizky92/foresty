@@ -24,7 +24,6 @@
                 <br>
             </div>
         </div>
-
     </div>
     <a class="carousel-control-prev" href="#carousels" role="button" data-slide="prev" style="max-width: 7.5rem;">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>

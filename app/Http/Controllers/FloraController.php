@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateFloraRequest;
 use App\Http\Requests\UpdateFloraRequest;
 use App\Repositories\FloraRepository;
+use App\Models\Gallery;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use illuminate\support\Str;
 use Flash;
 use Response;
 
@@ -54,8 +56,25 @@ class FloraController extends AppBaseController
      */
     public function store(CreateFloraRequest $request)
     {
-        $input = $request->all();
+        $input = $request->except('img_path');
 
+        if ($request->hasFile('img_path')) {
+
+            $validate = $request->validate([
+                'img_path' => 'mimes:jpg,jpeg,png|max:5012'
+            ]);
+
+            $file = $validate['img_path'];
+
+            $rand = substr(str_shuffle("0123456789abcdef"), 0, 8);
+
+            $fn = date("Y-m-d") . '-' . $rand . '.' . $file->getClientOriginalExtension();
+
+            $img = $file->storeAs('flora', $fn, 'public');
+            $path = asset('assets/frontend/images/'.$img);
+
+            $input['img_path'] = $path;
+        }
         $flora = $this->floraRepository->create($input);
 
         Flash::success('Flora saved successfully.');
@@ -121,7 +140,26 @@ class FloraController extends AppBaseController
             return redirect(route('dashboard.floras.index'));
         }
 
-        $flora = $this->floraRepository->update($request->all(), $id);
+        $update = $request->except('img_path');
+
+        if ($request->hasFile('img_path')) {
+
+            $validate = $request->validate([
+                'img_path' => 'mimes:jpg,jpeg,png|max:5012'
+            ]);
+
+            $file = $validate['img_path'];
+
+            $rand = substr(str_shuffle("0123456789abcdef"), 0, 8);
+
+            $fn = date("Y-m-d") . '-' . $rand . '.' . $file->getClientOriginalExtension();
+
+            $img = $file->storeAs('flora', $fn, 'public');
+            $path = asset('assets/frontend/images/'.$img);
+            $update['img_path'] = $path;
+        }
+
+        $flora = $this->floraRepository->update($update, $id);
 
         Flash::success('Flora updated successfully.');
 
@@ -152,5 +190,42 @@ class FloraController extends AppBaseController
         Flash::success('Flora deleted successfully.');
 
         return redirect(route('dashboard.floras.index'));
+    }
+
+    public function publicIndex()
+    {
+        $floras = $this->floraRepository->all();
+        $post = \App\Models\Post::where('id', 3)->firstOrFail();
+        $galleries = \App\Models\Gallery::where('post_id', 3)->get();
+
+        views($post)->record();
+
+        return view('public.flora.flora', compact('floras', 'galleries', 'post'));
+    }
+
+    public function publicSearch($search)
+    {
+        $floras = $this->floraRepository->all($search);
+        $post = \App\Models\Post::where('id', 3)->firstOrFail();
+        $galleries = \App\Models\Gallery::where('post_id', 3)->get();
+
+        views($post)->record();
+
+        return view('public.flora.flora', compact('floras', 'galleries', 'post'));
+    }
+
+    public function publicDetail($slug)
+    {
+        $flora = $this->floraRepository->findBySlug($slug);
+        $post = \App\Models\Post::where('id', 3)->firstOrFail();
+        $galleries = \App\Models\Gallery::where('post_id', 3)->get();
+
+        if (empty($flora)) {
+            Flash::error('Flora not found');
+
+            return redirect(route('public.flora'));
+        }
+
+        return view('public.flora.detail', compact('flora', 'galleries', 'post'));
     }
 }

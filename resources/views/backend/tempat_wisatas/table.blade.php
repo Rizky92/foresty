@@ -12,7 +12,7 @@
         @foreach($tempatWisatas as $tempatWisata)
             <tr>
                 <td>{{ $tempatWisata->nama }}</td>
-                <td>{{ $tempatWisata->deskripsi }}</td>
+                <td>{{ Str::limit($tempatWisata->deskripsi, 150) }}</td>
                 <td>{{ $tempatWisata->img_path }}</td>
                 <td>
                     {!! Form::open(['route' => ['dashboard.tempatWisatas.destroy', $tempatWisata->id], 'method' => 'delete']) !!}

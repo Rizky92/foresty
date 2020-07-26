@@ -1,11 +1,14 @@
 @extends('public.app')
 
+@section('tab')
+PROFIL - KHDTK Samboja
+@endsection
+
 @section('images')
-<img src="{{ asset('assets/frontend/img/header1.png') }}" class="img-header d-block w-100 img-fluid" alt="...">
+<img src="{{ $post->header_path }}" class="img-header d-block w-100 img-fluid" alt="...">
 @endsection
 
 @section('page')
-
 <button class="btn col text-left pt-4" type="button" data-toggle="collapse" data-target="#aksesibilitas" aria-expanded="false" aria-controls="aksesibilitas">
     <h1><b>AKSESIBILITAS</b></h1>
     <hr class="bg-dark">

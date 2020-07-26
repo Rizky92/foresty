@@ -7,7 +7,7 @@
 <!-- Deskripsi Field -->
 <div class="form-group col-sm-12 col-lg-12">
     {!! Form::label('deskripsi', 'Deskripsi:') !!}
-    {!! Form::textarea('deskripsi', null, ['class' => 'form-control']) !!}
+    {!! Form::textarea('deskripsi', null, ['class' => 'form-control editor']) !!}
 </div>
 
 <!-- Header Path Field -->

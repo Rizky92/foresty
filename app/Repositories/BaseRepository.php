@@ -190,4 +190,22 @@ abstract class BaseRepository
 
         return $model->delete();
     }
+
+    /**
+     * Find model record for given slug
+     *
+     * @param string $attr
+     *
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|Model|null
+     */
+
+    public function findBySlug($slug)
+	{
+		return $this->model->where('slug', $slug)->firstOrFail();
+    }
+
+    public function findByColumn($search, $column)
+	{
+		return $this->model->where($column, $search)->get();
+    }
 }

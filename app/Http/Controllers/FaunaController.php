@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateFaunaRequest;
 use App\Http\Requests\UpdateFaunaRequest;
 use App\Repositories\FaunaRepository;
+use App\Models\Gallery;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use illuminate\support\Str;
@@ -15,6 +16,9 @@ class FaunaController extends AppBaseController
 {
     /** @var  FaunaRepository */
     private $faunaRepository;
+
+    /** @var GalleryRepository */
+    private $galleryRepository;
 
     public function __construct(FaunaRepository $faunaRepo)
     {
@@ -55,8 +59,7 @@ class FaunaController extends AppBaseController
      */
     public function store(CreateFaunaRequest $request)
     {
-        $input = $request->except('img_path', 'slug');
-        $slug = Str::slug(date("Y-m-d") . '-' . $input['nama']);
+        $input = $request->except('img_path');
 
         if ($request->hasFile('img_path')) {
 
@@ -66,14 +69,14 @@ class FaunaController extends AppBaseController
 
             $file = $validate['img_path'];
 
-            $fn = $slug . '.' . $file->getClientOriginalExtension();
+            $rand = substr(str_shuffle("0123456789abcdef"), 0, 8);
+
+            $fn = date("Y-m-d") . '-' . $rand . '.' . $file->getClientOriginalExtension();
 
             $img = $file->storeAs('fauna', $fn, 'public');
             $path = asset('assets/frontend/images/'.$img);
             $input['img_path'] = $path;
         }
-
-        $input['slug'] = $slug;
 
         $fauna = $this->faunaRepository->create($input);
 
@@ -140,8 +143,7 @@ class FaunaController extends AppBaseController
             return redirect(route('dashboard.faunas.index'));
         }
 
-        $update = $request->except('img_path', 'slug');
-        $slug = Str::slug(date("Y-m-d") . '-' . $update['nama']);
+        $update = $request->except('img_path');
 
         if ($request->hasFile('img_path')) {
 
@@ -151,14 +153,14 @@ class FaunaController extends AppBaseController
 
             $file = $validate['img_path'];
 
-            $fn = $slug.'.'. $file->getClientOriginalExtension();
+            $rand = substr(str_shuffle("0123456789abcdef"), 0, 8);
+
+            $fn = date("Y-m-d") . '-' . $rand . '.' . $file->getClientOriginalExtension();
 
             $img = $file->storeAs('fauna', $fn, 'public');
             $path = asset('assets/frontend/images/'.$img);
+            $update['img_path'] = $path;
         }
-
-        $update['img_path'] = $path;
-        $update['slug'] = $slug;
 
         $fauna = $this->faunaRepository->update($update, $id);
 
@@ -191,5 +193,16 @@ class FaunaController extends AppBaseController
         Flash::success('Fauna deleted successfully.');
 
         return redirect(route('dashboard.faunas.index'));
+    }
+
+    public function publicIndex()
+    {
+        $faunas = $this->faunaRepository->all();
+        $post = \App\Models\Post::where('id', 4)->firstOrFail();
+        $galleries = \App\Models\Gallery::where('post_id', 4)->get();
+
+        views($post)->record();
+
+        return view('public.fauna.fauna', compact('faunas', 'post', 'galleries'));
     }
 }

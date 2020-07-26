@@ -37,7 +37,7 @@
 <!-- Img Path Field -->
 <div class="form-group">
     {!! Form::label('img_path', 'Img Path:') !!}
-    <p>{{ $flora->img_path }}</p>
+    <img src="{{ $flora->img_path }}" alt="" srcset="">
 </div>
 
 <!-- Slug Field -->

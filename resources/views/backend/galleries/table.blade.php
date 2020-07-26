@@ -13,7 +13,7 @@
         @foreach($galleries as $gallery)
             <tr>
                 <td>{{ $gallery->judul }}</td>
-            <td>{{ $gallery->deskripsi }}</td>
+            <td>{{ Str::limit($gallery->deskripsi, 150) }}</td>
             <td>{{ $gallery->img_path }}</td>
             <td>{{ $gallery->post->judul }}</td>
                 <td>

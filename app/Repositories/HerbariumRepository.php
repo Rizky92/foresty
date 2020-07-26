@@ -13,6 +13,7 @@ use App\Repositories\BaseRepository;
 
 class HerbariumRepository extends BaseRepository
 {
+
     /**
      * @var array
      */

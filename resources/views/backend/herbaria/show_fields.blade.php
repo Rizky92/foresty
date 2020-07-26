@@ -12,8 +12,8 @@
 
 <!-- Add Coll Field -->
 <div class="form-group">
-    {!! Form::label('add_coll', 'Add Coll:') !!}
-    <p>{{ $herbarium->add_coll }}</p>
+    {!! Form::label('add_coll', 'AddColl:') !!}
+    <p>{{ $herbarium->addColl }}</p>
 </div>
 
 <!-- Collected Date Field -->
@@ -43,49 +43,49 @@
 <!-- Img Path Field -->
 <div class="form-group">
     {!! Form::label('img_path', 'Img Path:') !!}
-    <p>{{ $herbarium->img_path }}</p>
+    <p><img src="{{ $herbarium->img_path }}" alt="" srcset=""></p>
 </div>
 
 <!-- Country Id Field -->
 <div class="form-group">
-    {!! Form::label('country_id', 'Country Id:') !!}
-    <p>{{ $herbarium->country_id }}</p>
+    {!! Form::label('country', 'Country:') !!}
+    <p>{{ $herbarium->country->nama }}</p>
 </div>
 
 <!-- Family Id Field -->
 <div class="form-group">
-    {!! Form::label('family_id', 'Family Id:') !!}
-    <p>{{ $herbarium->family_id }}</p>
+    {!! Form::label('family', 'Family:') !!}
+    <p>{{ $herbarium->family->nama }}</p>
 </div>
 
 <!-- Gazetteer Id Field -->
 <div class="form-group">
-    {!! Form::label('gazetteer_id', 'Gazetteer Id:') !!}
-    <p>{{ $herbarium->gazetteer_id }}</p>
+    {!! Form::label('gazetteer', 'Gazetteer:') !!}
+    <p>{{ $herbarium->gazetteer->nama }}</p>
 </div>
 
 <!-- Majore Area Id Field -->
 <div class="form-group">
-    {!! Form::label('majore_area_id', 'Majore Area Id:') !!}
-    <p>{{ $herbarium->majore_area_id }}</p>
+    {!! Form::label('majore_area', 'Majore Area:') !!}
+    <p>{{ $herbarium->majoreArea->nama }}</p>
 </div>
 
 <!-- Minore Area Id Field -->
 <div class="form-group">
-    {!! Form::label('minore_area_id', 'Minore Area Id:') !!}
-    <p>{{ $herbarium->minore_area_id }}</p>
+    {!! Form::label('minore_area', 'Minore Area:') !!}
+    <p>{{ $herbarium->minoreArea->nama }}</p>
 </div>
 
 <!-- Treetaxa Id Field -->
 <div class="form-group">
-    {!! Form::label('treetaxa_id', 'Treetaxa Id:') !!}
-    <p>{{ $herbarium->treetaxa_id }}</p>
+    {!! Form::label('treetaxa', 'Treetaxa:') !!}
+    <p>{{ $herbarium->treetaxa->nama }}</p>
 </div>
 
 <!-- Flora Id Field -->
 <div class="form-group">
-    {!! Form::label('flora_id', 'Flora Id:') !!}
-    <p>{{ $herbarium->flora_id }}</p>
+    {!! Form::label('flora', 'Flora:') !!}
+    <p>{{ $herbarium->flora->nama }}</p>
 </div>
 
 <!-- Slug Field -->

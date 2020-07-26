@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -16,22 +18,19 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property integer $visitors
  * @property string $slug
  */
-class Post extends Model
+class Post extends Model implements Viewable
 {
     use SoftDeletes;
+    use InteractsWithViews;
 
     public $table = 'posts';
-    
 
     protected $dates = ['deleted_at'];
-
-
 
     public $fillable = [
         'judul',
         'deskripsi',
         'header_path',
-        'visitors',
         'slug'
     ];
 
@@ -56,8 +55,8 @@ class Post extends Model
     public static $rules = [
         'judul' => 'required',
         'deskripsi' => 'nullable',
-        'header_path' => 'required|mimes:jpg,jpeg,png|max:5012'
+        'header_path' => 'mimes:jpg,jpeg,png|max:5012'
     ];
 
-    
+
 }

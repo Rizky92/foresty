@@ -16,12 +16,12 @@
         @foreach($floras as $flora)
             <tr>
                 <td>{{ $flora->nama }}</td>
-            <td>{{ $flora->deskripsi }}</td>
+            <td>{{ Str::limit($flora->deskripsi, 150) }}</td>
             <td>{{ $flora->khasiat }}</td>
             <td>{{ $flora->musim }}</td>
             <td>{{ $flora->habitat }}</td>
             <td>{{ $flora->lokasi }}</td>
-            <td>{{ $flora->img_path }}</td>
+            <td><a href="{{ $flora->img_path }}">{{ Str::limit($flora->img_path, 50) }}</a></td>
                 <td>
                     {!! Form::open(['route' => ['dashboard.floras.destroy', $flora->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

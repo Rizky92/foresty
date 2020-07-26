@@ -55,8 +55,7 @@ class GalleryController extends AppBaseController
      */
     public function store(CreateGalleryRequest $request)
     {
-        $input = $request->except('img_path', 'slug');
-        $slug = Str::slug(date("Y-m-d") . '-' . $input['judul']);
+        $input = $request->except('img_path');
 
         if ($request->hasFile('img_path')) {
 
@@ -66,14 +65,14 @@ class GalleryController extends AppBaseController
 
             $file = $validate['img_path'];
 
-            $fn = $slug . '.' . $file->getClientOriginalExtension();
+            $rand = substr(str_shuffle("0123456789abcdef"), 0, 8);
+
+            $fn = date("Y-m-d") . '-' . $rand . '.' . $file->getClientOriginalExtension();
 
             $img = $file->storeAs('galeri', $fn, 'public');
             $path = asset('assets/frontend/images/'.$img);
+            $input['img_path'] = $path;
         }
-
-        $input['img_path'] = $path;
-        $input['slug'] = $slug;
 
         $gallery = $this->galleryRepository->create($input);
 
@@ -140,8 +139,7 @@ class GalleryController extends AppBaseController
             return redirect(route('dashboard.galleries.index'));
         }
 
-        $update = $request->except('img_path', 'slug');
-        $slug = Str::slug(date("Y-m-d") . '-' . $update['judul']);
+        $update = $request->except('img_path');
 
         if ($request->hasFile('img_path')) {
 
@@ -151,14 +149,14 @@ class GalleryController extends AppBaseController
 
             $file = $validate['img_path'];
 
-            $fn = date("Y-m-d").'-'.$slug.'.'. $file->getClientOriginalExtension();
+            $rand = substr(str_shuffle("0123456789abcdef"), 0, 8);
+
+            $fn = date("Y-m-d") . '-' . $rand . '.' . $file->getClientOriginalExtension();
 
             $img = $file->storeAs('galeri', $fn, 'public');
             $path = asset('assets/frontend/images/'.$img);
+            $update['img_path'] = $path;
         }
-
-        $update['img_path'] = $path;
-        $update['slug'] = $slug;
 
         $gallery = $this->galleryRepository->update($update, $id);
 
@@ -191,5 +189,13 @@ class GalleryController extends AppBaseController
         Flash::success('Gallery deleted successfully.');
 
         return redirect(route('dashboard.galleries.index'));
+    }
+
+    public function publicIndex()
+    {
+        $galleries = $this->galleryRepository->all();
+        $post = \App\Models\Post::where('id', 2)->firstOrFail();
+
+        return view('public.gallery.gallery', compact('galleries', 'post'));
     }
 }

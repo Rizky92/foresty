@@ -1,40 +1,24 @@
 @extends('public.app')
 
+@section('tab')
+HERBARIUM - KHDTK Samboja
+@endsection
+
+@section('title')
+<h1><b>HERBARIUM</b></h1>
+<hr class="bg-dark">
+@endsection
+
 @section('images')
-<img src="{{ asset('assets/frontend/img/header4.png') }}" class="img-header d-block w-100 img-fluid" alt="...">
+<img src="{{ $post->header_path }}" class="img-header d-block w-100 img-fluid" alt="...">
 @endsection
 
 @section('page')
-<div class="pt-4">
-    <h1><b>HERBARIUM</b></h1>
-    <hr class="bg-dark">
-    <div id="herbarium_posts">
-        @foreach ($herbaria as $item)
-        <div class="card shadow mb-4">
-            <div class="row no-gutters">
-                <div class="col-2">
-                    <img src="{{ $item->img_path }}" class="card-img" alt="..." class="img-fluid img-thumbnail" height="154px" style="object-fit: cover">
-                </div>
-                <div class="col">
-                    <div class="card-body">
-                        <h3 class="card-title">{{ $item->latin }}</h3>
-                        <p class="card-text">Lokasi: {{  $item->gazetteer->name }}, {{ $item->minoreArea->name}}, {{$item->majoreArea->name}}</p>
-                    </div>
-                    <div class="card-footer mt-sm-n2">
-                        <a href="{{ route('public.herbarium.detail', $item->id) }}" class="stretched-link text-decoration-none text-muted">detail</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        @endforeach
-    </div>
-</div>
+@include('public.herbarium.list')
 @endsection
 
 @section('side')
-
-{{-- Belum selesai --}}
-<form class="form-inline col-5 d-inline w-50">
+<form class="form-inline col-5 d-inline w-50 pb-4">
     <div class="input-group shadow">
         <input class="form-control" type="search" placeholder="Cari..." aria-label="Cari">
         <div class="input-group-append shadow-sm">
@@ -42,5 +26,9 @@
         </div>
     </div>
 </form>
+
+@if (!empty($galleries))
+@include('public.gallery.side', $galleries)
+@endif
 
 @endsection

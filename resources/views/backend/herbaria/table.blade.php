@@ -2,42 +2,42 @@
     <table class="table" id="herbaria-table">
         <thead>
             <tr>
-                <th>Latin</th>
+        <th>Latin</th>
         <th>Collector</th>
-        <th>Add Coll</th>
+        <th>AddColl</th>
         <th>Collected Date</th>
         <th>Number</th>
         <th>Prefix</th>
         <th>Locality Note</th>
         <th>Img Path</th>
-        <th>Country Id</th>
-        <th>Family Id</th>
-        <th>Gazetteer Id</th>
-        <th>Majore Area Id</th>
-        <th>Minore Area Id</th>
-        <th>Treetaxa Id</th>
-        <th>Flora Id</th>
+        <th>Country</th>
+        <th>Family</th>
+        <th>Gazetteer</th>
+        <th>Majore Area</th>
+        <th>Minore Area</th>
+        <th>Treetaxa</th>
+        <th>Flora</th>
                 <th colspan="3">Action</th>
             </tr>
         </thead>
         <tbody>
         @foreach($herbaria as $herbarium)
             <tr>
-                <td>{{ $herbarium->latin }}</td>
+            <td>{{ $herbarium->latin }}</td>
             <td>{{ $herbarium->collector }}</td>
-            <td>{{ $herbarium->add_coll }}</td>
+            <td>{{ $herbarium->addColl }}</td>
             <td>{{ $herbarium->collected_date }}</td>
             <td>{{ $herbarium->number }}</td>
             <td>{{ $herbarium->prefix }}</td>
             <td>{{ $herbarium->locality_note }}</td>
             <td>{{ $herbarium->img_path }}</td>
-            <td>{{ $herbarium->country_id }}</td>
-            <td>{{ $herbarium->family_id }}</td>
-            <td>{{ $herbarium->gazetteer_id }}</td>
-            <td>{{ $herbarium->majore_area_id }}</td>
-            <td>{{ $herbarium->minore_area_id }}</td>
-            <td>{{ $herbarium->treetaxa_id }}</td>
-            <td>{{ $herbarium->flora_id }}</td>
+            <td>{{ $herbarium->country->nama }}</td>
+            <td>{{ $herbarium->family->nama }}</td>
+            <td>{{ $herbarium->gazetteer->nama }}</td>
+            <td>{{ $herbarium->majoreArea->nama }}</td>
+            <td>{{ $herbarium->minoreArea->nama }}</td>
+            <td>{{ $herbarium->treetaxa->nama }}</td>
+            <td>{{ $herbarium->flora->nama }}</td>
                 <td>
                     {!! Form::open(['route' => ['dashboard.herbaria.destroy', $herbarium->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

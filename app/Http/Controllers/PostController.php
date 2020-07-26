@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreatePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Repositories\PostRepository;
+use App\Repositories\BeritaRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use illuminate\support\Str;
@@ -15,6 +16,7 @@ class PostController extends AppBaseController
 {
     /** @var  PostRepository */
     private $postRepository;
+    private $beritaRepository;
 
     public function __construct(PostRepository $postRepo)
     {
@@ -56,7 +58,7 @@ class PostController extends AppBaseController
     public function store(CreatePostRequest $request)
     {
         $input = $request->except('header_path', 'slug');
-        $slug = Str::slug(date("Y-m-d") . '-' . $input['judul']);
+        $slug = Str::slug($input['judul']);
 
         if ($request->hasFile('header_path')) {
 
@@ -66,7 +68,9 @@ class PostController extends AppBaseController
 
             $file = $validate['header_path'];
 
-            $fn = $slug.'.'. $file->getClientOriginalExtension();
+            $rand = substr(str_shuffle("0123456789abcdef"), 0, 8);
+
+            $fn = date("Y-m-d") . '-' . $rand . '.' . $file->getClientOriginalExtension();
 
             $img = $file->storeAs('post', $fn, 'public');
             $path = asset('assets/frontend/images/'.$img);
@@ -141,7 +145,7 @@ class PostController extends AppBaseController
         }
 
         $update = $request->except('header_path', 'slug');
-        $slug = Str::slug(date("Y-m-d") . '-' . $update['judul']);
+        $slug = Str::slug($update['judul']);
 
         if ($request->hasFile('header_path')) {
 
@@ -151,7 +155,7 @@ class PostController extends AppBaseController
 
             $file = $validate['header_path'];
 
-            $fn = $slug. '.' . $file->getClientOriginalExtension();
+            $fn = date("Y-m-d") . '-' . $slug. '.' . $file->getClientOriginalExtension();
 
             $img = $file->storeAs('post', $fn, 'public');
             $path = asset('assets/frontend/images/'.$img);
@@ -191,5 +195,25 @@ class PostController extends AppBaseController
         Flash::success('Post deleted successfully.');
 
         return redirect(route('dashboard.posts.index'));
+    }
+
+    public function beranda(BeritaRepository $beritaRepo)
+    {
+        $this->beritaRepository = $beritaRepo;
+        $post = $this->postRepository->find(1);
+
+        $beritas = $this->beritaRepository->paginate(8);
+        views($post)->record();
+
+        return view('welcome', compact('post', 'beritas'));
+    }
+
+    public function profil()
+    {
+        $post = $this->postRepository->find(2);
+        views($post)->record();
+
+        return view('public.profil.profil')
+            ->with('post', $post);
     }
 }

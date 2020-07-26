@@ -13,13 +13,13 @@
 <!-- Header Path Field -->
 <div class="form-group">
     {!! Form::label('header_path', 'Header Path:') !!}
-    <img src="{{ $post->header_path }}" alt="" srcset="">
+    <img src="{{ $post->header_path }}" alt="" srcset="" class="img-fluid">
 </div>
 
 <!-- Visitors Field -->
 <div class="form-group">
     {!! Form::label('visitors', 'Visitors:') !!}
-    <p>{{ $post->visitors }}</p>
+    <p>{{ views($post)->count() }}</p>
 </div>
 
 <!-- Slug Field -->

@@ -24,7 +24,7 @@ class MajoreArea extends Model
 
 
     public $fillable = [
-        'name'
+        'nama'
     ];
 
     /**
@@ -43,7 +43,7 @@ class MajoreArea extends Model
      * @var array
      */
     public static $rules = [
-        'name' => 'required'
+        'nama' => 'required'
     ];
 
 
