@@ -1,11 +1,12 @@
 /node_modules
 /public/hot
 /public/storage
-/public/assets/images
+/public/assets/frontend/images
 /storage/*.key
 /vendor
 .env
 .env.backup
+.env.example
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml
