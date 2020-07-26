@@ -2,22 +2,22 @@
     <div class="container collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="http://localhost:8000/">BERANDA</a>
+                <a class="nav-link" href="{{ route('public.home') }}">BERANDA</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="http://localhost:8000/profil">PROFIL</a>
+                <a class="nav-link" href="{{ route('public.profil') }}">PROFIL</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="http://localhost:8000/flora">FLORA</a>
+                <a class="nav-link" href="{{ route('public.flora') }}">FLORA</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="http://localhost:8000/fauna">FAUNA</a>
+                <a class="nav-link" href="{{ route('public.fauna') }}">FAUNA</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="http://localhost:8000/herbarium">HERBARIUM</a>
+                <a class="nav-link" href="{{ route('public.herbarium') }}">HERBARIUM</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="http://localhost:8000/tempat_wisata">TEMPAT WISATA</a>
+                <a class="nav-link" href="{{ route('public.wisata') }}">TEMPAT WISATA</a>
             </li>
         </ul>
     </div>
