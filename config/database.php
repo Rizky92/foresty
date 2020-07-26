@@ -48,7 +48,7 @@ return [
             'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST', 'db4free.net'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'foresty2'),
+            'database' => env('DB_DATABASE', 'foresty'),
             'username' => env('DB_USERNAME', 'asdf92'),
             'password' => env('DB_PASSWORD', 'foresty2020'),
             'unix_socket' => env('DB_SOCKET', ''),
