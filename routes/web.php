@@ -13,17 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('test', function() {
-    for ($i = 1; $i <= 50; $i++) {
-        $herbs = App\Models\Berita::find($i);
-        $herb = $herbs->images()->first();
-        var_dump($herb);
-        if (!empty($herb->img_path)) {
-            echo 'herb name: '. $herbs->latin .', id: '. $herbs->id .' img path: '. $herb->img_path .'<br>';
-        }
-    }
-});
-
 // Route::get('/berita/test', 'BeritaController@import')->name('berita.import');
 // Route::post('/berita/test', 'BeritaController@upload')->name('berita.upload');
 
