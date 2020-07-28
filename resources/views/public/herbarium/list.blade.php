@@ -1,3 +1,7 @@
+<div class="d-flex mx-auto justify-content-center">
+    {{ $herbaria->links() }}
+</div>
+
 @foreach ($herbaria as $item)
 <div class="card shadow mb-4">
     <div class="row no-gutters">

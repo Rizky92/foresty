@@ -216,7 +216,7 @@ class HerbariumController extends AppBaseController
 
     public function publicIndex()
     {
-        $herbaria = $this->herbariumRepository->all();
+        $herbaria = $this->herbariumRepository->paginate(10);
         $post = \App\Models\Post::where('id', 5)->firstOrFail();
         $galleries = \App\Models\Image::whereHasMorph('imageable', \App\Models\Herbarium::class)->get();
         views($post)->record();
