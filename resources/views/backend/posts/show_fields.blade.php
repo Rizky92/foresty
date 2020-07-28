@@ -10,18 +10,6 @@
     <p>{{ $post->deskripsi }}</p>
 </div>
 
-<!-- Header Path Field -->
-<div class="form-group">
-    {!! Form::label('header_path', 'Header Path:') !!}
-    <img src="{{ $post->header_path }}" alt="" srcset="" class="img-fluid">
-</div>
-
-<!-- Visitors Field -->
-<div class="form-group">
-    {!! Form::label('visitors', 'Visitors:') !!}
-    <p>{{ views($post)->count() }}</p>
-</div>
-
 <!-- Slug Field -->
 <div class="form-group">
     {!! Form::label('slug', 'Slug:') !!}
@@ -40,3 +28,11 @@
     <p>{{ $post->updated_at }}</p>
 </div>
 
+
+<div class="form-group">
+    <div class="row">
+        @foreach ($post->images as $image)
+        <img src="{{ $image->img_path }}" alt="{{ $image->judul }}" class="thumbnail" style="max-width: 25%; max-height: 25%; object-fit: cover">
+    @endforeach
+    </div>
+</div>

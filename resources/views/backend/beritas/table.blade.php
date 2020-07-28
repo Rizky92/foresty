@@ -3,21 +3,17 @@
         <thead>
             <tr>
                 <th>Judul</th>
-        <th>Deskripsi</th>
-        <th>Slug</th>
-        <th>Img Path</th>
-        <th>Img Caption</th>
+                <th>Deskripsi</th>
+                <th>Slug</th>
                 <th colspan="3">Action</th>
             </tr>
         </thead>
         <tbody>
         @foreach($beritas as $berita)
             <tr>
-                <td>{{ $berita->judul }}</td>
-            <td>{{ Str::limit($berita->deskripsi, 150) }}</td>
-            <td>{{ $berita->slug }}</td>
-            <td>{{ $berita->img_path }}</td>
-            <td>{{ $berita->img_caption }}</td>
+                <td>{{ Str::limit($berita->judul, 50) }}</td>
+                <td>{{ Str::limit($berita->deskripsi, 150) }}</td>
+                <td><a href="{{ url('baca/'.$berita->slug) }}" target="_blank" rel="noopener noreferrer">{{ Str::limit($berita->slug, 50) }}</a></td>
                 <td>
                     {!! Form::open(['route' => ['dashboard.beritas.destroy', $berita->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

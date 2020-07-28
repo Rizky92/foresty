@@ -1,4 +1,4 @@
-<!-- Name Field -->
+<!-- Nama Field -->
 <div class="form-group">
     {!! Form::label('nama', 'Nama:') !!}
     <p>{{ $minoreArea->nama }}</p>

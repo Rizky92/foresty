@@ -1,34 +1,41 @@
 @extends('public.app')
 
 @section('tab')
-HERBARIUM - KHDTK Samboja
+Herbarium - KHDTK Samboja
 @endsection
 
 @section('title')
-<h1><b>HERBARIUM</b></h1>
+<h1><b>DATA HERBARIUM</b></h1>
 <hr class="bg-dark">
 @endsection
 
 @section('images')
-<img src="{{ $post->header_path }}" class="img-header d-block w-100 img-fluid" alt="...">
+<img src="{{ $post->image->img_path }}" class="img-header d-block w-100 img-fluid" alt="...">
 @endsection
 
 @section('page')
-@include('public.herbarium.list')
+<div class="text-justify">
+    {!! $post->deskripsi !!}
+    @include('public.herbarium.list')
+</div>
 @endsection
 
 @section('side')
-<form class="form-inline col-5 d-inline w-50 pb-4">
-    <div class="input-group shadow">
-        <input class="form-control" type="search" placeholder="Cari..." aria-label="Cari">
-        <div class="input-group-append shadow-sm">
-            <button class="btn btn-success border-0" type="submit"><i class="material-icons">&#xE8B6;</i></button>
-        </div>
-    </div>
-</form>
 
-@if (!empty($galleries))
-@include('public.gallery.side', $galleries)
-@endif
+<h4 class="text-center"><b>Galeri</b></h4>
+<hr class="bg-info">
+<div class="card-group mt-2">
+    <div class="row row-cols-1 row-cols-md-3">
+        @foreach ($galleries->slice(0, 6) as $item)
+        <div class="col mb-4">
+            <div class="card shadow">
+                <img src="{{ $item->img_path }}" class="card-img-top img-fluid" alt="{{ $item->judul }}" style="object-fit: cover; max-height: 100px;">
+            </div>
+        </div>
+        @endforeach
+    </div>
+</div>
+
+<a href=" {{ route('public.herbarium.gallery') }}" class="btn btn-primary text-uppercase d-flex justify-content-center">Lihat Semua</a>
 
 @endsection

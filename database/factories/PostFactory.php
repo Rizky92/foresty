@@ -8,12 +8,8 @@ use Faker\Generator as Faker;
 $factory->define(Post::class, function (Faker $faker) {
 
     return [
-        'judul' => $faker->word,
-        'deskripsi' => $faker->word,
-        'header_path' => $faker->word,
-        'visitors' => $faker->randomDigitNotNull,
-        'slug' => $faker->word,
-        'created_at' => $faker->date('Y-m-d H:i:s'),
-        'updated_at' => $faker->date('Y-m-d H:i:s')
+        'judul' => $faker->sentence(),
+        'deskripsi' => $faker->paragraph(8),
+        'created_at' => $faker->date('Y-m-d H:i:s')
     ];
 });

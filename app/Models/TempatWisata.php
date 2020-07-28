@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -10,26 +12,26 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class TempatWisata
  * @package App\Models
- * @version July 21, 2020, 11:22 am UTC
+ * @version July 27, 2020, 12:53 am UTC
  *
  * @property string $nama
  * @property string $deskripsi
- * @property string $img_path
  * @property string $slug
  */
-class TempatWisata extends Model
+class TempatWisata extends Model implements Searchable
 {
-    use SoftDeletes;
-    use HasSlug;
+    use SoftDeletes, HasSlug;
 
     public $table = 'tempat_wisatas';
 
+
     protected $dates = ['deleted_at'];
+
+
 
     public $fillable = [
         'nama',
         'deskripsi',
-        'img_path',
         'slug'
     ];
 
@@ -41,7 +43,6 @@ class TempatWisata extends Model
     protected $casts = [
         'id' => 'integer',
         'nama' => 'string',
-        'img_path' => 'string',
         'slug' => 'string'
     ];
 
@@ -53,8 +54,18 @@ class TempatWisata extends Model
     public static $rules = [
         'nama' => 'required',
         'deskripsi' => 'nullable',
-        'img_path' => 'mimes:jpg,jpeg,png|max:5012|nullable'
     ];
+
+    public function getSearchResult(): SearchResult
+    {
+        $url = route('public.wisata');
+
+        return new \Spatie\Searchable\SearchResult(
+            $this,
+            $this->nama,
+            $url
+        );
+    }
 
     public function getSlugOptions() : SlugOptions
     {
@@ -63,7 +74,18 @@ class TempatWisata extends Model
             ->saveSlugsTo('slug');
     }
 
-    public function getRouteKeyName() {
+    public function getRouteKeyName()
+    {
         return 'slug';
+    }
+
+    public function image()
+    {
+        return $this->morphOne('App\Models\Image', 'imageable');
+    }
+
+    public function images()
+    {
+        return $this->morphMany('App\Models\Image', 'imageable');
     }
 }

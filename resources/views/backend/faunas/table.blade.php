@@ -3,23 +3,19 @@
         <thead>
             <tr>
                 <th>Nama</th>
-        <th>Latin</th>
         <th>Deskripsi</th>
         <th>Habitat</th>
         <th>Lokasi</th>
-        <th>Img Path</th>
                 <th colspan="3">Action</th>
             </tr>
         </thead>
         <tbody>
         @foreach($faunas as $fauna)
             <tr>
-                <td>{{ $fauna->nama }}</td>
-            <td>{{ $fauna->latin }}</td>
+                <td>{{ Str::limit($fauna->nama, 50) }}</td>
             <td>{{ Str::limit($fauna->deskripsi, 150) }}</td>
             <td>{{ $fauna->habitat }}</td>
             <td>{{ $fauna->lokasi }}</td>
-            <td>{{ $fauna->img_path }}</td>
                 <td>
                     {!! Form::open(['route' => ['dashboard.faunas.destroy', $fauna->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

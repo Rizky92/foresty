@@ -3,34 +3,35 @@
 namespace App\Models;
 
 use Eloquent as Model;
-use CyrildeWit\EloquentViewable\InteractsWithViews;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Post
  * @package App\Models
- * @version July 21, 2020, 11:21 am UTC
+ * @version July 27, 2020, 12:53 am UTC
  *
  * @property string $judul
  * @property string $deskripsi
- * @property string $header_path
- * @property integer $visitors
  * @property string $slug
  */
 class Post extends Model implements Viewable
 {
-    use SoftDeletes;
-    use InteractsWithViews;
+    use SoftDeletes, HasSlug, InteractsWithViews;
 
     public $table = 'posts';
 
+
     protected $dates = ['deleted_at'];
+
+
 
     public $fillable = [
         'judul',
         'deskripsi',
-        'header_path',
         'slug'
     ];
 
@@ -42,8 +43,6 @@ class Post extends Model implements Viewable
     protected $casts = [
         'id' => 'integer',
         'judul' => 'string',
-        'header_path' => 'string',
-        'visitors' => 'integer',
         'slug' => 'string'
     ];
 
@@ -53,10 +52,28 @@ class Post extends Model implements Viewable
      * @var array
      */
     public static $rules = [
-        'judul' => 'required',
-        'deskripsi' => 'nullable',
-        'header_path' => 'mimes:jpg,jpeg,png|max:5012'
+        'judul' => 'required'
     ];
 
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('judul')
+            ->saveSlugsTo('slug');
+    }
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    public function image()
+    {
+        return $this->morphOne('App\Models\Image', 'imageable');
+    }
+
+    public function images()
+    {
+        return $this->morphMany('App\Models\Image', 'imageable');
+    }
 }

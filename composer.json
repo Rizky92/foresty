@@ -9,7 +9,6 @@
     "license": "MIT",
     "require": {
         "php": "^7.2.5",
-        "algolia/algoliasearch-client-php": "2.2",
         "cyrildewit/eloquent-viewable": "^5.0",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
@@ -17,11 +16,11 @@
         "infyomlabs/adminlte-templates": "7.0.x-dev",
         "infyomlabs/laravel-generator": "7.0.x-dev",
         "laravel/framework": "^7.0",
-        "laravel/scout": "^8.1",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.1",
         "laravelcollective/html": "^6.1",
         "maatwebsite/excel": "^3.1",
+        "sebastiaanluca/laravel-auto-morph-map": "^5.0",
         "spatie/laravel-searchable": "^1.6",
         "spatie/laravel-sluggable": "^2.5"
     },

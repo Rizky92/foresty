@@ -8,15 +8,12 @@ use Faker\Generator as Faker;
 $factory->define(Flora::class, function (Faker $faker) {
 
     return [
-        'nama' => $faker->word,
-        'deskripsi' => $faker->word,
-        'khasiat' => $faker->word,
+        'nama' => $faker->sentence,
+        'deskripsi' => $faker->paragraph(8),
+        'khasiat' => $faker->words(6, true),
         'musim' => $faker->word,
-        'habitat' => $faker->word,
-        'lokasi' => $faker->word,
-        'img_path' => $faker->word,
-        'slug' => $faker->word,
-        'created_at' => $faker->date('Y-m-d H:i:s'),
-        'updated_at' => $faker->date('Y-m-d H:i:s')
+        'habitat' => $faker->state,
+        'lokasi' => $faker->city,
+        'created_at' => $faker->date('Y-m-d H:i:s')
     ];
 });

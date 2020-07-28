@@ -37291,6 +37291,8 @@ module.exports = function(module) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+__webpack_require__(/*! ./custom.js */ "./resources/js/custom.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -37313,7 +37315,9 @@ try {
   window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 
   __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
-} catch (e) {} // document.onscroll = function() {
+} catch (e) {}
+
+$('#galleryModal').modal('handleUpdate'); // document.onscroll = function() {
 //     if ($(window).scrollTop() > $('.navbar').height()) {
 //         $('.navbar').addClass('fixed-top');
 //     } else {
@@ -37326,7 +37330,6 @@ try {
  * to our Laravel back-end. This library automatically handles sending the
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
-
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
@@ -37343,6 +37346,17 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/custom.js":
+/*!********************************!*\
+  !*** ./resources/js/custom.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// kode javascript tambahan disini
 
 /***/ }),
 

@@ -8,7 +8,7 @@ use App\Repositories\BaseRepository;
 /**
  * Class FaunaRepository
  * @package App\Repositories
- * @version July 21, 2020, 11:19 am UTC
+ * @version July 27, 2020, 12:53 am UTC
 */
 
 class FaunaRepository extends BaseRepository
@@ -18,7 +18,6 @@ class FaunaRepository extends BaseRepository
      */
     protected $fieldSearchable = [
         'nama',
-        'latin',
         'deskripsi',
         'habitat',
         'lokasi'

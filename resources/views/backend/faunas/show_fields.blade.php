@@ -4,18 +4,10 @@
     <p>{{ $fauna->nama }}</p>
 </div>
 
-<!-- Latin Field -->
-<div class="form-group">
-    {!! Form::label('latin', 'Latin:') !!}
-    <p>{{ $fauna->latin }}</p>
-</div>
-
 <!-- Deskripsi Field -->
 <div class="form-group">
     {!! Form::label('deskripsi', 'Deskripsi:') !!}
-    <div class="container">
-        {{ $fauna->deskripsi }}
-    </div>
+    <p>{{ $fauna->deskripsi }}</p>
 </div>
 
 <!-- Habitat Field -->
@@ -28,12 +20,6 @@
 <div class="form-group">
     {!! Form::label('lokasi', 'Lokasi:') !!}
     <p>{{ $fauna->lokasi }}</p>
-</div>
-
-<!-- Img Path Field -->
-<div class="form-group">
-    {!! Form::label('img_path', 'Img Path:') !!}
-    <img src="{{ $fauna->img_path }}" alt="" srcset="">
 </div>
 
 <!-- Slug Field -->
@@ -54,3 +40,10 @@
     <p>{{ $fauna->updated_at }}</p>
 </div>
 
+<div class="form-group">
+    <div class="row">
+        @foreach ($fauna->images as $image)
+        <img src="{{ $image->img_path }}" alt="{{ $image->judul }}" class="thumbnail" style="max-width: 25%; max-height: 25%; object-fit: cover">
+    @endforeach
+    </div>
+</div>

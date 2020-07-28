@@ -1,7 +1,7 @@
 @extends('public.app')
 
 @section('tab')
-FLORA - KHDTK Samboja
+Flora - KHDTK Samboja
 @endsection
 
 @section('title')
@@ -10,30 +10,32 @@ FLORA - KHDTK Samboja
 @endsection
 
 @section('images')
-<img src="{{ $post->header_path }}" class="img-header d-block w-100 img-fluid" alt="...">
+<img src="{{ $post->image->img_path }}" class="img-header d-block w-100 img-fluid" alt="...">
 @endsection
 
 @section('page')
 <div class="text-justify">
     {!! $post->deskripsi !!}
-    <p>Adapun macam-macam flora yang terdapat dalam KHDTK Samboja diantaranya:</p>
+    @include('public.flora.list')
 </div>
-@include('public.flora.list', $floras)
 @endsection
 
 @section('side')
 
-<form class="form-inline col-5 d-inline">
-    <div class="input-group shadow">
-        <input class="form-control" type="search" placeholder="Cari..." aria-label="Cari">
-        <div class="input-group-append shadow-sm">
-            <button class="btn btn-success border-0" type="submit"><i class="material-icons">&#xE8B6;</i></button>
+<h4 class="text-center"><b>Galeri</b></h4>
+<hr class="bg-info">
+<div class="card-group mt-2">
+    <div class="row row-cols-1 row-cols-md-3">
+        @foreach ($galleries->slice(0, 6) as $item)
+        <div class="col mb-4">
+            <div class="card shadow">
+                <img src="{{ $item->img_path }}" class="card-img-top img-fluid" alt="{{ $item->judul }}" style="object-fit: cover; max-height: 100px;">
+            </div>
         </div>
+        @endforeach
     </div>
-</form>
+</div>
 
-@if ($galleries->isNotEmpty())
-@include('public.gallery.side', $galleries)
-@endif
+<a href=" {{ route('public.flora.gallery') }}" class="btn btn-primary text-uppercase d-flex justify-content-center">Lihat Semua</a>
 
 @endsection

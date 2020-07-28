@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreatePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Repositories\PostRepository;
-use App\Repositories\BeritaRepository;
+use App\Models\Image;
 use App\Http\Controllers\AppBaseController;
+use App\Repositories\BeritaRepository;
 use Illuminate\Http\Request;
-use illuminate\support\Str;
 use Flash;
 use Response;
 
@@ -18,9 +18,10 @@ class PostController extends AppBaseController
     private $postRepository;
     private $beritaRepository;
 
-    public function __construct(PostRepository $postRepo)
+    public function __construct(PostRepository $postRepo, BeritaRepository $beritaRepo)
     {
         $this->postRepository = $postRepo;
+        $this->beritaRepository = $beritaRepo;
     }
 
     /**
@@ -57,29 +58,29 @@ class PostController extends AppBaseController
      */
     public function store(CreatePostRequest $request)
     {
-        $input = $request->except('header_path', 'slug');
-        $slug = Str::slug($input['judul']);
-
-        if ($request->hasFile('header_path')) {
-
-            $validate = $request->validate([
-                'header_path' => 'mimes:jpg,jpeg,png|max:5012'
-            ]);
-
-            $file = $validate['header_path'];
-
-            $rand = substr(str_shuffle("0123456789abcdef"), 0, 8);
-
-            $fn = date("Y-m-d") . '-' . $rand . '.' . $file->getClientOriginalExtension();
-
-            $img = $file->storeAs('post', $fn, 'public');
-            $path = asset('assets/frontend/images/'.$img);
-            $input['header_path'] = $path;
-        }
-
-        $input['slug'] = $slug;
+        $input = $request->except('img_paths');
 
         $post = $this->postRepository->create($input);
+
+        if ($request->hasFile('img_paths')) {
+
+            $files = $request->file('img_paths');
+
+            foreach($files as $file) {
+                $rand = substr(str_shuffle("0123456789abcdef"), 0, 8);
+
+                $fn = date("Y-m-d") . '-' . $rand . '.' . $file->getClientOriginalExtension();
+
+                $image = $file->storeAs('post', $fn, 'public');
+                $path = asset('assets/frontend/images/'.$image);
+
+                $gallery = new Image();
+                $gallery->judul = $request->judul;
+                $gallery->imageable()->associate($post);
+                $gallery->img_path = $path;
+                $gallery->save();
+            }
+        }
 
         Flash::success('Post saved successfully.');
 
@@ -144,27 +145,27 @@ class PostController extends AppBaseController
             return redirect(route('dashboard.posts.index'));
         }
 
-        $update = $request->except('header_path', 'slug');
-        $slug = Str::slug($update['judul']);
+        $post = $this->postRepository->update($request->except('img_paths'), $id);
 
-        if ($request->hasFile('header_path')) {
+        if ($request->hasFile('img_paths')) {
 
-            $validate = $request->validate([
-                'header_path' => 'mimes:jpg,jpeg,png|max:5012'
-            ]);
+            $files = $request->file('img_paths');
 
-            $file = $validate['header_path'];
+            foreach($files as $file) {
+                $rand = substr(str_shuffle("0123456789abcdef"), 0, 8);
 
-            $fn = date("Y-m-d") . '-' . $slug. '.' . $file->getClientOriginalExtension();
+                $fn = date("Y-m-d") . '-' . $rand . '.' . $file->getClientOriginalExtension();
 
-            $img = $file->storeAs('post', $fn, 'public');
-            $path = asset('assets/frontend/images/'.$img);
-            $update['header_path'] = $path;
+                $image = $file->storeAs('post', $fn, 'public');
+                $path = asset('assets/frontend/images/'.$image);
+
+                $gallery = new Image();
+                $gallery->judul = $request->judul;
+                $gallery->imageable()->associate($post);
+                $gallery->img_path = $path;
+                $gallery->save();
+            }
         }
-
-        $update['slug'] = $slug;
-
-        $post = $this->postRepository->update($update, $id);
 
         Flash::success('Post updated successfully.');
 
@@ -197,23 +198,24 @@ class PostController extends AppBaseController
         return redirect(route('dashboard.posts.index'));
     }
 
-    public function beranda(BeritaRepository $beritaRepo)
+    public function beranda()
     {
-        $this->beritaRepository = $beritaRepo;
-        $post = $this->postRepository->find(1);
-
-        $beritas = $this->beritaRepository->paginate(8);
+        $post = \App\Models\Post::where('id', 1)->firstOrFail();
+        $beritas = $this->beritaRepository->paginate(15);
+        $galleries = $post->images()->get();
         views($post)->record();
-
-        return view('welcome', compact('post', 'beritas'));
+        return view('welcome', compact('post', 'beritas', 'galleries'));
     }
 
     public function profil()
     {
-        $post = $this->postRepository->find(2);
+        $post = \App\Models\Post::where('id', 2)->firstOrFail();
         views($post)->record();
+        return view('public.profil.profil', compact('post'));
+    }
 
-        return view('public.profil.profil')
-            ->with('post', $post);
+    public function cari()
+    {
+        return view('public.search');
     }
 }

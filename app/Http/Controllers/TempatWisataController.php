@@ -6,8 +6,8 @@ use App\Http\Requests\CreateTempatWisataRequest;
 use App\Http\Requests\UpdateTempatWisataRequest;
 use App\Repositories\TempatWisataRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Image;
 use Illuminate\Http\Request;
-use illuminate\Support\Str;
 use Flash;
 use Response;
 
@@ -55,26 +55,29 @@ class TempatWisataController extends AppBaseController
      */
     public function store(CreateTempatWisataRequest $request)
     {
-        $input = $request->except('img_path');
-
-        if ($request->hasFile('img_path')) {
-
-            $validate = $request->validate([
-                'img_path' => 'mimes:jpg,jpeg,png|max:5012'
-            ]);
-
-            $file = $validate['img_path'];
-
-            $rand = substr(str_shuffle("0123456789abcdef"), 0, 8);
-
-            $fn = date("Y-m-d") . '-' . $rand . '.' . $file->getClientOriginalExtension();
-
-            $img = $file->storeAs('tempat_wisata', $fn, 'public');
-            $path = asset('assets/frontend/images/'.$img);
-            $input['img_path'] = $path;
-        }
+        $input = $request->except('img_paths');
 
         $tempatWisata = $this->tempatWisataRepository->create($input);
+
+        if ($request->hasFile('img_paths')) {
+
+            $files = $request->file('img_paths');
+
+            foreach($files as $file) {
+                $rand = substr(str_shuffle("0123456789abcdef"), 0, 8);
+
+                $fn = date("Y-m-d") . '-' . $rand . '.' . $file->getClientOriginalExtension();
+
+                $image = $file->storeAs('flora', $fn, 'public');
+                $path = asset('assets/frontend/images/'.$image);
+
+                $gallery = new Image();
+                $gallery->judul = $request->nama;
+                $gallery->imageable()->associate($tempatWisata);
+                $gallery->img_path = $path;
+                $gallery->save();
+            }
+        }
 
         Flash::success('Tempat Wisata saved successfully.');
 
@@ -139,26 +142,28 @@ class TempatWisataController extends AppBaseController
             return redirect(route('dashboard.tempatWisatas.index'));
         }
 
-        $update = $request->except('img_path');
+        $tempatWisata = $this->tempatWisataRepository->update($request->except('img_paths'), $id);
 
-        if ($request->hasFile('img_path')) {
+        if ($request->hasFile('img_paths')) {
 
-            $validate = $request->validate([
-                'img_path' => 'mimes:jpg,jpeg,png|max:5012'
-            ]);
+            $tempatWisata->images()->delete();
+            $files = $request->file('img_paths');
 
-            $file = $validate['img_path'];
+            foreach($files as $file) {
+                $rand = substr(str_shuffle("0123456789abcdef"), 0, 8);
 
-            $rand = substr(str_shuffle("0123456789abcdef"), 0, 8);
+                $fn = date("Y-m-d") . '-' . $rand . '.' . $file->getClientOriginalExtension();
 
-            $fn = date("Y-m-d") . '-' . $rand . '.' . $file->getClientOriginalExtension();
+                $image = $file->storeAs('tempat_wisata', $fn, 'public');
+                $path = asset('assets/frontend/images/'.$image);
 
-            $img = $file->storeAs('tempat_wisata', $fn, 'public');
-            $path = asset('assets/frontend/images/'.$img);
-            $update['img_path'] = $path;
+                $gallery = new Image();
+                $gallery->judul = $request->nama;
+                $gallery->imageable()->associate($tempatWisata);
+                $gallery->img_path = $path;
+                $gallery->save();
+            }
         }
-
-        $tempatWisata = $this->tempatWisataRepository->update($update, $id);
 
         Flash::success('Tempat Wisata updated successfully.');
 
@@ -195,10 +200,27 @@ class TempatWisataController extends AppBaseController
     {
         $tempatWisatas = $this->tempatWisataRepository->all();
         $post = \App\Models\Post::where('id', 6)->firstOrFail();
-        $galleries = \App\Models\Gallery::where('post_id', 6)->get();
-
+        $galleries = \App\Models\Image::whereHasMorph('imageable', \App\Models\TempatWisata::class)->get();
         views($post)->record();
 
         return view('public.tempat_wisata.wisata', compact('tempatWisatas', 'post', 'galleries'));
+    }
+
+    public function publicImages()
+    {
+        $post = \App\Models\Post::where('id', 6)->firstOrFail();
+        $galleries = \App\Models\Image::whereHasMorph('imageable', \App\Models\TempatWisata::class)->get();
+        views($post)->record();
+
+        return view('public.gallery.gallery', compact('galleries', 'post'));
+    }
+
+    public function findPublicImages($slug)
+    {
+        $tempatWisata = $this->tempatWisataRepository->detail($slug);
+        $post = \App\Models\Post::where('id', 6)->firstOrFail();
+        $galleries = $tempatWisata->images;
+
+        return view('public.gallery.gallery', compact('tempatWisata', 'post', 'galleries'));
     }
 }

@@ -5,7 +5,7 @@ PROFIL - KHDTK Samboja
 @endsection
 
 @section('images')
-<img src="{{ $post->header_path }}" class="img-header d-block w-100 img-fluid" alt="...">
+<img src="{{ $post->image->img_path }}" class="img-header d-block w-100 img-fluid" alt="...">
 @endsection
 
 @section('page')

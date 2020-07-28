@@ -3,26 +3,26 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
-use CyrildeWit\EloquentViewable\InteractsWithViews;
-use CyrildeWit\EloquentViewable\Contracts\Viewable;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Berita
  * @package App\Models
- * @version July 25, 2020, 9:43 pm UTC
+ * @version July 27, 2020, 12:53 am UTC
  *
  * @property string $judul
  * @property string $deskripsi
  * @property string $slug
- * @property string $img_path
- * @property string $img_caption
  */
-class Berita extends Model implements Viewable
+class Berita extends Model implements Searchable, Viewable
 {
-    use SoftDeletes, InteractsWithViews, HasSlug;
+    use SoftDeletes, HasSlug, InteractsWithViews;
 
     public $table = 'beritas';
 
@@ -30,13 +30,10 @@ class Berita extends Model implements Viewable
     protected $dates = ['deleted_at'];
 
 
-
     public $fillable = [
         'judul',
         'deskripsi',
-        'slug',
-        'img_path',
-        'img_caption'
+        'slug'
     ];
 
     /**
@@ -47,9 +44,7 @@ class Berita extends Model implements Viewable
     protected $casts = [
         'id' => 'integer',
         'judul' => 'string',
-        'slug' => 'string',
-        'img_path' => 'string',
-        'img_caption' => 'string'
+        'slug' => 'string'
     ];
 
     /**
@@ -58,9 +53,19 @@ class Berita extends Model implements Viewable
      * @var array
      */
     public static $rules = [
-        'judul' => 'required',
-        'img_path' => 'mimes:jpg,jpeg,png|max:5012'
+        'judul' => 'required'
     ];
+
+    public function getSearchResult(): SearchResult
+    {
+        $url = route('public.berita.detail', $this->slug);
+
+        return new \Spatie\Searchable\SearchResult(
+            $this,
+            $this->judul,
+            $url
+        );
+    }
 
     public function getSlugOptions() : SlugOptions
     {
@@ -69,7 +74,18 @@ class Berita extends Model implements Viewable
             ->saveSlugsTo('slug');
     }
 
-    public function getRouteKeyName() {
+    public function getRouteKeyName()
+    {
         return 'slug';
+    }
+
+    public function image()
+    {
+        return $this->morphOne('App\Models\Image', 'imageable');
+    }
+
+    public function images()
+    {
+        return $this->morphMany('App\Models\Image', 'imageable');
     }
 }

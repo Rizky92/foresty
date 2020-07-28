@@ -8,7 +8,7 @@ use App\Repositories\BaseRepository;
 /**
  * Class TempatWisataRepository
  * @package App\Repositories
- * @version July 21, 2020, 11:22 am UTC
+ * @version July 27, 2020, 12:53 am UTC
 */
 
 class TempatWisataRepository extends BaseRepository

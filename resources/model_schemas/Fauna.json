@@ -60,22 +60,10 @@
         "inView": true
     },
     {
-        "name": "img_path",
-        "dbType": "string:nullable",
-        "htmlType": "file",
-        "validations": "mimes:jpg,jpeg,png|max:5012|nullable",
-        "searchable": false,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
         "name": "slug",
         "dbType": "string",
         "htmlType": null,
-        "validations": "required",
+        "validations": "",
         "searchable": false,
         "fillable": true,
         "primary": false,

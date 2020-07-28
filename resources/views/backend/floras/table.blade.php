@@ -8,20 +8,18 @@
         <th>Musim</th>
         <th>Habitat</th>
         <th>Lokasi</th>
-        <th>Img Path</th>
                 <th colspan="3">Action</th>
             </tr>
         </thead>
         <tbody>
         @foreach($floras as $flora)
             <tr>
-                <td>{{ $flora->nama }}</td>
+                <td>{{ Str::limit($flora->nama, 50) }}</td>
             <td>{{ Str::limit($flora->deskripsi, 150) }}</td>
             <td>{{ $flora->khasiat }}</td>
             <td>{{ $flora->musim }}</td>
             <td>{{ $flora->habitat }}</td>
             <td>{{ $flora->lokasi }}</td>
-            <td><a href="{{ $flora->img_path }}">{{ Str::limit($flora->img_path, 50) }}</a></td>
                 <td>
                     {!! Form::open(['route' => ['dashboard.floras.destroy', $flora->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

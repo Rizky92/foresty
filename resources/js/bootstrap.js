@@ -14,6 +14,8 @@ try {
     require('bootstrap');
 } catch (e) {}
 
+$('#galleryModal').modal('handleUpdate');
+
 // document.onscroll = function() {
 //     if ($(window).scrollTop() > $('.navbar').height()) {
 //         $('.navbar').addClass('fixed-top');

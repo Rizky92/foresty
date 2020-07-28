@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -10,7 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Flora
  * @package App\Models
- * @version July 22, 2020, 4:57 am UTC
+ * @version July 27, 2020, 12:52 am UTC
  *
  * @property string $nama
  * @property string $deskripsi
@@ -18,13 +20,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $musim
  * @property string $habitat
  * @property string $lokasi
- * @property string $img_path
  * @property string $slug
  */
-class Flora extends Model
+class Flora extends Model implements Searchable
 {
-    use SoftDeletes;
-    use HasSlug;
+    use SoftDeletes, HasSlug;
 
     public $table = 'floras';
 
@@ -40,7 +40,6 @@ class Flora extends Model
         'musim',
         'habitat',
         'lokasi',
-        'img_path',
         'slug'
     ];
 
@@ -56,7 +55,6 @@ class Flora extends Model
         'musim' => 'string',
         'habitat' => 'string',
         'lokasi' => 'string',
-        'img_path' => 'string',
         'slug' => 'string'
     ];
 
@@ -72,8 +70,18 @@ class Flora extends Model
         'musim' => 'nullable',
         'habitat' => 'nullable',
         'lokasi' => 'nullable',
-        'img_path' => 'mimes:jpg,jpeg,png|max:5012|nullable',
     ];
+
+    public function getSearchResult(): SearchResult
+    {
+        $url = route('public.flora');
+
+        return new \Spatie\Searchable\SearchResult(
+            $this,
+            $this->nama,
+            $url
+        );
+    }
 
     public function getSlugOptions() : SlugOptions
     {
@@ -82,7 +90,18 @@ class Flora extends Model
             ->saveSlugsTo('slug');
     }
 
-    public function getRouteKeyName() {
+    public function getRouteKeyName()
+    {
         return 'slug';
+    }
+
+    public function image()
+    {
+        return $this->morphOne('App\Models\Image', 'imageable');
+    }
+
+    public function images()
+    {
+        return $this->morphMany('App\Models\Image', 'imageable');
     }
 }

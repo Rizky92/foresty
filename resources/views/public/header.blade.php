@@ -19,6 +19,12 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('public.wisata') }}">TEMPAT WISATA</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('public.berita') }}">BERITA</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('public.galeri') }}">GALERI</a>
+            </li>
         </ul>
     </div>
 </nav>

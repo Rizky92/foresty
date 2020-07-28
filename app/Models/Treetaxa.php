@@ -8,16 +8,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Treetaxa
  * @package App\Models
- * @version July 21, 2020, 11:21 am UTC
+ * @version July 27, 2020, 12:51 am UTC
  *
- * @property string $name
+ * @property string $nama
  */
 class Treetaxa extends Model
 {
     use SoftDeletes;
 
     public $table = 'treetaxas';
-
+    
 
     protected $dates = ['deleted_at'];
 
@@ -46,5 +46,5 @@ class Treetaxa extends Model
         'nama' => 'required'
     ];
 
-
+    
 }

@@ -36,42 +36,6 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer(['testis.fields'], function ($view) {
-            $gallorableItems = Gallorable::pluck('gallorable_type','gallorable_id')->toArray();
-            $view->with('gallorableItems', $gallorableItems);
-        });
-        View::composer(['herbaria.fields'], function ($view) {
-            $floraItems = Flora::pluck('nama','id')->toArray();
-            $view->with('floraItems', $floraItems);
-        });
-        View::composer(['herbaria.fields'], function ($view) {
-            $treetaxaItems = Treetaxa::pluck('name','id')->toArray();
-            $view->with('treetaxaItems', $treetaxaItems);
-        });
-        View::composer(['herbaria.fields'], function ($view) {
-            $minore_areaItems = MinoreArea::pluck('name','id')->toArray();
-            $view->with('minore_areaItems', $minore_areaItems);
-        });
-        View::composer(['herbaria.fields'], function ($view) {
-            $majore_areaItems = MajoreArea::pluck('name','id')->toArray();
-            $view->with('majore_areaItems', $majore_areaItems);
-        });
-        View::composer(['herbaria.fields'], function ($view) {
-            $gazetteerItems = Gazetteer::pluck('name','id')->toArray();
-            $view->with('gazetteerItems', $gazetteerItems);
-        });
-        View::composer(['herbaria.fields'], function ($view) {
-            $familyItems = Family::pluck('name','id')->toArray();
-            $view->with('familyItems', $familyItems);
-        });
-        View::composer(['herbaria.fields'], function ($view) {
-            $countryItems = Country::pluck('name','id')->toArray();
-            $view->with('countryItems', $countryItems);
-        });
-        View::composer(['backend.galleries.fields'], function ($view) {
-            $postItems = Post::pluck('judul','id')->toArray();
-            $view->with('postItems', $postItems);
-        });
         View::composer(['backend.herbaria.fields'], function ($view) {
             $floraItems = Flora::pluck('nama','id')->toArray();
             $view->with('floraItems', $floraItems);

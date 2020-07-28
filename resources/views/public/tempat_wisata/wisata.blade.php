@@ -1,7 +1,7 @@
 @extends('public.app')
 
 @section('tab')
-TEMPAT WISATA - KHDTK Samboja
+Tempat Wisata - KHDTK Samboja
 @endsection
 
 @section('title')
@@ -10,19 +10,32 @@ TEMPAT WISATA - KHDTK Samboja
 @endsection
 
 @section('images')
-<img src="{{ $post->header_path }}" class="img-header d-block w-100 img-fluid" alt="...">
+<img src="{{ $post->image->img_path }}" class="img-header d-block w-100 img-fluid" alt="...">
 @endsection
 
 @section('page')
-<div class="pt-4">
-{!! $post->deskripsi !!}
+<div class="text-justify">
+    {!! $post->deskripsi !!}
+    @include('public.tempat_wisata.list')
 </div>
 @endsection
 
 @section('side')
 
-@if ($galleries->isNotEmpty())
-@include('public.gallery.side', $galleries)
-@endif
+<h4 class="text-center"><b>Galeri</b></h4>
+<hr class="bg-info">
+<div class="card-group mt-2">
+    <div class="row row-cols-1 row-cols-md-3">
+        @foreach ($galleries->slice(0, 6) as $item)
+        <div class="col mb-4">
+            <div class="card shadow">
+                <img src="{{ $item->img_path }}" class="card-img-top img-fluid" alt="{{ $item->judul }}" style="object-fit: cover; max-height: 100px;">
+            </div>
+        </div>
+        @endforeach
+    </div>
+</div>
+
+<a href=" {{ route('public.wisata.gallery') }}" class="btn btn-primary text-uppercase d-flex justify-content-center">Lihat Semua</a>
 
 @endsection

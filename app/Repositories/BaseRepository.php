@@ -192,20 +192,15 @@ abstract class BaseRepository
     }
 
     /**
-     * Find model record for given slug
+     * shows a detailed description of a model
      *
-     * @param string $attr
+     * @param string $slug
      *
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|Model|null
      */
 
-    public function findBySlug($slug)
+    public function detail($slug)
 	{
 		return $this->model->where('slug', $slug)->firstOrFail();
-    }
-
-    public function findByColumn($search, $column)
-	{
-		return $this->model->where($column, $search)->get();
     }
 }

@@ -1,0 +1,15 @@
+{!! Form::open(['route' => 'berita.upload', 'files' => true]) !!}
+
+    <!-- Img Path Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('excel', 'EXCEL:') !!}
+    {!! Form::file('excel') !!}
+</div>
+
+<!-- Submit Field -->
+<div class="form-group col-sm-12">
+    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
+    <a href="{{ route('dashboard.images.index') }}" class="btn btn-default">Cancel</a>
+</div>
+
+{!! Form::close() !!}

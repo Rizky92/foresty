@@ -34,12 +34,6 @@
     <p>{{ $flora->lokasi }}</p>
 </div>
 
-<!-- Img Path Field -->
-<div class="form-group">
-    {!! Form::label('img_path', 'Img Path:') !!}
-    <img src="{{ $flora->img_path }}" alt="" srcset="">
-</div>
-
 <!-- Slug Field -->
 <div class="form-group">
     {!! Form::label('slug', 'Slug:') !!}
@@ -58,3 +52,10 @@
     <p>{{ $flora->updated_at }}</p>
 </div>
 
+<div class="form-group">
+    <div class="row">
+        @foreach ($flora->images as $image)
+        <img src="{{ $image->img_path }}" alt="{{ $image->judul }}" class="thumbnail" style="max-width: 25%; max-height: 25%; object-fit: cover">
+    @endforeach
+    </div>
+</div>

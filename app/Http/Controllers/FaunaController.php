@@ -5,10 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateFaunaRequest;
 use App\Http\Requests\UpdateFaunaRequest;
 use App\Repositories\FaunaRepository;
-use App\Models\Gallery;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
-use illuminate\support\Str;
+use App\Models\Image;
 use Flash;
 use Response;
 
@@ -16,9 +15,6 @@ class FaunaController extends AppBaseController
 {
     /** @var  FaunaRepository */
     private $faunaRepository;
-
-    /** @var GalleryRepository */
-    private $galleryRepository;
 
     public function __construct(FaunaRepository $faunaRepo)
     {
@@ -59,26 +55,29 @@ class FaunaController extends AppBaseController
      */
     public function store(CreateFaunaRequest $request)
     {
-        $input = $request->except('img_path');
-
-        if ($request->hasFile('img_path')) {
-
-            $validate = $request->validate([
-                'img_path' => 'mimes:jpg,jpeg,png|max:5012'
-            ]);
-
-            $file = $validate['img_path'];
-
-            $rand = substr(str_shuffle("0123456789abcdef"), 0, 8);
-
-            $fn = date("Y-m-d") . '-' . $rand . '.' . $file->getClientOriginalExtension();
-
-            $img = $file->storeAs('fauna', $fn, 'public');
-            $path = asset('assets/frontend/images/'.$img);
-            $input['img_path'] = $path;
-        }
+        $input = $request->except('img_paths');
 
         $fauna = $this->faunaRepository->create($input);
+
+        if ($request->hasFile('img_paths')) {
+
+            $files = $request->file('img_paths');
+
+            foreach($files as $file) {
+                $rand = substr(str_shuffle("0123456789abcdef"), 0, 8);
+
+                $fn = date("Y-m-d") . '-' . $rand . '.' . $file->getClientOriginalExtension();
+
+                $image = $file->storeAs('berita', $fn, 'public');
+                $path = asset('assets/frontend/images/'.$image);
+
+                $gallery = new Image();
+                $gallery->judul = $request->nama;
+                $gallery->imageable()->associate($fauna);
+                $gallery->img_path = $path;
+                $gallery->save();
+            }
+        }
 
         Flash::success('Fauna saved successfully.');
 
@@ -143,26 +142,28 @@ class FaunaController extends AppBaseController
             return redirect(route('dashboard.faunas.index'));
         }
 
-        $update = $request->except('img_path');
+        $fauna = $this->faunaRepository->update($request->except('img_paths'), $id);
 
-        if ($request->hasFile('img_path')) {
+        if ($request->hasFile('img_paths')) {
 
-            $validate = $request->validate([
-                'img_path' => 'mimes:jpg,jpeg,png|max:5012'
-            ]);
+            $fauna->images()->delete();
+            $files = $request->file('img_paths');
 
-            $file = $validate['img_path'];
+            foreach($files as $file) {
+                $rand = substr(str_shuffle("0123456789abcdef"), 0, 8);
 
-            $rand = substr(str_shuffle("0123456789abcdef"), 0, 8);
+                $fn = date("Y-m-d") . '-' . $rand . '.' . $file->getClientOriginalExtension();
 
-            $fn = date("Y-m-d") . '-' . $rand . '.' . $file->getClientOriginalExtension();
+                $image = $file->storeAs('fauna', $fn, 'public');
+                $path = asset('assets/frontend/images/'.$image);
 
-            $img = $file->storeAs('fauna', $fn, 'public');
-            $path = asset('assets/frontend/images/'.$img);
-            $update['img_path'] = $path;
+                $gallery = new Image();
+                $gallery->judul = $request->nama;
+                $gallery->imageable()->associate($fauna);
+                $gallery->img_path = $path;
+                $gallery->save();
+            }
         }
-
-        $fauna = $this->faunaRepository->update($update, $id);
 
         Flash::success('Fauna updated successfully.');
 
@@ -199,10 +200,27 @@ class FaunaController extends AppBaseController
     {
         $faunas = $this->faunaRepository->all();
         $post = \App\Models\Post::where('id', 4)->firstOrFail();
-        $galleries = \App\Models\Gallery::where('post_id', 4)->get();
-
+        $galleries = \App\Models\Image::whereHasMorph('imageable', \App\Models\Fauna::class)->get();
         views($post)->record();
 
         return view('public.fauna.fauna', compact('faunas', 'post', 'galleries'));
+    }
+
+    public function publicImages()
+    {
+        $post = \App\Models\Post::where('id', 4)->firstOrFail();
+        $galleries = \App\Models\Image::whereHasMorph('imageable', \App\Models\Fauna::class)->get();
+        views($post)->record();
+
+        return view('public.gallery.gallery', compact('galleries', 'post'));
+    }
+
+    public function findPublicImages($slug)
+    {
+        $fauna = $this->faunaRepository->detail($slug);
+        $post = \App\Models\Post::where('id', 4)->firstOrFail();
+        $galleries = $fauna->images;
+
+        return view('public.gallery.gallery', compact('fauna', 'post', 'galleries'));
     }
 }

@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateHerbariumRequest;
 use App\Repositories\HerbariumRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use App\Models\Image;
 use Flash;
 use Response;
 
@@ -54,26 +55,29 @@ class HerbariumController extends AppBaseController
      */
     public function store(CreateHerbariumRequest $request)
     {
-        $input = $request->except('img_path');
-
-        if ($request->hasFile('img_path')) {
-
-            $validate = $request->validate([
-                'img_path' => 'mimes:jpg,jpeg,png|max:5012'
-            ]);
-
-            $file = $validate['img_path'];
-
-            $rand = substr(str_shuffle("0123456789abcdef"), 0, 8);
-
-            $fn = date("Y-m-d") . '-' . $rand . '.' . $file->getClientOriginalExtension();
-
-            $img = $file->storeAs('herbarium', $fn, 'public');
-            $path = asset('assets/frontend/images/'.$img);
-            $input['img_path'] = $path;
-        }
+        $input = $request->except('img_paths');
 
         $herbarium = $this->herbariumRepository->create($input);
+
+        if ($request->hasFile('img_paths')) {
+
+            $files = $request->file('img_paths');
+
+            foreach($files as $file) {
+                $rand = substr(str_shuffle("0123456789abcdef"), 0, 8);
+
+                $fn = date("Y-m-d") . '-' . $rand . '.' . $file->getClientOriginalExtension();
+
+                $image = $file->storeAs('herbarium', $fn, 'public');
+                $path = asset('assets/frontend/images/'.$image);
+
+                $gallery = new Image();
+                $gallery->judul = $request->latin;
+                $gallery->imageable()->associate($herbarium);
+                $gallery->img_path = $path;
+                $gallery->save();
+            }
+        }
 
         Flash::success('Herbarium saved successfully.');
 
@@ -138,26 +142,28 @@ class HerbariumController extends AppBaseController
             return redirect(route('dashboard.herbaria.index'));
         }
 
-        $update = $request->except('img_path');
+        $herbarium = $this->herbariumRepository->update($request->except('img_paths'), $id);
 
-        if ($request->hasFile('img_path')) {
+        if ($request->hasFile('img_paths')) {
 
-            $validate = $request->validate([
-                'img_path' => 'mimes:jpg,jpeg,png|max:5012'
-            ]);
+            $herbarium->images()->delete();
+            $files = $request->file('img_paths');
 
-            $file = $validate['img_path'];
+            foreach($files as $file) {
+                $rand = substr(str_shuffle("0123456789abcdef"), 0, 8);
 
-            $rand = substr(str_shuffle("0123456789abcdef"), 0, 8);
+                $fn = date("Y-m-d") . '-' . $rand . '.' . $file->getClientOriginalExtension();
 
-            $fn = date("Y-m-d") . '-' . $rand . '.' . $file->getClientOriginalExtension();
+                $image = $file->storeAs('herbarium', $fn, 'public');
+                $path = asset('assets/frontend/images/'.$image);
 
-            $img = $file->storeAs('herbarium', $fn, 'public');
-            $path = asset('assets/frontend/images/'.$img);
-            $update['img_path'] = $path;
+                $gallery = new Image();
+                $gallery->judul = $request->latin;
+                $gallery->imageable()->associate($herbarium);
+                $gallery->img_path = $path;
+                $gallery->save();
+            }
         }
-
-        $herbarium = $this->herbariumRepository->update($update, $id);
 
         Flash::success('Herbarium updated successfully.');
 
@@ -185,6 +191,8 @@ class HerbariumController extends AppBaseController
 
         $this->herbariumRepository->delete($id);
 
+        $herbarium->images()->delete();
+
         Flash::success('Herbarium deleted successfully.');
 
         return redirect(route('dashboard.herbaria.index'));
@@ -194,29 +202,37 @@ class HerbariumController extends AppBaseController
     {
         $herbaria = $this->herbariumRepository->all();
         $post = \App\Models\Post::where('id', 5)->firstOrFail();
+        $galleries = \App\Models\Image::whereHasMorph('imageable', \App\Models\Herbarium::class)->get();
         views($post)->record();
 
-        return view('public.herbarium.herbarium', compact('herbaria', 'post'));
+        return view('public.herbarium.herbarium', compact('herbaria', 'post', 'galleries'));
     }
 
-    public function publicSearch($search)
+    public function publicImages()
     {
-        $herbaria = $this->herbariumRepository->all($search);
+        $post = \App\Models\Post::where('id', 5)->firstOrFail();
+        $galleries = \App\Models\Image::whereHasMorph('imageable', \App\Models\Herbarium::class)->get();
+        views($post)->record();
 
-        return view('public.herbarium.herbarium')
-            ->with('herbaria', $herbaria);
+        return view('public.gallery.gallery', compact('galleries', 'post'));
     }
 
     public function publicDetail($slug)
     {
-        $herbarium = $this->herbariumRepository->findBySlug($slug);
+        $herbarium = $this->herbariumRepository->detail($slug);
         $post = \App\Models\Post::where('id', 5)->firstOrFail();
+        $galleries = $herbarium->images;
+        views($herbarium)->record();
 
-        if (empty($herbarium)) {
-            Flash::error('Herbarium not found');
+        return view('public.herbarium.detail', compact('herbarium', 'post', 'galleries'));
+    }
 
-            return redirect(route('public.herbarium'));
-        }
-        return view('public.herbarium.detail', compact('herbarium', 'post'));
+    public function publicDetailImages($slug)
+    {
+        $herbarium = $this->herbariumRepository->detail($slug);
+        $post = \App\Models\Post::where('id', 5)->firstOrFail();
+        $galleries = $herbarium->images;
+
+        return view('public.gallery.gallery', compact('herbarium', 'post', 'galleries'));
     }
 }

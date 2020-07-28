@@ -3,14 +3,18 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Herbarium
  * @package App\Models
- * @version July 22, 2020, 4:57 am UTC
+ * @version July 27, 2020, 12:52 am UTC
  *
  * @property \App\Models\Country $country
  * @property \App\Models\Family $family
@@ -26,7 +30,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property integer $number
  * @property string $prefix
  * @property string $locality_note
- * @property string $img_path
  * @property integer $country_id
  * @property integer $family_id
  * @property integer $gazetteer_id
@@ -36,10 +39,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property integer $flora_id
  * @property string $slug
  */
-class Herbarium extends Model
+class Herbarium extends Model implements Searchable, Viewable
 {
-    use SoftDeletes;
-    use HasSlug;
+    use SoftDeletes, HasSlug, InteractsWithViews;
 
     public $table = 'herbaria';
 
@@ -56,7 +58,6 @@ class Herbarium extends Model
         'number',
         'prefix',
         'locality_note',
-        'img_path',
         'country_id',
         'family_id',
         'gazetteer_id',
@@ -81,7 +82,6 @@ class Herbarium extends Model
         'number' => 'integer',
         'prefix' => 'string',
         'locality_note' => 'string',
-        'img_path' => 'string',
         'country_id' => 'integer',
         'family_id' => 'integer',
         'gazetteer_id' => 'integer',
@@ -105,14 +105,13 @@ class Herbarium extends Model
         'number' => 'nullable',
         'prefix' => 'nullable',
         'locality_note' => 'nullable',
-        'img_path' => 'mimes:jpg,jpeg,png|max:5012|nullable',
         'country_id' => 'required',
         'family_id' => 'required',
         'gazetteer_id' => 'required',
         'majore_area_id' => 'required',
         'minore_area_id' => 'required',
         'treetaxa_id' => 'required',
-        'flora_id' => 'required',
+        'flora_id' => 'required'
     ];
 
     /**
@@ -171,6 +170,17 @@ class Herbarium extends Model
         return $this->belongsTo(\App\Models\Flora::class);
     }
 
+    public function getSearchResult(): SearchResult
+    {
+        $url = route('public.herbarium.detail', $this->slug);
+
+        return new \Spatie\Searchable\SearchResult(
+            $this,
+            $this->latin,
+            $url
+        );
+    }
+
     public function getSlugOptions() : SlugOptions
     {
         return SlugOptions::create()
@@ -178,7 +188,18 @@ class Herbarium extends Model
             ->saveSlugsTo('slug');
     }
 
-    public function getRouteKeyName() {
+    public function getRouteKeyName()
+    {
         return 'slug';
+    }
+
+    public function image()
+    {
+        return $this->morphOne('App\Models\Image', 'imageable');
+    }
+
+    public function images()
+    {
+        return $this->morphMany('App\Models\Image', 'imageable');
     }
 }

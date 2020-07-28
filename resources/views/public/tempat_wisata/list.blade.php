@@ -1,15 +1,19 @@
-@foreach ($tempatWisatas as $item)
-<div class="card shadow mb-4">
-    <div class="row no-gutters">
-        <div class="col-2">
-            <img src="{{ $item->img_path }}" class="card-img" alt="..." class="img-fluid img-thumbnail" height="154px" style="object-fit: cover">
-        </div>
-        <div class="col">
-            <div class="card-body">
-                <h4 class="card-title">{{ $item->nama }}</h4>
-                <p class="card-text">Lokasi: {{ Str::limit($item->gazetteer->name, 250) }}</p>
-            </div>
-        </div>
-    </div>
-</div>
-@endforeach
+<ol>
+    @foreach ($tempatWisatas as $item)
+    <li class="pb-3">
+        <h3>
+            <a href="{{ route('public.wisata.images.find', $item->slug) }}" class="text-decoration-none text-dark"><b>{{ $item->nama }}</b></a>
+        </h3>
+
+        @if ($item->image->img_path != null || $item->image->img_path != '')
+            @if (str_contains($item->deskripsi, '[kiri]'))
+                <img src="{{ $item->image->img_path }}" class="d-block img-fluid w-35 pr-3 pb-2 float-left" alt="{{ $item->judul }}">
+            @endif
+            @if (str_contains($item->deskripsi, '[kanan]'))
+                <img src="{{ $item->image->img_path }}" class="d-block img-fluid w-35 pl-3 pb-2 float-right" alt="{{ $item->judul }}">
+            @endif
+            {!! str_replace(['[kiri]', '[kanan]'], '', $item->deskripsi) !!}
+        @endif
+    </li>
+    @endforeach
+</ol>

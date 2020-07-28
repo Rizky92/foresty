@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -10,20 +12,17 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Fauna
  * @package App\Models
- * @version July 21, 2020, 11:19 am UTC
+ * @version July 27, 2020, 12:53 am UTC
  *
  * @property string $nama
- * @property string $latin
  * @property string $deskripsi
  * @property string $habitat
  * @property string $lokasi
- * @property string $img_path
  * @property string $slug
  */
-class Fauna extends Model
+class Fauna extends Model implements Searchable
 {
-    use SoftDeletes;
-    use HasSlug;
+    use SoftDeletes, HasSlug;
 
     public $table = 'faunas';
 
@@ -31,13 +30,12 @@ class Fauna extends Model
     protected $dates = ['deleted_at'];
 
 
+
     public $fillable = [
         'nama',
-        'latin',
         'deskripsi',
         'habitat',
         'lokasi',
-        'img_path',
         'slug'
     ];
 
@@ -49,10 +47,8 @@ class Fauna extends Model
     protected $casts = [
         'id' => 'integer',
         'nama' => 'string',
-        'latin' => 'string',
         'habitat' => 'string',
         'lokasi' => 'string',
-        'img_path' => 'string',
         'slug' => 'string'
     ];
 
@@ -63,21 +59,41 @@ class Fauna extends Model
      */
     public static $rules = [
         'nama' => 'required',
-        'latin' => 'nullable',
         'deskripsi' => 'nullable',
         'habitat' => 'nullable',
-        'lokasi' => 'nullable',
-        'img_path' => 'mimes:jpg,jpeg,png|max:5012|nullable'
+        'lokasi' => 'nullable'
     ];
+
+    public function getSearchResult(): SearchResult
+    {
+        $url = route('public.fauna');
+
+        return new \Spatie\Searchable\SearchResult(
+            $this,
+            $this->nama,
+            $url
+        );
+    }
 
     public function getSlugOptions() : SlugOptions
     {
         return SlugOptions::create()
-            ->generateSlugsFrom(['nama', 'latin'])
+            ->generateSlugsFrom('nama')
             ->saveSlugsTo('slug');
     }
 
-    public function getRouteKeyName() {
+    public function getRouteKeyName()
+    {
         return 'slug';
+    }
+
+    public function image()
+    {
+        return $this->morphOne('App\Models\Image', 'imageable');
+    }
+
+    public function images()
+    {
+        return $this->morphMany('App\Models\Image', 'imageable');
     }
 }

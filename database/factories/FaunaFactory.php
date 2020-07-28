@@ -8,14 +8,10 @@ use Faker\Generator as Faker;
 $factory->define(Fauna::class, function (Faker $faker) {
 
     return [
-        'nama' => $faker->word,
-        'latin' => $faker->word,
-        'deskripsi' => $faker->word,
-        'habitat' => $faker->word,
-        'lokasi' => $faker->word,
-        'img_path' => $faker->word,
-        'slug' => $faker->word,
-        'created_at' => $faker->date('Y-m-d H:i:s'),
-        'updated_at' => $faker->date('Y-m-d H:i:s')
+        'nama' => $faker->sentence,
+        'deskripsi' => $faker->paragraph(8),
+        'habitat' => $faker->state,
+        'lokasi' => $faker->city,
+        'created_at' => $faker->date('Y-m-d H:i:s')
     ];
 });

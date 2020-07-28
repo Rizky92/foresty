@@ -10,89 +10,99 @@
 @endsection
 
 @section('images')
-<img src="{{ $post->header_path }}" class="img-header d-block w-100 img-fluid" alt="...">
+<img src="{{ $post->image->img_path }}" class="img-header d-block w-100 img-fluid" alt="...">
 @endsection
 
 @section('page')
-<div class="pt-4">
-    <div class="row">
-        <div class="col-4">
-            <img src="{{ asset($herbarium->img_path) }}" alt="" class="img-fluid align-items-center my-auto pr-3">
-        </div>
-        <div class="col">
-            <div class="row">
-                <label for="nama" class="col-sm-3">Nama:</label>
-                <p id="nama">{{ $herbarium->flora->nama }}</p>
-            </div>
-            <div class="row">
-                <label for="latin" class="col-sm-3">Nama Latin:</label>
-                <p id="latin">{{ $herbarium->latin }}</p>
-            </div>
-            <div class="row">
-                <label for="khasiat" class="col-sm-3">Khasiat:</label>
-                <p id="khasiat">{{ $herbarium->flora->khasiat }}</p>
-            </div>
-            <div class="row">
-                <label for="musim" class="col-sm-3">Musim:</label>
-                <p id="musim">{{ $herbarium->flora->musim }}</p>
-            </div>
-            <div class="row">
-                <label for="habitat" class="col-sm-3">Habitat:</label>
-                <p id="habitat">{{ $herbarium->flora->habitat }}</p>
-            </div>
-            <div class="row">
-                <label for="collector" class="col-sm-3">Collector:</label>
-                <p id="collector">{{ $herbarium->collector }}</p>
-            </div>
-            <div class="row">
-                <label for="addcoll" class="col-sm-3">Add Coll:</label>
-                <p id="addcoll">{{ $herbarium->add_coll }}</p>
-            </div>
-            <div class="row">
-                <label for="collected_date" class="col-sm-3">Collected Date:</label>
-                <p id="collected_date">{{ $herbarium->collected_date->format('j F Y') }}</p>
-            </div>
-            <div class="row">
-                <label for="number" class="col-sm-3">Number:</label>
-                <p id="number">{{ $herbarium->number }}</p>
-            </div>
-            <div class="row">
-                <label for="prefix" class="col-sm-3">Prefix:</label>
-                <p id="prefix">{{ $herbarium->prefix }}</p>
-            </div>
-            <div class="row">
-                <label for="locality_note" class="col-sm-3">Locality Note:</label>
-                <p id="locality_note">{{ $herbarium->locality_note }}</p>
-            </div>
-            <div class="row">
-                <label for="country" class="col-sm-3">Country:</label>
-                <p id="country">{{ $herbarium->country->nama }}</p>
-            </div>
-            <div class="row">
-                <label for="family" class="col-sm-3">Family:</label>
-                <p id="family">{{ $herbarium->family->nama }}</p>
-            </div>
-            <div class="row">
-                <label for="gazetteer" class="col-sm-3">Gazetteer:</label>
-                <p id="gazetteer">{{ $herbarium->gazetteer->nama }}</p>
-            </div>
-            <div class="row">
-                <label for="majore_area" class="col-sm-3">Majore Area:</label>
-                <p id="majore_area">{{ $herbarium->majoreArea->nama }}</p>
-            </div>
-            <div class="row">
-                <label for="minore_area" class="col-sm-3">Minore Area:</label>
-                <p id="minore_area">{{ $herbarium->minoreArea->nama }}</p>
-            </div>
-            <div class="row">
-                <label for="treetaxa" class="col-sm-3">Treetaxa:</label>
-                <p id="treetaxa">{{ $herbarium->treetaxa->nama }}</p>
-            </div>
+<div class="row">
+    <div class="col-4">
+        <img src="{{ asset($herbarium->image->img_path) }}" alt="" class="img-fluid align-items-center my-auto pr-3">
+    </div>
+    <div class="col">
+        <table class="table table-striped table-active table-sm">
+            <tbody>
+                <tr>
+                    <th scope="row">Nama:</th>
+                    <td>{{ $herbarium->flora->nama }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Latin:</th>
+                    <td>{{ $herbarium->latin }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Khasiat:</th>
+                    <td>{{ $herbarium->flora->khasiat }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Musim:</th>
+                    <td>{{ $herbarium->flora->musim }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Habitat:</th>
+                    <td>{{ $herbarium->flora->habitat }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Collector:</th>
+                    <td>{{ $herbarium->collector }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Collected date:</th>
+                    <td>{{ $herbarium->collected_date->format('j F Y') }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">AddColl:</th>
+                    <td>{{ $herbarium->add_coll }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Number:</th>
+                    <td>{{ $herbarium->number }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Prefix:</th>
+                    <td>{{ $herbarium->prefix }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Locality note:</th>
+                    <td>{{ $herbarium->locality_note }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Family:</th>
+                    <td>{{ $herbarium->family->nama }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Treetaxa:</th>
+                    <td>{{ $herbarium->treetaxa->nama }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Gazetteer:</th>
+                    <td>{{ $herbarium->gazetteer->nama }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Minore Area:</th>
+                    <td>{{ $herbarium->minoreArea->nama }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Majore Area:</th>
+                    <td>{{ $herbarium->majoreArea->nama }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Country:</th>
+                    <td>{{ $herbarium->country->nama }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="text-secondary text-right">
+            Dilihat {{ views($herbarium)->count() }} kali. <br>
+            @if (!empty($herbarium->updated_at) && $herbarium->updated_at > $herbarium->created_at)
+                <i>Terakhir update pada tanggal {{ $herbarium->updated_at->format('j F Y') }}</i>
+            @else
+                <i>Ditambahkan pada tanggal {{ $herbarium->created_at->format('j F Y') }}</i>
+            @endif
         </div>
     </div>
 </div>
 @endsection
 
 @section('side')
-
+{{ str_replace(['[kiri]', '[kanan]'], '', $herbarium->flora->deskripsi) }}
 @endsection

@@ -8,7 +8,7 @@ use App\Repositories\BaseRepository;
 /**
  * Class FloraRepository
  * @package App\Repositories
- * @version July 22, 2020, 4:57 am UTC
+ * @version July 27, 2020, 12:52 am UTC
 */
 
 class FloraRepository extends BaseRepository

@@ -10,12 +10,6 @@
     <p>{{ $tempatWisata->deskripsi }}</p>
 </div>
 
-<!-- Img Path Field -->
-<div class="form-group">
-    {!! Form::label('img_path', 'Img Path:') !!}
-    <img src="{{ $tempatWisata->img_path }}" alt="" srcset="">
-</div>
-
 <!-- Slug Field -->
 <div class="form-group">
     {!! Form::label('slug', 'Slug:') !!}

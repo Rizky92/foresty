@@ -3,8 +3,7 @@
         <thead>
             <tr>
                 <th>Nama</th>
-                <th>Deskripsi</th>
-                <th>Img Path</th>
+        <th>Deskripsi</th>
                 <th colspan="3">Action</th>
             </tr>
         </thead>
@@ -12,8 +11,7 @@
         @foreach($tempatWisatas as $tempatWisata)
             <tr>
                 <td>{{ $tempatWisata->nama }}</td>
-                <td>{{ Str::limit($tempatWisata->deskripsi, 150) }}</td>
-                <td>{{ $tempatWisata->img_path }}</td>
+            <td>{{ $tempatWisata->deskripsi }}</td>
                 <td>
                     {!! Form::open(['route' => ['dashboard.tempatWisatas.destroy', $tempatWisata->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

@@ -7,15 +7,14 @@
 <!-- Deskripsi Field -->
 <div class="form-group col-sm-12 col-lg-12">
     {!! Form::label('deskripsi', 'Deskripsi:') !!}
-    {!! Form::textarea('deskripsi', null, ['class' => 'form-control editor']) !!}
+    {!! Form::textarea('deskripsi', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Header Path Field -->
+<!-- Img Path Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('header_path', 'Header Path:') !!}
-    {!! Form::file('header_path') !!}
+    {!! Form::label('img_paths[]', 'Header Image (Untuk beranda foto bisa lebih dari satu):') !!}
+    {!! Form::file('img_paths[]', ['multiple']) !!}
 </div>
-<div class="clearfix"></div>
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">

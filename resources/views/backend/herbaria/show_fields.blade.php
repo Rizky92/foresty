@@ -12,8 +12,8 @@
 
 <!-- Add Coll Field -->
 <div class="form-group">
-    {!! Form::label('add_coll', 'AddColl:') !!}
-    <p>{{ $herbarium->addColl }}</p>
+    {!! Form::label('add_coll', 'Add Coll:') !!}
+    <p>{{ $herbarium->add_coll }}</p>
 </div>
 
 <!-- Collected Date Field -->
@@ -40,51 +40,45 @@
     <p>{{ $herbarium->locality_note }}</p>
 </div>
 
-<!-- Img Path Field -->
+<!-- Country Field -->
 <div class="form-group">
-    {!! Form::label('img_path', 'Img Path:') !!}
-    <p><img src="{{ $herbarium->img_path }}" alt="" srcset=""></p>
-</div>
-
-<!-- Country Id Field -->
-<div class="form-group">
-    {!! Form::label('country', 'Country:') !!}
+    {!! Form::label('country_id', 'Country:') !!}
     <p>{{ $herbarium->country->nama }}</p>
 </div>
 
-<!-- Family Id Field -->
+<!-- Family Field -->
 <div class="form-group">
-    {!! Form::label('family', 'Family:') !!}
+    {!! Form::label('family_id', 'Family:') !!}
     <p>{{ $herbarium->family->nama }}</p>
 </div>
 
-<!-- Gazetteer Id Field -->
+<!-- Gazetteer Field -->
 <div class="form-group">
-    {!! Form::label('gazetteer', 'Gazetteer:') !!}
+    {!! Form::label('gazetteer_id', 'Gazetteer:') !!}
     <p>{{ $herbarium->gazetteer->nama }}</p>
 </div>
 
-<!-- Majore Area Id Field -->
+<!-- Majore Area Field -->
 <div class="form-group">
-    {!! Form::label('majore_area', 'Majore Area:') !!}
+    {!! Form::label('majore_area_id', 'Majore Area:') !!}
     <p>{{ $herbarium->majoreArea->nama }}</p>
 </div>
 
-<!-- Minore Area Id Field -->
+<!-- Minore Area Field -->
 <div class="form-group">
-    {!! Form::label('minore_area', 'Minore Area:') !!}
+    {!! Form::label('minore_area_id', 'Minore Area:') !!}
     <p>{{ $herbarium->minoreArea->nama }}</p>
 </div>
 
-<!-- Treetaxa Id Field -->
+<!-- Treetaxa Field -->
 <div class="form-group">
-    {!! Form::label('treetaxa', 'Treetaxa:') !!}
+    {!! Form::label('treetaxa_id', 'Treetaxa:') !!}
     <p>{{ $herbarium->treetaxa->nama }}</p>
 </div>
 
 <!-- Flora Id Field -->
 <div class="form-group">
-    {!! Form::label('flora', 'Flora:') !!}
+    {!! Form::label('flora_id', 'Flora:') !!}
     <p>{{ $herbarium->flora->nama }}</p>
 </div>
 
@@ -92,6 +86,12 @@
 <div class="form-group">
     {!! Form::label('slug', 'Slug:') !!}
     <p>{{ $herbarium->slug }}</p>
+</div>
+
+<!-- Total Views Field -->
+<div class="form-group">
+    {!! Form::label('views', 'Total Views:') !!}
+    <p>{{ views($erbarium)->count() }} times</p>
 </div>
 
 <!-- Created At Field -->
@@ -106,3 +106,10 @@
     <p>{{ $herbarium->updated_at }}</p>
 </div>
 
+<div class="form-group">
+    <div class="row">
+        @foreach ($herbarium->images as $image)
+        <img src="{{ $image->img_path }}" alt="{{ $image->judul }}" class="thumbnail" style="max-width: 25%; max-height: 25%; object-fit: cover">
+    @endforeach
+    </div>
+</div>
