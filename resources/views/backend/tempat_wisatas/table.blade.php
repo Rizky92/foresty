@@ -10,8 +10,8 @@
         <tbody>
         @foreach($tempatWisatas as $tempatWisata)
             <tr>
-                <td>{{ $tempatWisata->nama }}</td>
-            <td>{{ $tempatWisata->deskripsi }}</td>
+                <td>{{ Str::limit($tempatWisata->nama, 50) }}</td>
+                <td>{{ Str::limit($tempatWisata->deskripsi, 150) }}</td>
                 <td>
                     {!! Form::open(['route' => ['dashboard.tempatWisatas.destroy', $tempatWisata->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

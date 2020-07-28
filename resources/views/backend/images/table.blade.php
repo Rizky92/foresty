@@ -14,7 +14,7 @@
             <tr>
                 <td>{{ $image->judul }}</td>
             <td>{{ $image->deskripsi }}</td>
-            <td>{{ $image->imageable }}</td>
+            <td>{{ $image->imageable_type }}</td>
             <td>{{ $image->img_path }}</td>
                 <td>
                     {!! Form::open(['route' => ['dashboard.images.destroy', $image->id], 'method' => 'delete']) !!}

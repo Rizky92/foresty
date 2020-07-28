@@ -20,6 +20,7 @@
         "laravel/ui": "^2.1",
         "laravelcollective/html": "^6.1",
         "maatwebsite/excel": "^3.1",
+        "padosoft/laravel-sluggable": "^3.1",
         "sebastiaanluca/laravel-auto-morph-map": "^5.0",
         "spatie/laravel-searchable": "^1.6",
         "spatie/laravel-sluggable": "^2.5"

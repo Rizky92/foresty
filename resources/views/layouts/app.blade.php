@@ -37,7 +37,7 @@
         <header class="main-header">
 
             <!-- Logo -->
-            <a href="http://localhost:8000/dashboard" class="logo">
+            <a href="{{ route('home') }}" class="logo">
                 <b>KHDTK Samboja</b>
             </a>
 

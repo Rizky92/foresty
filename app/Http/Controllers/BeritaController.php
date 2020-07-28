@@ -237,20 +237,4 @@ class BeritaController extends AppBaseController
 
         return view('public.gallery.gallery', compact('berita', 'post', 'galleries'));
     }
-
-    public function import(Request $request)
-    {
-        return view('public.berita.import');
-    }
-
-    public function upload(Request $request)
-    {
-        if ($request->hasFile('excel')) {
-            Excel::import(new BeritaImport, $request->file('excel'));
-
-            Flash::success('Berita imported successfully');
-
-            return redirect(route('dashboard.beritas.index'));
-        }
-    }
 }

@@ -13,8 +13,8 @@
             @foreach($posts as $post)
             <tr>
                 <td>{{ $post->id }}</td>
-                <td>{{ $post->judul }}</td>
-                <td>{{ $post->deskripsi }}</td>
+                <td>{{ Str::limit($post->judul, 50) }}</td>
+                <td>{{ Str::limit($post->deskripsi, 150) }}</td>
                 <td>{{ views($post)->count() }}/{{ views($post)->unique()->count() }}</td>
                 <td>
                     <div class='btn-group'>

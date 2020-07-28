@@ -13,9 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/berita/test', 'BeritaController@import')->name('berita.import');
-// Route::post('/berita/test', 'BeritaController@upload')->name('berita.upload');
-
 Route::get('/cari/{cari}', 'PostController@cari')->name('public.cari');
 
 Route::get('/', 'PostController@beranda')->name('public.home');
@@ -66,4 +63,8 @@ Route::group(['prefix' => 'dashboard'], function () {
     Route::resource('posts', 'PostController', ["as" => 'dashboard']);
     Route::resource('tempatWisatas', 'TempatWisataController', ["as" => 'dashboard']);
     Route::resource('treetaxas', 'TreetaxaController', ["as" => 'dashboard']);
+
+    Route::get('/import', 'ExcelController@import', ["as" => 'dashboard'])->name('import');
+    Route::post('/import', 'ExcelController@upload', ["as" => 'dashboard'])->name('upload');
+    Route::get('/export', 'ExcelController@import', ["as" => 'dashboard'])->name('export');
 });
