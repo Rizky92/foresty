@@ -30,7 +30,7 @@ class HerbariumController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $herbaria = $this->herbariumRepository->all();
+        $herbaria = $this->herbariumRepository->paginate(10);
 
         return view('backend.herbaria.index')
             ->with('herbaria', $herbaria);

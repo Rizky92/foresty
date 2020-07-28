@@ -19,7 +19,7 @@
             </div>
         </div>
         <div class="text-center">
-        
+        {{ $herbaria->links() }}
         </div>
     </div>
 @endsection
