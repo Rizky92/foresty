@@ -91,7 +91,7 @@
 <!-- Total Views Field -->
 <div class="form-group">
     {!! Form::label('views', 'Total Views:') !!}
-    <p>{{ views($erbarium)->count() }} times</p>
+    <p>{{ views($herbarium)->count() }} times</p>
 </div>
 
 <!-- Created At Field -->

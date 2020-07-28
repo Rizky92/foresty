@@ -72,7 +72,17 @@ class HerbariumController extends AppBaseController
                 $path = asset('assets/frontend/images/'.$image);
 
                 $gallery = new Image();
-                $gallery->judul = $request->latin;
+
+                if (!empty($request->latin)) {
+                    $gallery->judul = $request->latin;
+                } else if (!empty($request->flora_id)) {
+                    $gallery->judul = $request->flora->nama;
+                } else if (!empty($request->family_id)) {
+                    $gallery->judul = $request->family->nama;
+                } else {
+                    $gallery->judul = "Herbarium";
+                }
+
                 $gallery->imageable()->associate($herbarium);
                 $gallery->img_path = $path;
                 $gallery->save();
@@ -158,7 +168,13 @@ class HerbariumController extends AppBaseController
                 $path = asset('assets/frontend/images/'.$image);
 
                 $gallery = new Image();
-                $gallery->judul = $request->latin;
+
+                if (!empty($request->latin)) {
+                    $gallery->judul = $request->latin;
+                } else {
+                    $gallery->judul = "Herbarium";
+                }
+
                 $gallery->imageable()->associate($herbarium);
                 $gallery->img_path = $path;
                 $gallery->save();

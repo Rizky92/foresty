@@ -10,7 +10,9 @@ Flora - KHDTK Samboja
 @endsection
 
 @section('images')
+@if (!is_null($post->image))
 <img src="{{ $post->image->img_path }}" class="img-header d-block w-100 img-fluid" alt="...">
+@endif
 @endsection
 
 @section('page')

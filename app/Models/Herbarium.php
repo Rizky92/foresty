@@ -5,8 +5,8 @@ namespace App\Models;
 use Eloquent as Model;
 use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
-use Spatie\Sluggable\HasSlug;
-use Spatie\Sluggable\SlugOptions;
+use Padosoft\Sluggable\HasSlug;
+use Padosoft\Sluggable\SlugOptions;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -98,20 +98,20 @@ class Herbarium extends Model implements Searchable, Viewable
      * @var array
      */
     public static $rules = [
-        'latin' => 'required',
+        'latin' => 'nullable',
         'collector' => 'nullable',
         'add_coll' => 'nullable',
         'collected_date' => 'nullable',
         'number' => 'nullable',
         'prefix' => 'nullable',
         'locality_note' => 'nullable',
-        'country_id' => 'required',
-        'family_id' => 'required',
-        'gazetteer_id' => 'required',
-        'majore_area_id' => 'required',
-        'minore_area_id' => 'required',
-        'treetaxa_id' => 'required',
-        'flora_id' => 'required'
+        'country_id' => 'nullable',
+        'family_id' => 'nullable',
+        'gazetteer_id' => 'nullable',
+        'majore_area_id' => 'nullable',
+        'minore_area_id' => 'nullable',
+        'treetaxa_id' => 'nullable',
+        'flora_id' => 'nullable'
     ];
 
     /**
@@ -184,7 +184,7 @@ class Herbarium extends Model implements Searchable, Viewable
     public function getSlugOptions() : SlugOptions
     {
         return SlugOptions::create()
-            ->generateSlugsFrom('latin')
+            ->generateSlugsFrom(['latin','id'])
             ->saveSlugsTo('slug');
     }
 
