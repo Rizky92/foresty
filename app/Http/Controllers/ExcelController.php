@@ -29,7 +29,7 @@ class ExcelController extends Controller
     public function upload(Request $request)
     {
         if ($request->hasFile('excel')) {
-            Excel::import(new HerbariumSheetImport, $request->file('excel'));
+            Excel::import(new ExcelImport, $request->file('excel'));
 
             Flash::success('Excel imported successfully');
 
