@@ -7,13 +7,8 @@
 <!-- Deskripsi Field -->
 <div class="form-group col-sm-12 col-lg-12">
     {!! Form::label('deskripsi', 'Deskripsi:') !!}
-    {!! Form::textarea('deskripsi', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Submit Field -->
-<div class="form-group col-sm-12">
-    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-    <a href="{{ route('dashboard.beritas.index') }}" class="btn btn-default">Cancel</a>
+    <p class="small">Gunakan <b>[kiri]</b> untuk menaruh foto di kiri halaman atau <b>[kanan]</b> untuk menaruh foto di kanan halaman</p>
+    {!! Form::textarea('deskripsi', null, ['class' => 'form-control editor']) !!}
 </div>
 
 <!-- Img Path Field -->
@@ -22,3 +17,8 @@
     {!! Form::file('img_paths[]', ['multiple']) !!}
 </div>
 
+<!-- Submit Field -->
+<div class="form-group col-sm-12">
+    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
+    <a href="{{ route('dashboard.beritas.index') }}" class="btn btn-default">Cancel</a>
+</div>

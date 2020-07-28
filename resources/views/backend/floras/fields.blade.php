@@ -8,7 +8,7 @@
 <div class="form-group col-sm-12 col-lg-12">
     {!! Form::label('deskripsi', 'Deskripsi:') !!}
     <p class="small">Gunakan <b>[kiri]</b> untuk menaruh foto di kiri artikel atau <b>[kanan]</b> untuk menaruh foto di kanan artikel</p>
-    {!! Form::textarea('deskripsi', null, ['class' => 'form-control']) !!}
+    {!! Form::textarea('deskripsi', null, ['class' => 'form-control editor']) !!}
 </div>
 
 <!-- Khasiat Field -->
