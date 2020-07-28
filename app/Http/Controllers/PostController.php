@@ -149,6 +149,7 @@ class PostController extends AppBaseController
 
         if ($request->hasFile('img_paths')) {
 
+            $post->images()->delete();
             $files = $request->file('img_paths');
 
             foreach($files as $file) {
