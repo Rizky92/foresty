@@ -16,7 +16,7 @@ class CreateHerbariaTable extends Migration
     {
         Schema::create('herbaria', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('latin');
+            $table->string('latin')->nullable();
             $table->string('collector')->nullable();
             $table->string('add_coll')->nullable();
             $table->date('collected_date')->nullable();

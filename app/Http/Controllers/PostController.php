@@ -215,8 +215,13 @@ class PostController extends AppBaseController
         return view('public.profil.profil', compact('post'));
     }
 
-    public function cari()
+    public function cari($search)
     {
-        return view('public.search');
+        $searchResults = (new Search())
+            ->registerModel(User::class, 'name')
+            ->registerModel(BlogPost::class, 'title')
+            ->search('john');
+
+        return view('public.search', compact('search', 'search_result'));
     }
 }
